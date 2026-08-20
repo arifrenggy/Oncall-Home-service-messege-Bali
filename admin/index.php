@@ -172,30 +172,47 @@ if (!$is_logged_in):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Oncall & home service message</title>
+    <!-- Font Awesome CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cormorant Garamond -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body class="bg-stone-50 min-h-screen flex items-center justify-center p-4">
-    <div class="max-w-md w-full bg-white rounded-2xl p-8 border border-stone-200 shadow-md space-y-6">
-        <div class="text-center">
-            <span class="text-3xl">💆‍♀️</span>
-            <h1 class="text-2xl font-bold text-stone-900 mt-2">Admin Dashboard</h1>
-            <p class="text-stone-500 text-sm">Oncall & home service message</p>
+<body class="bg-stone-100 min-h-screen flex items-center justify-center p-4 font-sans">
+    <div class="max-w-md w-full bg-white rounded-3xl p-10 border border-stone-200 shadow-xl space-y-8">
+        <div class="text-center space-y-3">
+            <div class="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-800 text-3xl mx-auto shadow-sm">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <h1 class="text-3xl font-serif font-bold text-stone-900">Admin Control</h1>
+            <p class="text-stone-400 text-sm tracking-wide">Oncall & home service message</p>
         </div>
         
         <?php if ($error): ?>
-            <div class="bg-red-50 text-red-600 text-sm p-3 rounded-xl border border-red-100 font-medium">
-                <?php echo htmlspecialchars($error); ?>
+            <div class="bg-red-50 text-red-600 text-sm p-4 rounded-2xl border border-red-100 font-semibold flex items-center space-x-2">
+                <i class="fas fa-exclamation-circle text-base"></i>
+                <span><?php echo htmlspecialchars($error); ?></span>
             </div>
         <?php endif; ?>
 
-        <form method="POST" action="" class="space-y-4">
+        <form method="POST" action="" class="space-y-6">
             <input type="hidden" name="login" value="1">
-            <div>
-                <label for="password" class="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">Enter Password</label>
-                <input type="password" id="password" name="password" required class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm">
+            <div class="space-y-2">
+                <label for="password" class="block text-xs font-bold uppercase tracking-widest text-stone-400">Enter Security Password</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-stone-400">
+                        <i class="fas fa-lock text-sm"></i>
+                    </span>
+                    <input type="password" id="password" name="password" required class="w-full border border-stone-200 pl-11 pr-4 py-3.5 rounded-2xl focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 focus:outline-none text-sm font-semibold transition-all">
+                </div>
             </div>
-            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-xl text-sm transition-colors shadow-sm">
-                Access Dashboard
+            <button type="submit" class="w-full bg-emerald-800 hover:bg-emerald-950 text-white font-bold py-4 px-4 rounded-2xl text-xs uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center space-x-2">
+                <i class="fas fa-sign-in-alt text-sm"></i>
+                <span>Access Dashboard</span>
             </button>
         </form>
     </div>
@@ -240,32 +257,40 @@ $faqs = $faqs_query->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Oncall & home service message</title>
+    <!-- Font Awesome CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cormorant Garamond -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-stone-50 min-h-screen">
+<body class="bg-stone-50 min-h-screen font-sans">
 
     <!-- Top Header Navigation -->
-    <header class="bg-white border-b border-stone-200 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-            <span class="text-2xl">💆‍♀️</span>
+    <header class="bg-emerald-950 text-white px-8 py-5 flex justify-between items-center shadow-md">
+        <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-500 text-xl border border-amber-500/20">
+                <i class="fas fa-user-shield"></i>
+            </div>
             <div>
-                <h1 class="text-lg font-bold text-stone-900">Admin Panel (MySQL)</h1>
-                <p class="text-xs text-stone-500">Edit Website Live Content</p>
+                <h1 class="text-lg font-serif font-bold text-white tracking-wider">ADMIN CONTROL PORTAL</h1>
+                <p class="text-[10px] text-amber-400 font-semibold tracking-widest uppercase">MySQL Live Database Connection</p>
             </div>
         </div>
         <div class="flex items-center space-x-4">
             <?php if ($error): ?>
-                <span class="text-xs bg-red-50 text-red-600 border border-red-200 px-3 py-1.5 rounded-xl font-semibold"><?php echo htmlspecialchars($error); ?></span>
+                <span class="text-xs bg-red-950/80 text-red-400 border border-red-900/50 px-4 py-2 rounded-xl font-semibold"><i class="fas fa-exclamation-circle mr-2"></i><?php echo htmlspecialchars($error); ?></span>
             <?php endif; ?>
             <?php if (isset($_GET['saved'])): ?>
-                <span class="text-xs bg-emerald-50 text-emerald-600 border border-emerald-200 px-3 py-1.5 rounded-xl font-semibold">Changes Saved Live!</span>
+                <span class="text-xs bg-emerald-900/80 text-emerald-400 border border-emerald-800/50 px-4 py-2 rounded-xl font-semibold shadow-sm"><i class="fas fa-check-circle mr-2"></i>Changes Saved Live!</span>
             <?php endif; ?>
-            <a href="index.php?action=logout" class="bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-xl text-xs font-semibold border border-red-200 transition-colors">
-                Logout
+            <a href="index.php?action=logout" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
             </a>
         </div>
     </header>
@@ -274,17 +299,21 @@ $faqs = $faqs_query->fetchAll();
         
         <!-- Sidebar Navigation Tabs -->
         <div class="lg:col-span-3 space-y-2">
-            <button onclick="switchTab('general')" id="tab-btn-general" class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors bg-emerald-600 text-white">
-                General Settings
+            <button onclick="switchTab('general')" id="tab-btn-general" class="w-full text-left px-5 py-3.5 rounded-xl text-sm font-semibold transition-colors bg-emerald-800 text-white flex items-center space-x-3">
+                <i class="fas fa-sliders-h text-base w-5"></i>
+                <span>General Settings</span>
             </button>
-            <button onclick="switchTab('services')" id="tab-btn-services" class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors hover:bg-stone-100 text-stone-700">
-                Massage Menu
+            <button onclick="switchTab('services')" id="tab-btn-services" class="w-full text-left px-5 py-3.5 rounded-xl text-sm font-semibold transition-colors hover:bg-emerald-50 text-stone-700 hover:text-emerald-900 flex items-center space-x-3">
+                <i class="fas fa-spa text-base w-5"></i>
+                <span>Massage Menu</span>
             </button>
-            <button onclick="switchTab('areas')" id="tab-btn-areas" class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors hover:bg-stone-100 text-stone-700">
-                Service Areas
+            <button onclick="switchTab('areas')" id="tab-btn-areas" class="w-full text-left px-5 py-3.5 rounded-xl text-sm font-semibold transition-colors hover:bg-emerald-50 text-stone-700 hover:text-emerald-900 flex items-center space-x-3">
+                <i class="fas fa-map-marker-alt text-base w-5"></i>
+                <span>Service Areas</span>
             </button>
-            <button onclick="switchTab('faqs')" id="tab-btn-faqs" class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors hover:bg-stone-100 text-stone-700">
-                FAQs
+            <button onclick="switchTab('faqs')" id="tab-btn-faqs" class="w-full text-left px-5 py-3.5 rounded-xl text-sm font-semibold transition-colors hover:bg-emerald-50 text-stone-700 hover:text-emerald-900 flex items-center space-x-3">
+                <i class="fas fa-question-circle text-base w-5"></i>
+                <span>FAQs</span>
             </button>
         </div>
 
@@ -468,9 +497,9 @@ $faqs = $faqs_query->fetchAll();
 
             // Button stylings
             document.querySelectorAll('[id^="tab-btn-"]').forEach(btn => {
-                btn.className = "w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors hover:bg-stone-100 text-stone-700";
+                btn.className = "w-full text-left px-5 py-3.5 rounded-xl text-sm font-semibold transition-colors hover:bg-emerald-50 text-stone-700 hover:text-emerald-900 flex items-center space-x-3";
             });
-            document.getElementById('tab-btn-' + tabId).className = "w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors bg-emerald-600 text-white";
+            document.getElementById('tab-btn-' + tabId).className = "w-full text-left px-5 py-3.5 rounded-xl text-sm font-semibold transition-colors bg-emerald-800 text-white flex items-center space-x-3";
         }
 
         // Remove item logic
