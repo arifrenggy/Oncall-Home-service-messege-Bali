@@ -2,7 +2,7 @@
 // config.php
 
 // DB credentials (user can modify these for their cPanel environment)
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'oncall_massage_bali');
 define('DB_USER', 'root');
 define('DB_PASS', '');
