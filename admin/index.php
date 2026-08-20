@@ -10,7 +10,7 @@ $success = '';
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     unset($_SESSION['admin_logged_in']);
     session_destroy();
-    header("Location: index.php");
+    header("Location: " . $_SERVER['SCRIPT_NAME']);
     exit;
 }
 
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $password = $_POST['password'] ?? '';
     if (password_verify($password, ADMIN_PASSWORD_HASH)) {
         $_SESSION['admin_logged_in'] = true;
-        header("Location: index.php");
+        header("Location: " . $_SERVER['SCRIPT_NAME']);
         exit;
     } else {
         $error = 'Invalid password. Please try again.';
@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_content']) && $i
         }
 
         $db->commit();
-        header("Location: index.php?saved=1");
+        header("Location: " . $_SERVER['SCRIPT_NAME'] . "?saved=1");
         exit;
     } catch (Exception $e) {
         $db->rollBack();
@@ -188,7 +188,7 @@ if (!$is_logged_in):
             </div>
         <?php endif; ?>
 
-        <form method="POST" action="index.php" class="space-y-4">
+        <form method="POST" action="" class="space-y-4">
             <input type="hidden" name="login" value="1">
             <div>
                 <label for="password" class="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">Enter Password</label>
@@ -291,7 +291,7 @@ $faqs = $faqs_query->fetchAll();
         <!-- Tab Content Pane -->
         <main class="lg:col-span-9 bg-white border border-stone-200 rounded-2xl p-6 shadow-sm">
             
-            <form id="admin-form" method="POST" action="index.php" enctype="multipart/form-data">
+            <form id="admin-form" method="POST" action="" enctype="multipart/form-data">
                 <input type="hidden" name="save_content" value="1">
                 
                 <!-- TAB 1: GENERAL SETTINGS -->
