@@ -277,42 +277,53 @@ $faqs = $faqs_query->fetchAll();
     </section>
 
     <!-- Service Area & Google Maps -->
-    <section id="areas" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900">Service Area Coverage</h2>
-                <p class="text-stone-600">Our on-call massage service is available across key tourist and residential areas in Bali. No transport fee is charged within these boundaries:</p>
-                
-                <ul class="space-y-3">
-                    <?php foreach ($areas as $area): ?>
-                        <li class="flex items-center text-stone-600 text-sm">
-                            <i class="fas fa-check-circle text-amber-500 mr-3 text-base"></i>
-                            <span class="font-medium"><?php echo htmlspecialchars($area); ?></span>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-                
-                <div class="bg-theme-50 p-6 rounded-2xl border border-theme-100 flex items-start space-x-4">
-                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 text-lg flex-shrink-0">
-                        <i class="fas fa-map-marker-alt"></i>
+    <section id="areas" class="py-32 bg-stone-50 relative overflow-hidden">
+        <!-- Giant background text -->
+        <div class="absolute left-10 top-1/2 -translate-y-1/2 text-[22rem] font-serif text-stone-100/70 select-none pointer-events-none leading-none z-0">BALI</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            <!-- Areas List Card (Overlapping float) -->
+            <div class="lg:col-span-6 z-10 relative md:-mr-12">
+                <div class="bg-white/95 backdrop-blur-md p-10 rounded-3xl border border-stone-100 shadow-2xl space-y-8">
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-600"><i class="fas fa-map-marked-alt mr-1"></i> Coverage Zones</span>
+                        <h2 class="text-4xl font-serif font-bold text-stone-900 leading-tight">Service Area Coverage</h2>
+                        <p class="text-stone-500 text-sm leading-relaxed font-light">Our on-call massage service is available across key tourist and residential areas in Bali. No transport fee is charged within these boundaries:</p>
                     </div>
-                    <div>
-                        <h4 class="font-bold text-stone-900">Villa/Hotel/Home Panggilan</h4>
-                        <p class="text-stone-500 text-sm leading-relaxed">Our therapists arrive with massage tables/mats, professional massage oils, linen, and relaxing music setup.</p>
+                    
+                    <ul class="grid sm:grid-cols-2 gap-4">
+                        <?php foreach ($areas as $area): ?>
+                            <li class="flex items-center text-stone-700 text-sm">
+                                <i class="fas fa-check-circle text-amber-500 mr-3 text-base flex-shrink-0"></i>
+                                <span class="font-medium text-left"><?php echo htmlspecialchars($area); ?></span>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    
+                    <div class="bg-theme-50 p-6 rounded-2xl border border-theme-100 flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 text-lg flex-shrink-0">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-stone-900 text-sm">Villa/Hotel/Home Panggilan</h4>
+                            <p class="text-stone-500 text-xs leading-relaxed font-light">Our therapists arrive with massage tables/mats, professional massage oils, linen, and relaxing music setup.</p>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Google Maps Embed -->
-            <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border-2 border-stone-100">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252438.48918239088!2d115.09312151676646!3d-8.67045813735076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd140d384d8b58b%3A0xa126509f7e1b7f94!2sBali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            <!-- Google Maps Embed with Archway Masking -->
+            <div class="lg:col-span-6 relative z-0">
+                <div class="aspect-[4/3] rounded-t-full md:rounded-t-[200px] rounded-b-3xl overflow-hidden shadow-2xl border-4 border-amber-500/20 relative">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252438.48918239088!2d115.09312151676646!3d-8.67045813735076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd140d384d8b58b%3A0xa126509f7e1b7f94!2sBali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
         </div>
     </section>
