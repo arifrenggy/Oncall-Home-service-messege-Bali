@@ -99,39 +99,51 @@ $faqs = $faqs_query->fetchAll();
 <body class="bg-theme-beige text-stone-800 font-sans antialiased">
 
     <!-- Navigation -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-theme-100 shadow-sm">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-100 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-2">
-                <span class="text-xl font-serif font-bold text-theme-700 tracking-wide"><?php echo htmlspecialchars($brandName); ?></span>
+                <span class="text-2xl font-serif font-bold text-emerald-900 tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></span>
             </a>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-stone-600">
-                <a href="#services" class="hover:text-theme-600 transition-colors">Services</a>
-                <a href="#why-us" class="hover:text-theme-600 transition-colors">Why Choose Us</a>
-                <a href="#areas" class="hover:text-theme-600 transition-colors">Service Areas</a>
-                <a href="#faqs" class="hover:text-theme-600 transition-colors">FAQs</a>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide text-stone-600 uppercase">
+                <a href="#services" class="hover:text-emerald-800 transition-colors">Services</a>
+                <a href="#why-us" class="hover:text-emerald-800 transition-colors">Why Choose Us</a>
+                <a href="#areas" class="hover:text-emerald-800 transition-colors">Service Areas</a>
+                <a href="#faqs" class="hover:text-emerald-800 transition-colors">FAQs</a>
             </div>
-            <a href="#services" class="bg-theme-600 hover:bg-theme-700 text-white px-5 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm hover:shadow transition-all">Book Now</a>
+            <a href="#services" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">Book Now</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative overflow-hidden bg-theme-100 py-20 lg:py-32">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7 space-y-6">
-                <span class="inline-block bg-theme-600/10 text-theme-700 font-semibold px-4 py-1.5 rounded-full text-xs uppercase tracking-wider">Luxe Wellness Coming to You</span>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-theme-900 leading-tight">
+    <section id="hero" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-emerald-950 text-white">
+        <!-- Background Image with dark emerald overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1600" alt="Spa Background" class="w-full h-full object-cover object-center opacity-40 scale-105">
+            <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/95 via-emerald-950/90 to-emerald-900/85"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-24 md:py-32 grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-8 text-left">
+                <span class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest">
+                    <i class="fas fa-crown text-[10px] mr-1"></i> Luxe Wellness Coming to You
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold text-white leading-tight">
                     <?php echo htmlspecialchars($tagline); ?>
                 </h1>
-                <p class="text-lg text-stone-600 max-w-xl leading-relaxed">
+                <p class="text-base sm:text-lg text-emerald-100/80 max-w-xl leading-relaxed font-light">
                     <?php echo htmlspecialchars($description); ?>
                 </p>
                 <div class="pt-4 flex flex-wrap gap-4">
-                    <a href="#services" class="bg-theme-600 hover:bg-theme-700 text-white px-8 py-3 rounded-full text-base font-semibold tracking-wide shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">Explore Treatments</a>
-                    <a href="#why-us" class="border-2 border-theme-600 text-theme-700 hover:bg-theme-600 hover:text-white px-8 py-3 rounded-full text-base font-semibold tracking-wide transition-all transform hover:-translate-y-0.5">Learn More</a>
+                    <a href="#services" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 px-8 py-3.5 rounded-full text-sm font-bold uppercase tracking-wider shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                        <i class="fas fa-spa mr-2"></i> Explore Treatments
+                    </a>
+                    <a href="#why-us" class="border-2 border-emerald-500 hover:bg-emerald-500 hover:text-white px-8 py-3.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all transform hover:-translate-y-0.5 text-emerald-400">
+                        Learn More
+                    </a>
                 </div>
             </div>
-            <div class="lg:col-span-5 relative">
-                <div class="aspect-square bg-gradient-to-tr from-theme-200 to-theme-50 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white">
+            <div class="lg:col-span-5 relative hidden lg:block">
+                <div class="aspect-square bg-gradient-to-tr from-amber-500/20 to-emerald-950 rounded-2xl overflow-hidden shadow-2xl relative border-2 border-amber-500/40">
                     <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800" alt="Balinese Massage Treatment" class="w-full h-full object-cover">
                 </div>
             </div>
