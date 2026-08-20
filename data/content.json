@@ -1,0 +1,67 @@
+{
+  "general": {
+    "brandName": "Bali Green Oasis Massage",
+    "tagline": "Rejuvenate Your Body & Mind at Your Villa",
+    "description": "Premium on-call massage and spa treatments delivered directly to your villa, hotel, or home in Bali. Certified therapists, organic oils, and pure relaxation.",
+    "whatsapp": "6281234567890",
+    "instagram": "https://instagram.com/baligreenoasis",
+    "operatingHours": "09:00 AM - 10:00 PM"
+  },
+  "services": [
+    {
+      "id": "balinese-massage",
+      "title": "Balinese Traditional Massage",
+      "description": "A full-body, deep-tissue, holistic treatment that uses a combination of gentle stretches, acupressure, reflexology, and aromatherapy.",
+      "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600",
+      "options": [
+        { "duration": "60 Mins", "price": "250,000 IDR" },
+        { "duration": "90 Mins", "price": "350,000 IDR" },
+        { "duration": "120 Mins", "price": "450,000 IDR" }
+      ],
+      "featured": true
+    },
+    {
+      "id": "deep-tissue",
+      "title": "Deep Tissue Massage",
+      "description": "Focuses on realigning deeper layers of muscles. Beneficial for chronic aches and pains and contracted areas.",
+      "image": "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600",
+      "options": [
+        { "duration": "60 Mins", "price": "300,000 IDR" },
+        { "duration": "90 Mins", "price": "400,000 IDR" },
+        { "duration": "120 Mins", "price": "500,000 IDR" }
+      ],
+      "featured": true
+    },
+    {
+      "id": "reflexology",
+      "title": "Foot Reflexology",
+      "description": "Applies pressure to specific points on the feet to restore natural energy flow and improve circulation.",
+      "image": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600",
+      "options": [
+        { "duration": "60 Mins", "price": "200,000 IDR" },
+        { "duration": "90 Mins", "price": "280,000 IDR" }
+      ],
+      "featured": false
+    }
+  ],
+  "areas": [
+    "Pecatu, Uluwatu, Nusa Dua",
+    "Kuta, Seminyak, Canggu (including Pererenan)",
+    "Tanah Lot, Tabanan",
+    "Gianyar, Ubud"
+  ],
+  "faqs": [
+    {
+      "question": "How do I book a massage?",
+      "answer": "Simply select your service on our website, click 'Book on WhatsApp', fill in your details (date, time, villa/hotel address), and our admin will confirm your booking instantly."
+    },
+    {
+      "question": "Are there any transport fees?",
+      "answer": "No, all transport costs are included in the menu price for our service coverage areas."
+    },
+    {
+      "question": "What payment methods do you accept?",
+      "answer": "We accept Cash (IDR) directly to the therapist, Bank Transfers, or Wise payments."
+    }
+  ]
+}
