@@ -1,3 +1,39 @@
+<?php
+// index.php
+require_once 'config.php';
+
+// 1. Fetch settings
+$settings_query = $db->query("SELECT * FROM settings");
+$settings = [];
+while ($row = $settings_query->fetch()) {
+    $settings[$row['setting_key']] = $row['setting_value'];
+}
+
+$brandName = $settings['brandName'] ?? 'Oncall & home service message';
+$tagline = $settings['tagline'] ?? '';
+$description = $settings['description'] ?? '';
+$whatsapp = $settings['whatsapp'] ?? '';
+$instagram = $settings['instagram'] ?? '';
+$operatingHours = $settings['operatingHours'] ?? '';
+
+// 2. Fetch services and their price options
+$services_query = $db->query("SELECT * FROM services ORDER BY id ASC");
+$services = [];
+while ($service = $services_query->fetch()) {
+    $options_stmt = $db->prepare("SELECT duration, price FROM service_options WHERE service_ref = ? ORDER BY id ASC");
+    $options_stmt->execute([$service['id']]);
+    $service['options'] = $options_stmt->fetchAll();
+    $services[] = $service;
+}
+
+// 3. Fetch areas
+$areas_query = $db->query("SELECT area_name FROM areas ORDER BY id ASC");
+$areas = $areas_query->fetchAll(PDO::FETCH_COLUMN);
+
+// 4. Fetch faqs
+$faqs_query = $db->query("SELECT question, answer FROM faqs ORDER BY id ASC");
+$faqs = $faqs_query->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -5,13 +41,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>Premium Home Service Massage & Spa in Bali</title>
-    <meta name="description" content="Professional on-call spa & traditional massage therapy delivered directly to your villa, hotel, or residence in Bali. Book easily via WhatsApp. Clean, certified & premium experience.">
+    <title><?php echo htmlspecialchars($brandName); ?> - Premium Home Service Massage in Bali</title>
+    <meta name="description" content="<?php echo htmlspecialchars(substr($description, 0, 160)); ?>">
     <meta name="keywords" content="home service massage bali, massage home service bali, oncall spa bali, massage villa bali, massage seminyak, massage canggu, massage ubud">
     
     <!-- OpenGraph Meta Tags (SEO/Social) -->
-    <meta property="og:title" content="Premium Home Service Massage & Spa in Bali">
-    <meta property="og:description" content="Professional massage therapy directly to your villa or hotel in Bali. Certified therapists, organic oils, and top relaxation.">
+    <meta property="og:title" content="<?php echo htmlspecialchars($brandName); ?> - Premium Home Service Massage in Bali">
+    <meta property="og:description" content="<?php echo htmlspecialchars($description); ?>">
     <meta property="og:type" content="website">
     
     <!-- Favicon -->
@@ -52,14 +88,10 @@
             }
         }
     </script>
-
     <style>
         .font-serif { font-family: 'Playfair Display', serif; }
         .font-sans { font-family: 'Inter', sans-serif; }
     </style>
-    
-    <!-- Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body class="bg-theme-beige text-stone-800 font-sans antialiased">
 
@@ -67,7 +99,7 @@
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-theme-100 shadow-sm">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-2">
-                <span class="text-xl font-serif font-bold text-theme-700 tracking-wide" id="nav-brand">Oncall & home service message</span>
+                <span class="text-xl font-serif font-bold text-theme-700 tracking-wide"><?php echo htmlspecialchars($brandName); ?></span>
             </a>
             <div class="hidden md:flex space-x-8 text-sm font-medium text-stone-600">
                 <a href="#services" class="hover:text-theme-600 transition-colors">Services</a>
@@ -84,11 +116,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7 space-y-6">
                 <span class="inline-block bg-theme-600/10 text-theme-700 font-semibold px-4 py-1.5 rounded-full text-xs uppercase tracking-wider">Luxe Wellness Coming to You</span>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-theme-900 leading-tight" id="hero-title">
-                    Rejuvenate Your Body & Mind at Your Villa
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-theme-900 leading-tight">
+                    <?php echo htmlspecialchars($tagline); ?>
                 </h1>
-                <p class="text-lg text-stone-600 max-w-xl leading-relaxed" id="hero-desc">
-                    Premium on-call massage and spa treatments delivered directly to your villa, hotel, or home in Bali. Certified therapists, organic oils, and pure relaxation.
+                <p class="text-lg text-stone-600 max-w-xl leading-relaxed">
+                    <?php echo htmlspecialchars($description); ?>
                 </p>
                 <div class="pt-4 flex flex-wrap gap-4">
                     <a href="#services" class="bg-theme-600 hover:bg-theme-700 text-white px-8 py-3 rounded-full text-base font-semibold tracking-wide shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">Explore Treatments</a>
@@ -97,7 +129,7 @@
             </div>
             <div class="lg:col-span-5 relative">
                 <div class="aspect-square bg-gradient-to-tr from-theme-200 to-theme-50 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white">
-                    <img id="hero-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800" alt="Balinese Massage Treatment" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800" alt="Balinese Massage Treatment" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -140,10 +172,36 @@
             </div>
             
             <div id="services-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-                <!-- Dynamic services will load here -->
-                <div class="animate-pulse bg-stone-200 h-96 rounded-2xl"></div>
-                <div class="animate-pulse bg-stone-200 h-96 rounded-2xl"></div>
-                <div class="animate-pulse bg-stone-200 h-96 rounded-2xl"></div>
+                <?php foreach ($services as $service): ?>
+                    <div class="bg-white rounded-2xl overflow-hidden border border-theme-100 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                        <div class="h-56 bg-stone-100 overflow-hidden relative">
+                            <img src="<?php echo htmlspecialchars($service['image_path']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <h3 class="text-xl font-bold text-theme-900"><?php echo htmlspecialchars($service['title']); ?></h3>
+                                <p class="text-stone-600 text-sm leading-relaxed"><?php echo htmlspecialchars($service['description']); ?></p>
+                            </div>
+                            
+                            <div class="mt-6 space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Select Duration</label>
+                                    <select id="select-<?php echo $service['id']; ?>" class="w-full border border-stone-200 bg-stone-50 px-3 py-2 rounded-xl text-sm font-medium focus:ring-2 focus:ring-theme-500 focus:outline-none">
+                                        <?php foreach ($service['options'] as $opt): ?>
+                                            <option value="<?php echo htmlspecialchars($opt['duration']); ?>" data-price="<?php echo htmlspecialchars($opt['price']); ?>">
+                                                <?php echo htmlspecialchars($opt['duration']); ?> - <?php echo htmlspecialchars($opt['price']); ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                
+                                <button onclick="bookService('<?php echo addslashes($service['title']); ?>', '<?php echo $service['id']; ?>', '<?php echo htmlspecialchars($whatsapp); ?>')" class="w-full bg-theme-600 hover:bg-theme-700 text-white font-semibold py-3 px-4 rounded-xl text-sm tracking-wide text-center transition-all flex items-center justify-center space-x-2">
+                                    <span>Book via WhatsApp</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -155,8 +213,13 @@
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-theme-950">Service Area Coverage</h2>
                 <p class="text-stone-600">Our on-call massage service is available across key tourist and residential areas in Bali. No transport fee is charged within these boundaries:</p>
                 
-                <ul id="areas-list" class="space-y-3">
-                    <!-- Dynamic list of areas will load here -->
+                <ul class="space-y-3">
+                    <?php foreach ($areas as $area): ?>
+                        <li class="flex items-center space-x-3 text-stone-600 text-sm">
+                            <span class="text-theme-600 text-lg">✓</span>
+                            <span class="font-medium"><?php echo htmlspecialchars($area); ?></span>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
                 
                 <div class="bg-theme-50 p-6 rounded-2xl border border-theme-100 flex items-start space-x-4">
@@ -169,7 +232,7 @@
             </div>
             
             <!-- Google Maps Embed -->
-            <div id="map" class="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-stone-200">
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-stone-200">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252438.48918239088!2d115.09312151676646!3d-8.67045813735076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd140d384d8b58b%3A0xa126509f7e1b7f94!2sBali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
                         width="100%" 
                         height="100%" 
@@ -190,8 +253,18 @@
                 <p class="text-stone-500">Everything you need to know about our Bali home massage services.</p>
             </div>
             
-            <div id="faqs-list" class="space-y-4">
-                <!-- Dynamic FAQs will load here -->
+            <div class="space-y-4">
+                <?php foreach ($faqs as $i => $faq): ?>
+                    <div class="bg-white border border-theme-100 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(<?php echo $i; ?>)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-theme-900 hover:bg-theme-50/50 transition-colors">
+                            <span><?php echo htmlspecialchars($faq['question']); ?></span>
+                            <span id="faq-icon-<?php echo $i; ?>" class="text-theme-600 transition-transform duration-200">+</span>
+                        </button>
+                        <div id="faq-ans-<?php echo $i; ?>" class="hidden px-6 pb-6 text-sm text-stone-600 leading-relaxed border-t border-stone-50 pt-4">
+                            <?php echo htmlspecialchars($faq['answer']); ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -200,42 +273,63 @@
     <footer class="bg-theme-900 text-theme-100 py-12 border-t border-theme-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
             <div>
-                <h3 class="font-serif text-xl font-bold text-white mb-4" id="footer-brand">Oncall & home service message</h3>
+                <h3 class="font-serif text-xl font-bold text-white mb-4"><?php echo htmlspecialchars($brandName); ?></h3>
                 <p class="text-stone-400 text-sm leading-relaxed">Relaxation and spa therapeutic treatments at your convenience. Book in under 3 minutes.</p>
             </div>
             <div>
                 <h4 class="font-semibold text-white mb-4">Contact Info</h4>
                 <ul class="space-y-2 text-stone-400 text-sm">
-                    <li>WhatsApp: <a href="#" id="footer-wa" class="hover:text-white transition-colors text-theme-200"></a></li>
-                    <li>Operating Hours: <span id="footer-hours"></span></li>
+                    <li>WhatsApp: <a href="https://wa.me/<?php echo $whatsapp; ?>" class="hover:text-white transition-colors text-theme-200">+<?php echo htmlspecialchars($whatsapp); ?></a></li>
+                    <li>Operating Hours: <span><?php echo htmlspecialchars($operatingHours); ?></span></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-semibold text-white mb-4">Follow Us</h4>
-                <a href="#" id="footer-insta" target="_blank" class="hover:text-white transition-colors text-stone-400 text-sm flex items-center space-x-2">
-                    <span>Instagram</span>
-                </a>
+                <?php if (!empty($instagram)): ?>
+                    <a href="<?php echo htmlspecialchars($instagram); ?>" target="_blank" class="hover:text-white transition-colors text-stone-400 text-sm flex items-center space-x-2">
+                        <span>Instagram</span>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-theme-800 mt-8 pt-8 text-center text-stone-500 text-xs">
-            &copy; <span id="copyright-year">2026</span> <span id="copyright-brand">Oncall & home service message</span>. All Rights Reserved. Designed for wellness.
+            &copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($brandName); ?>. All Rights Reserved. Designed for wellness.
         </div>
     </footer>
 
-    <!-- Core App JS -->
-    <script src="js/app.js"></script>
-    
-    <!-- Netlify Identity Widget Handoff -->
+    <!-- Core App Client-Side JS -->
     <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
+        function toggleFaq(index) {
+            const ans = document.getElementById('faq-ans-' + index);
+            const icon = document.getElementById('faq-icon-' + index);
+            const isHidden = ans.classList.contains('hidden');
+            
+            // Hide all first
+            document.querySelectorAll("[id^='faq-ans-']").forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll("[id^='faq-icon-']").forEach(el => el.textContent = '+');
+
+            if (isHidden) {
+                ans.classList.remove('hidden');
+                icon.textContent = '−';
+            }
+        }
+
+        function bookService(serviceName, selectId, whatsapp) {
+            const select = document.getElementById('select-' + selectId);
+            const duration = select.value;
+            const selectedOption = select.options[select.selectedIndex];
+            const price = selectedOption.getAttribute('data-price');
+            
+            const message = `Hi, I would like to book a ${serviceName} (${duration} - ${price}). Here are my details:
+- Date & Time: 
+- Address (Hotel/Villa/Home): 
+- Number of People: 
+
+Please confirm my booking. Thank you!`;
+            
+            const waUrl = `https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`;
+            window.open(waUrl, '_blank');
+        }
     </script>
 </body>
 </html>
