@@ -202,21 +202,49 @@ $faqs = $faqs_query->fetchAll();
             </div>
         </div>
     </section>
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Side Image -->
+            <div class="relative">
+                <div class="aspect-[4/3] bg-slate-100 rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+                    <img src="https://trulyhomemassage.com/wp-content/uploads/2024/08/truly-home-massage-bali.jpg" alt="Truly Home Massage Bali" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <!-- Right Side Text -->
+            <div class="space-y-6 text-left">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="fas fa-spa mr-1.5"></i> Tentang Kami</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 leading-tight">
+                    Truly Home Massage, Spa &amp; Reflexology
+                </h2>
+                <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-4 font-light">
+                    <p><?php echo htmlspecialchars($description); ?></p>
+                    <p>Melalui terapis wanita kami yang ramah, bersertifikat, dan terlatih secara profesional, kami berkomitmen memberikan kepuasan relaksasi terbaik langsung ke hadapan Anda tanpa perlu keluar kamar.</p>
+                </div>
+                
+                <!-- Highlight Banner (Truly Style) -->
+                <div class="bg-amber-50 border border-amber-200/50 p-5 rounded-2xl flex items-center space-x-3 text-[#AE7D64] max-w-md">
+                    <i class="fas fa-truck text-xl flex-shrink-0"></i>
+                    <span class="font-bold text-xs uppercase tracking-wider">Gratis Biaya Transportasi Area Bali!</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Why Choose Us -->
-    <section id="why-us" class="py-32 bg-white relative overflow-hidden">
-        <div class="absolute right-0 bottom-0 text-[20rem] font-serif text-stone-50 select-none pointer-events-none leading-none -mb-20">ZEN</div>
+    <section id="why-us" class="py-32 bg-[#f2f5f7] relative overflow-hidden">
+        <div class="absolute right-0 bottom-0 text-[20rem] font-serif text-stone-200 select-none pointer-events-none leading-none -mb-20">ZEN</div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-amber-600"><i class="fas fa-seedling mr-1"></i> Our Core Philosophy</span>
-                <h2 class="text-4xl sm:text-5xl font-serif font-bold text-stone-900 leading-tight">Indulge in Premium Wellness</h2>
-                <p class="text-stone-500">We prioritize your health, comfort, and peace of mind. Here is why clients choose us.</p>
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-check-circle mr-1"></i> Keunggulan Kami</span>
+                <h2 class="text-4xl sm:text-5xl font-serif font-bold text-slate-900 leading-tight">Kenapa Harus Memilih Kami</h2>
+                <p class="text-slate-500">We prioritize your health, comfort, and peace of mind. Here is why clients choose us.</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 lg:gap-12 mt-24 pb-12 items-stretch">
                 <!-- Card 1: Staggered Up -->
-                <div class="bg-theme-beige p-8 rounded-3xl border border-stone-100 shadow-sm transition-all duration-300 md:-translate-y-6 hover:-translate-y-8 flex flex-col justify-between">
+                <div class="bg-white p-8 rounded-3xl border border-stone-100 shadow-sm transition-all duration-300 md:-translate-y-6 hover:-translate-y-8 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-600 text-lg mb-8">
                             <i class="fas fa-spa"></i>
@@ -241,7 +269,7 @@ $faqs = $faqs_query->fetchAll();
                 </div>
                 
                 <!-- Card 3: Staggered Down -->
-                <div class="bg-theme-beige p-8 rounded-3xl border border-stone-100 shadow-sm transition-all duration-300 md:translate-y-6 hover:translate-y-4 flex flex-col justify-between">
+                <div class="bg-white p-8 rounded-3xl border border-stone-100 shadow-sm transition-all duration-300 md:translate-y-6 hover:translate-y-4 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-600 text-lg mb-8">
                             <i class="fas fa-car-side"></i>
@@ -255,45 +283,53 @@ $faqs = $faqs_query->fetchAll();
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 bg-theme-50">
+    <section id="services" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900">Our Massage Menu</h2>
-                <p class="text-stone-500">Pick from our carefully selected list of authentic Balinese spa therapies. Book easily on WhatsApp.</p>
+                <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="fas fa-tags mr-1"></i> Daftar Harga</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Layanan &amp; Harga</h2>
+                <p class="text-slate-500">Pilih dari daftar menu terapi tradisional Bali terbaik kami. Lakukan reservasi secara instan.</p>
             </div>
             
-            <div id="services-list" class="space-y-32 mt-24">
+            <div id="services-list" class="space-y-24 mt-20">
                 <?php foreach ($services as $index => $service): 
                     $isEven = ($index % 2 == 0);
                     $directionClass = $isEven ? 'md:flex-row' : 'md:flex-row-reverse';
                     $alignTextClass = $isEven ? 'md:text-left md:items-start md:pl-16' : 'md:text-right md:items-end md:pr-16';
                 ?>
-                    <div class="flex flex-col <?php echo $directionClass; ?> items-center gap-12 md:gap-0 relative">
-                        <!-- Image Container with Archway Masking -->
-                        <div class="w-full md:w-1/2 relative z-0 flex-shrink-0">
-                            <!-- Background shadow glow for premium spa feeling -->
-                            <div class="absolute -inset-4 bg-amber-500/5 rounded-t-full blur-2xl pointer-events-none"></div>
-                            
-                            <div class="aspect-[4/5] sm:aspect-[3/4] md:h-[500px] w-full max-w-md mx-auto rounded-t-full overflow-hidden border-2 border-amber-500/20 shadow-2xl relative group">
+                    <div class="flex flex-col <?php echo $directionClass; ?> items-center gap-12 relative">
+                        <!-- Image Container with Clean Rounded Corners -->
+                        <div class="w-full md:w-1/2 flex-shrink-0">
+                            <div class="aspect-[4/3] w-full max-w-md mx-auto rounded-3xl overflow-hidden border border-stone-200 shadow-xl relative group">
                                 <?php if ($service['featured']): ?>
                                     <span class="absolute top-6 left-6 bg-amber-500 text-stone-950 text-[9px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md z-10">
                                         <i class="fas fa-crown mr-1"></i> Featured Choice
                                     </span>
                                 <?php endif; ?>
-                                <img src="<?php echo htmlspecialchars($service['image_path']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out">
+                                <img src="<?php echo htmlspecialchars($service['image_path']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out">
                             </div>
                         </div>
 
-                        <!-- Content Description Container Overlapping with Image -->
-                        <div class="w-full md:w-1/2 flex flex-col justify-center items-center <?php echo $alignTextClass; ?> z-10 relative -mt-16 md:mt-0 px-4 sm:px-8">
-                            <div class="bg-white/95 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-stone-100 shadow-xl max-w-md space-y-6">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-amber-600">Premium treatment</span>
-                                <h3 class="text-3xl font-serif font-bold text-stone-900 leading-tight"><?php echo htmlspecialchars($service['title']); ?></h3>
-                                <p class="text-stone-500 text-sm leading-relaxed font-light"><?php echo htmlspecialchars($service['description']); ?></p>
+                        <!-- Content Description Container (Clean & Corporate) -->
+                        <div class="w-full md:w-1/2 flex flex-col justify-center items-center <?php echo $alignTextClass; ?> z-10 relative px-4 sm:px-8">
+                            <div class="bg-white p-8 md:p-10 rounded-3xl border border-stone-100 shadow-lg max-w-md space-y-6 text-left">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-[#AE7D64]">Treatments</span>
+                                <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight"><?php echo htmlspecialchars($service['title']); ?></h3>
+                                <p class="text-slate-500 text-sm leading-relaxed font-light"><?php echo htmlspecialchars($service['description']); ?></p>
+                                
+                                <!-- Truly Price List Style -->
+                                <div class="space-y-2.5 py-4 border-t border-stone-100">
+                                    <?php foreach ($service['options'] as $opt): ?>
+                                        <div class="flex justify-between border-b border-dashed border-stone-200 pb-1 text-sm font-semibold">
+                                            <span class="text-slate-700"><?php echo htmlspecialchars($opt['duration']); ?></span>
+                                            <span class="text-[#AE7D64]"><?php echo htmlspecialchars($opt['price']); ?></span>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                                 
                                 <div class="border-t border-stone-100 pt-6 space-y-6">
                                     <div class="text-left">
-                                        <label class="block text-xs font-bold uppercase tracking-widest text-stone-400 mb-2">Select Session Duration</label>
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Select Duration to Book</label>
                                         <select id="select-<?php echo $service['id']; ?>" class="w-full border border-stone-200 bg-stone-50 px-4 py-3.5 rounded-2xl text-sm font-semibold focus:ring-2 focus:ring-emerald-800 focus:outline-none">
                                             <?php foreach ($service['options'] as $opt): ?>
                                                 <option value="<?php echo htmlspecialchars($opt['duration']); ?>" data-price="<?php echo htmlspecialchars($opt['price']); ?>">
@@ -303,9 +339,9 @@ $faqs = $faqs_query->fetchAll();
                                         </select>
                                     </div>
                                     
-                                    <button onclick="bookService('<?php echo addslashes($service['title']); ?>', '<?php echo $service['id']; ?>', '<?php echo htmlspecialchars($whatsapp); ?>')" class="w-full bg-emerald-800 hover:bg-emerald-950 text-white font-bold py-4 px-6 rounded-2xl text-xs uppercase tracking-widest text-center transition-all duration-300 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg">
+                                    <button onclick="bookService('<?php echo addslashes($service['title']); ?>', '<?php echo $service['id']; ?>', '<?php echo htmlspecialchars($whatsapp); ?>')" class="w-full bg-[#AE7D64] hover:bg-[#91624a] text-white font-bold py-4 px-6 rounded-2xl text-xs uppercase tracking-widest text-center transition-all duration-300 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg">
                                         <i class="fab fa-whatsapp text-lg"></i>
-                                        <span>Reserve via WhatsApp</span>
+                                        <span>Pesan Sekarang</span>
                                     </button>
                                 </div>
                             </div>
