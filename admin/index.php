@@ -31,6 +31,122 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 // Check session
 $is_logged_in = isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
 
+// Process saving content
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_content']) && $is_logged_in) {
+    $content_file = __DIR__ . '/../data/content.json';
+    
+    // Load existing content to preserve fields
+    $original_data = json_decode(file_get_contents($content_file), true);
+    
+    $new_general = $_POST['general'] ?? [];
+    $new_services_raw = $_POST['services'] ?? [];
+    $new_areas_raw = $_POST['areas'] ?? [];
+    $new_faqs_raw = $_POST['faqs'] ?? [];
+
+    // 1. Process General
+    $original_data['general'] = [
+        'brandName' => trim($new_general['brandName'] ?? ''),
+        'tagline' => trim($new_general['tagline'] ?? ''),
+        'description' => trim($new_general['description'] ?? ''),
+        'whatsapp' => preg_replace('/[^0-9]/', '', $new_general['whatsapp'] ?? ''),
+        'instagram' => trim($new_general['instagram'] ?? ''),
+        'operatingHours' => trim($new_general['operatingHours'] ?? '')
+    ];
+
+    // Ensure directories exist
+    $images_dir = __DIR__ . '/../assets/images';
+    if (!is_dir($images_dir)) {
+        mkdir($images_dir, 0755, true);
+    }
+
+    // 2. Process Services
+    $cleaned_services = [];
+    $sIdx = 0;
+    foreach ($new_services_raw as $sKey => $service) {
+        $service_id = preg_replace('/[^a-zA-Z0-9\-]/', '', $service['id'] ?? '');
+        if (empty($service_id)) continue;
+
+        $title = trim($service['title'] ?? '');
+        $desc = trim($service['description'] ?? '');
+        $image_url = $service['image'] ?? '';
+        $featured = isset($service['featured']) && $service['featured'] == 'true';
+
+        // Handle Image Upload
+        $file_key = "service_image_" . $sKey;
+        if (isset($_FILES[$file_key]) && $_FILES[$file_key]['error'] === UPLOAD_ERR_OK) {
+            $file_tmp = $_FILES[$file_key]['tmp_name'];
+            $file_name = preg_replace('/[^a-zA-Z0-9\.\-_]/', '', $_FILES[$file_key]['name']);
+            
+            // Validate mime type
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mime_type = finfo_file($finfo, $file_tmp);
+            finfo_close($finfo);
+
+            $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+            if (in_array($mime_type, $allowed_types)) {
+                $target_file = $images_dir . '/' . time() . '_' . $file_name;
+                if (move_uploaded_file($file_tmp, $target_file)) {
+                    $image_url = 'assets/images/' . time() . '_' . $file_name;
+                }
+            }
+        }
+
+        // Options parsing
+        $cleaned_options = [];
+        $options_raw = $service['options'] ?? [];
+        foreach ($options_raw as $oOpt) {
+            $dur = trim($oOpt['duration'] ?? '');
+            $prc = trim($oOpt['price'] ?? '');
+            if (!empty($dur) && !empty($prc)) {
+                $cleaned_options[] = [
+                    'duration' => $dur,
+                    'price' => $prc
+                ];
+            }
+        }
+
+        $cleaned_services[] = [
+            'id' => $service_id,
+            'title' => $title,
+            'description' => $desc,
+            'image' => $image_url,
+            'options' => $cleaned_options,
+            'featured' => $featured
+        ];
+        $sIdx++;
+    }
+    $original_data['services'] = $cleaned_services;
+
+    // 3. Process Areas
+    $cleaned_areas = [];
+    foreach ($new_areas_raw as $area) {
+        $val = trim($area);
+        if (!empty($val)) {
+            $cleaned_areas[] = $val;
+        }
+    }
+    $original_data['areas'] = $cleaned_areas;
+
+    // 4. Process FAQs
+    $cleaned_faqs = [];
+    foreach ($new_faqs_raw as $faq) {
+        $q = trim($faq['question'] ?? '');
+        $a = trim($faq['answer'] ?? '');
+        if (!empty($q) && !empty($a)) {
+            $cleaned_faqs[] = [
+                'question' => $q,
+                'answer' => $a
+            ];
+        }
+    }
+    $original_data['faqs'] = $cleaned_faqs;
+
+    // Save back to JSON
+    file_put_contents($content_file, json_encode($original_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+    header("Location: index.php?saved=1");
+    exit;
+}
+
 // Show login page if not logged in
 if (!$is_logged_in):
 ?>
@@ -102,9 +218,14 @@ $data = json_decode(file_get_contents($content_file), true);
                 <p class="text-xs text-stone-500">Edit Website Live Content</p>
             </div>
         </div>
-        <a href="index.php?action=logout" class="bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-xl text-xs font-semibold border border-red-200 transition-colors">
-            Logout
-        </a>
+        <div class="flex items-center space-x-4">
+            <?php if (isset($_GET['saved'])): ?>
+                <span class="text-xs bg-emerald-50 text-emerald-600 border border-emerald-200 px-3 py-1.5 rounded-xl font-semibold">Changes Saved Live!</span>
+            <?php endif; ?>
+            <a href="index.php?action=logout" class="bg-red-50 hover:bg-red-100 text-red-600 px-4 py-2 rounded-xl text-xs font-semibold border border-red-200 transition-colors">
+                Logout
+            </a>
+        </div>
     </header>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid lg:grid-cols-12 gap-8">
@@ -311,7 +432,6 @@ $data = json_decode(file_get_contents($content_file), true);
         }
 
         // Remove item logic
-        // Checks if element exists and removes it from UI
         function removeElement(id) {
             const element = document.getElementById(id);
             if (element) element.remove();
