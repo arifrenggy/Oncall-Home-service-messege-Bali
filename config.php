@@ -8,7 +8,7 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 
 // Admin login password hash (using php password_hash function)
-define('ADMIN_PASSWORD_HASH', '$2y$10$WpP9U142Y2h569L4v05Hau8VfLzBszXfA.q1aW45B0uX4V8G1v4fO');
+define('ADMIN_PASSWORD_HASH', '$2y$10$aJ5Cgohf/optRaAKUf8tvuEQUscjGE09UYaqjuOAKpzt2EGGPsa0K');
 
 try {
     $db = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS, [
