@@ -164,34 +164,51 @@ $faqs = $faqs_query->fetchAll();
     </section>
 
     <!-- Why Choose Us -->
-    <section id="why-us" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="why-us" class="py-32 bg-white relative overflow-hidden">
+        <div class="absolute right-0 bottom-0 text-[20rem] font-serif text-stone-50 select-none pointer-events-none leading-none -mb-20">ZEN</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900">Indulge in Premium Wellness</h2>
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-600"><i class="fas fa-seedling mr-1"></i> Our Core Philosophy</span>
+                <h2 class="text-4xl sm:text-5xl font-serif font-bold text-stone-900 leading-tight">Indulge in Premium Wellness</h2>
                 <p class="text-stone-500">We prioritize your health, comfort, and peace of mind. Here is why clients choose us.</p>
             </div>
             
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-                <div class="bg-theme-beige p-8 rounded-2xl border border-stone-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-6">
-                        <i class="fas fa-spa"></i>
+            <div class="grid md:grid-cols-3 gap-8 lg:gap-12 mt-24 pb-12 items-stretch">
+                <!-- Card 1: Staggered Up -->
+                <div class="bg-theme-beige p-8 rounded-3xl border border-stone-100 shadow-sm transition-all duration-300 md:-translate-y-6 hover:-translate-y-8 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-600 text-lg mb-8">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">Certified Therapists</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed font-light">Our female therapists are fully trained, certified, and experienced in professional spa treatments and anatomy.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">Certified Therapists</h3>
-                    <p class="text-stone-600 text-sm leading-relaxed">Our female therapists are fully trained, certified, and experienced in professional spa treatments and anatomy.</p>
                 </div>
-                <div class="bg-theme-beige p-8 rounded-2xl border border-stone-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-6">
-                        <i class="fas fa-leaf"></i>
+                
+                <!-- Card 2: Main Highlight Card -->
+                <div class="bg-white p-10 rounded-3xl border-2 border-amber-500/30 shadow-xl transition-all duration-300 transform hover:scale-[1.02] flex flex-col justify-between relative">
+                    <span class="absolute -top-3 right-6 bg-amber-500 text-stone-950 text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                        Premium Choice
+                    </span>
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-950 text-amber-500 rounded-2xl flex items-center justify-center text-lg mb-8 border border-amber-500/30">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">100% Organic Oils</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed font-light">We use only organic, virgin coconut oil and premium essential oils to nourish your skin and enhance relaxation.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">100% Organic Oils</h3>
-                    <p class="text-stone-600 text-sm leading-relaxed">We use only organic, virgin coconut oil and premium essential oils to nourish your skin and enhance relaxation.</p>
                 </div>
-                <div class="bg-theme-beige p-8 rounded-2xl border border-stone-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-6">
-                        <i class="fas fa-car-side"></i>
+                
+                <!-- Card 3: Staggered Down -->
+                <div class="bg-theme-beige p-8 rounded-3xl border border-stone-100 shadow-sm transition-all duration-300 md:translate-y-6 hover:translate-y-4 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-600 text-lg mb-8">
+                            <i class="fas fa-car-side"></i>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">No Transport Fee</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed font-light">No hidden charges. Our massage prices include all transport costs directly to your villa, hotel, or apartment.</p>
                     </div>
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">No Transport Fee</h3>
-                    <p class="text-stone-600 text-sm leading-relaxed">No hidden charges. Our massage prices include all transport costs directly to your villa, hotel, or apartment.</p>
                 </div>
             </div>
         </div>
