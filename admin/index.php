@@ -72,7 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_content']) && $i
             // Validate mime type
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $mime_type = finfo_file($finfo, $file_tmp);
-            finfo_close($finfo);
+            if (is_resource($finfo)) {
+                finfo_close($finfo);
+            }
 
             $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/svg+xml'];
             if (in_array($mime_type, $allowed_types)) {
@@ -107,7 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_content']) && $i
                 // Validate mime type
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
                 $mime_type = finfo_file($finfo, $file_tmp);
-                finfo_close($finfo);
+                if (is_resource($finfo)) {
+                    finfo_close($finfo);
+                }
 
                 $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
                 if (in_array($mime_type, $allowed_types)) {
