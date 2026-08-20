@@ -353,73 +353,75 @@ $faqs = $faqs_query->fetchAll();
     </section>
 
     <!-- Service Area & Google Maps -->
-    <section id="areas" class="py-32 bg-stone-50 relative overflow-hidden">
-        <!-- Giant background text -->
-        <div class="absolute left-10 top-1/2 -translate-y-1/2 text-[22rem] font-serif text-stone-100/70 select-none pointer-events-none leading-none z-0">BALI</div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            <!-- Areas List Card (Overlapping float) -->
-            <div class="lg:col-span-6 z-10 relative md:-mr-12">
-                <div class="bg-white/95 backdrop-blur-md p-10 rounded-3xl border border-stone-100 shadow-2xl space-y-8">
-                    <div class="space-y-3">
-                        <span class="text-xs font-bold uppercase tracking-widest text-amber-600"><i class="fas fa-map-marked-alt mr-1"></i> Coverage Zones</span>
-                        <h2 class="text-4xl font-serif font-bold text-stone-900 leading-tight">Service Area Coverage</h2>
-                        <p class="text-stone-500 text-sm leading-relaxed font-light">Our on-call massage service is available across key tourist and residential areas in Bali. No transport fee is charged within these boundaries:</p>
+    <section id="areas" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Areas List -->
+            <div class="space-y-6 text-left">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-map-marked-alt mr-1"></i> Area Jangkauan</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 leading-tight">Wilayah Layanan Kami</h2>
+                <p class="text-slate-500 text-sm leading-relaxed font-light">Terapis profesional kami siap datang langsung ke tempat Anda tanpa biaya transportasi tambahan untuk wilayah-wilayah berikut:</p>
+                
+                <ul class="grid sm:grid-cols-2 gap-4">
+                    <?php foreach ($areas as $area): ?>
+                        <li class="flex items-center text-slate-700 text-sm font-medium">
+                            <i class="fas fa-check text-emerald-500 mr-3 text-xs bg-emerald-50 p-1 rounded-full"></i>
+                            <span><?php echo htmlspecialchars($area); ?></span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start space-x-4">
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-[#AE7D64] text-lg flex-shrink-0">
+                        <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    
-                    <ul class="grid sm:grid-cols-2 gap-4">
-                        <?php foreach ($areas as $area): ?>
-                            <li class="flex items-center text-stone-700 text-sm">
-                                <i class="fas fa-check-circle text-amber-500 mr-3 text-base flex-shrink-0"></i>
-                                <span class="font-medium text-left"><?php echo htmlspecialchars($area); ?></span>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                    
-                    <div class="bg-theme-50 p-6 rounded-2xl border border-theme-100 flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 text-lg flex-shrink-0">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="text-left">
-                            <h4 class="font-bold text-stone-900 text-sm">Villa/Hotel/Home Panggilan</h4>
-                            <p class="text-stone-500 text-xs leading-relaxed font-light">Our therapists arrive with massage tables/mats, professional massage oils, linen, and relaxing music setup.</p>
-                        </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm">Villa/Hotel/Rumah/Apartemen</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed font-light">Terapis kami tiba dengan membawa matras pijat, minyak aromaterapi profesional, sprei bersih, serta musik relaksasi.</p>
                     </div>
                 </div>
             </div>
             
-            <!-- Google Maps Embed with Archway Masking -->
-            <div class="lg:col-span-6 relative z-0">
-                <div class="aspect-[4/3] rounded-t-full md:rounded-t-[200px] rounded-b-3xl overflow-hidden shadow-2xl border-4 border-amber-500/20 relative">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252438.48918239088!2d115.09312151676646!3d-8.67045813735076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd140d384d8b58b%3A0xa126509f7e1b7f94!2sBali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
+            <!-- Google Maps Embed -->
+            <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252438.48918239088!2d115.09312151676646!3d-8.67045813735076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd140d384d8b58b%3A0xa126509f7e1b7f94!2sBali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
     </section>
 
+    <!-- Operating Hours Banner -->
+    <section class="py-16 bg-[#192a3d] text-white text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10 space-y-4">
+            <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="far fa-clock mr-1"></i> Available Daily</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold uppercase tracking-wider">JAM OPERASIONAL</h2>
+            <p class="text-2xl sm:text-3xl font-bold text-[#AE7D64]">Setiap Hari (08:00 - 23:00 WITA)</p>
+        </div>
+    </section>
+
     <!-- FAQs Section -->
-    <section id="faqs" class="py-20 bg-theme-50">
+    <section id="faqs" class="py-24 bg-[#f2f5f7]">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center space-y-4 mb-12">
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900">Frequently Asked Questions</h2>
-                <p class="text-stone-500">Everything you need to know about our Bali home massage services.</p>
+            <div class="text-center space-y-4 mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-question-circle mr-1"></i> Pertanyaan</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Frequently Asked Questions</h2>
+                <p class="text-slate-500">Semua informasi penting yang wajib Anda ketahui mengenai layanan pijat kami.</p>
             </div>
             
             <div class="space-y-4">
                 <?php foreach ($faqs as $i => $faq): ?>
-                    <div class="bg-white border border-stone-100 rounded-2xl overflow-hidden">
-                        <button onclick="toggleFaq(<?php echo $i; ?>)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-stone-900 hover:bg-theme-50/50 transition-colors">
+                    <div class="bg-white border border-stone-100 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq(<?php echo $i; ?>)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-slate-900 hover:bg-slate-50 transition-colors">
                             <span><?php echo htmlspecialchars($faq['question']); ?></span>
-                            <i id="faq-icon-<?php echo $i; ?>" class="fas fa-chevron-down text-amber-500 text-xs transition-transform duration-300"></i>
+                            <i id="faq-icon-<?php echo $i; ?>" class="fas fa-chevron-down text-[#AE7D64] text-xs transition-transform duration-300"></i>
                         </button>
-                        <div id="faq-ans-<?php echo $i; ?>" class="hidden px-6 pb-6 text-sm text-stone-600 leading-relaxed border-t border-stone-50 pt-4">
+                        <div id="faq-ans-<?php echo $i; ?>" class="hidden px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-50 pt-4 text-left">
                             <?php echo htmlspecialchars($faq['answer']); ?>
                         </div>
                     </div>
@@ -429,30 +431,36 @@ $faqs = $faqs_query->fetchAll();
     </section>
 
     <!-- Footer -->
-    <footer class="bg-emerald-950 text-emerald-100 py-16 border-t border-emerald-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-12">
-            <div class="space-y-4">
+    <footer class="bg-[#192a3d] text-slate-300 py-20 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-16">
+            <div class="space-y-6 text-left">
                 <h3 class="font-serif text-2xl font-bold text-white tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></h3>
-                <p class="text-emerald-100/60 text-sm leading-relaxed font-light">Relaxation and spa therapeutic treatments at your convenience. Book in under 3 minutes.</p>
+                <p class="text-slate-400 text-sm leading-relaxed font-light">Relaxation and spa therapeutic treatments at your convenience. Book in under 3 minutes.</p>
             </div>
-            <div class="space-y-4">
-                <h4 class="font-semibold text-white uppercase tracking-wider text-xs">Contact Info</h4>
-                <ul class="space-y-3 text-emerald-100/60 text-sm">
-                    <li><i class="fab fa-whatsapp text-amber-500 mr-2 text-base"></i> WhatsApp: <a href="https://wa.me/<?php echo $whatsapp; ?>" class="hover:text-white transition-colors font-medium text-amber-400">+<?php echo htmlspecialchars($whatsapp); ?></a></li>
-                    <li><i class="far fa-clock text-amber-500 mr-2 text-base"></i> Operating Hours: <span><?php echo htmlspecialchars($operatingHours); ?></span></li>
+            <div class="space-y-6 text-left">
+                <h4 class="font-bold text-white uppercase tracking-wider text-xs">Kontak &amp; Alamat</h4>
+                <ul class="space-y-3.5 text-slate-400 text-sm">
+                    <li class="flex items-center space-x-2">
+                        <i class="fab fa-whatsapp text-[#AE7D64] text-base"></i> 
+                        <span>WhatsApp: <a href="https://wa.me/<?php echo $whatsapp; ?>" class="hover:text-white transition-colors font-semibold text-[#AE7D64]">+<?php echo htmlspecialchars($whatsapp); ?></a></span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <i class="far fa-clock text-[#AE7D64] text-base"></i> 
+                        <span>Jam Operasional: <?php echo htmlspecialchars($operatingHours); ?></span>
+                    </li>
                 </ul>
             </div>
-            <div class="space-y-4">
-                <h4 class="font-semibold text-white uppercase tracking-wider text-xs">Follow Us</h4>
+            <div class="space-y-6 text-left">
+                <h4 class="font-bold text-white uppercase tracking-wider text-xs">Ikuti Media Sosial Kami</h4>
                 <?php if (!empty($instagram)): ?>
-                    <a href="<?php echo htmlspecialchars($instagram); ?>" target="_blank" class="hover:text-amber-400 transition-colors text-emerald-100/60 text-sm flex items-center space-x-2">
-                        <i class="fab fa-instagram text-lg text-amber-500"></i>
+                    <a href="<?php echo htmlspecialchars($instagram); ?>" target="_blank" class="hover:text-white transition-colors text-slate-400 text-sm flex items-center space-x-2.5">
+                        <i class="fab fa-instagram text-lg text-[#AE7D64]"></i>
                         <span>Instagram</span>
                     </a>
                 <?php endif; ?>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-emerald-900 mt-12 pt-8 text-center text-emerald-100/40 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800 mt-16 pt-8 text-center text-slate-500 text-xs">
             &copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($brandName); ?>. All Rights Reserved. Designed for wellness.
         </div>
     </footer>
