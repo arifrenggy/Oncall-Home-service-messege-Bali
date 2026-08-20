@@ -154,24 +154,30 @@ $faqs = $faqs_query->fetchAll();
     <section id="why-us" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-theme-950">Indulge in Premium Wellness</h2>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900">Indulge in Premium Wellness</h2>
                 <p class="text-stone-500">We prioritize your health, comfort, and peace of mind. Here is why clients choose us.</p>
             </div>
             
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-                <div class="bg-theme-beige p-8 rounded-2xl border border-theme-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-theme-100 rounded-xl flex items-center justify-center text-theme-600 text-2xl mb-6">💆‍♀️</div>
-                    <h3 class="text-xl font-bold text-theme-900 mb-2">Certified Therapists</h3>
+                <div class="bg-theme-beige p-8 rounded-2xl border border-stone-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-6">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-900 mb-2">Certified Therapists</h3>
                     <p class="text-stone-600 text-sm leading-relaxed">Our female therapists are fully trained, certified, and experienced in professional spa treatments and anatomy.</p>
                 </div>
-                <div class="bg-theme-beige p-8 rounded-2xl border border-theme-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-theme-100 rounded-xl flex items-center justify-center text-theme-600 text-2xl mb-6">🌿</div>
-                    <h3 class="text-xl font-bold text-theme-900 mb-2">100% Organic Oils</h3>
+                <div class="bg-theme-beige p-8 rounded-2xl border border-stone-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-6">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-900 mb-2">100% Organic Oils</h3>
                     <p class="text-stone-600 text-sm leading-relaxed">We use only organic, virgin coconut oil and premium essential oils to nourish your skin and enhance relaxation.</p>
                 </div>
-                <div class="bg-theme-beige p-8 rounded-2xl border border-theme-100 hover:shadow-md transition-shadow">
-                    <div class="w-12 h-12 bg-theme-100 rounded-xl flex items-center justify-center text-theme-600 text-2xl mb-6">🚗</div>
-                    <h3 class="text-xl font-bold text-theme-900 mb-2">No Transport Fee</h3>
+                <div class="bg-theme-beige p-8 rounded-2xl border border-stone-100 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 text-xl mb-6">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-900 mb-2">No Transport Fee</h3>
                     <p class="text-stone-600 text-sm leading-relaxed">No hidden charges. Our massage prices include all transport costs directly to your villa, hotel, or apartment.</p>
                 </div>
             </div>
@@ -182,26 +188,31 @@ $faqs = $faqs_query->fetchAll();
     <section id="services" class="py-20 bg-theme-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-theme-950">Our Massage Menu</h2>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900">Our Massage Menu</h2>
                 <p class="text-stone-500">Pick from our carefully selected list of authentic Balinese spa therapies. Book easily on WhatsApp.</p>
             </div>
             
             <div id="services-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
                 <?php foreach ($services as $service): ?>
-                    <div class="bg-white rounded-2xl overflow-hidden border border-theme-100 shadow-sm hover:shadow-md transition-shadow flex flex-col">
-                        <div class="h-56 bg-stone-100 overflow-hidden relative">
-                            <img src="<?php echo htmlspecialchars($service['image_path']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" class="w-full h-full object-cover">
+                    <div class="group bg-white rounded-3xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                        <div class="h-64 bg-stone-100 overflow-hidden relative">
+                            <?php if ($service['featured']): ?>
+                                <span class="absolute top-4 left-4 bg-amber-500 text-stone-950 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm z-10">
+                                    <i class="fas fa-crown mr-1"></i> Featured
+                                </span>
+                            <?php endif; ?>
+                            <img src="<?php echo htmlspecialchars($service['image_path']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                         </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="p-8 flex-1 flex flex-col justify-between">
                             <div class="space-y-3">
-                                <h3 class="text-xl font-bold text-theme-900"><?php echo htmlspecialchars($service['title']); ?></h3>
-                                <p class="text-stone-600 text-sm leading-relaxed"><?php echo htmlspecialchars($service['description']); ?></p>
+                                <h3 class="text-xl font-serif font-bold text-stone-900"><?php echo htmlspecialchars($service['title']); ?></h3>
+                                <p class="text-stone-500 text-sm leading-relaxed"><?php echo htmlspecialchars($service['description']); ?></p>
                             </div>
                             
-                            <div class="mt-6 space-y-4">
+                            <div class="mt-8 space-y-5">
                                 <div>
-                                    <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Select Duration</label>
-                                    <select id="select-<?php echo $service['id']; ?>" class="w-full border border-stone-200 bg-stone-50 px-3 py-2 rounded-xl text-sm font-medium focus:ring-2 focus:ring-theme-500 focus:outline-none">
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">Select Duration</label>
+                                    <select id="select-<?php echo $service['id']; ?>" class="w-full border border-stone-200 bg-stone-50 px-4 py-3 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-emerald-800 focus:outline-none">
                                         <?php foreach ($service['options'] as $opt): ?>
                                             <option value="<?php echo htmlspecialchars($opt['duration']); ?>" data-price="<?php echo htmlspecialchars($opt['price']); ?>">
                                                 <?php echo htmlspecialchars($opt['duration']); ?> - <?php echo htmlspecialchars($opt['price']); ?>
@@ -210,7 +221,8 @@ $faqs = $faqs_query->fetchAll();
                                     </select>
                                 </div>
                                 
-                                <button onclick="bookService('<?php echo addslashes($service['title']); ?>', '<?php echo $service['id']; ?>', '<?php echo htmlspecialchars($whatsapp); ?>')" class="w-full bg-theme-600 hover:bg-theme-700 text-white font-semibold py-3 px-4 rounded-xl text-sm tracking-wide text-center transition-all flex items-center justify-center space-x-2">
+                                <button onclick="bookService('<?php echo addslashes($service['title']); ?>', '<?php echo $service['id']; ?>', '<?php echo htmlspecialchars($whatsapp); ?>')" class="w-full bg-emerald-800 hover:bg-emerald-950 text-white font-bold py-3.5 px-4 rounded-xl text-xs uppercase tracking-wider text-center transition-all duration-300 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg">
+                                    <i class="fab fa-whatsapp text-lg"></i>
                                     <span>Book via WhatsApp</span>
                                 </button>
                             </div>
