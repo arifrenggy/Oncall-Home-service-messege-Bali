@@ -124,65 +124,80 @@ $faqs = $faqs_query->fetchAll();
 <body class="bg-theme-beige text-stone-800 font-sans antialiased">
 
     <!-- Navigation -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-100 shadow-sm">
+    <header class="sticky top-0 z-50 bg-white border-b border-stone-100 shadow-sm">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-2">
-                <span class="text-2xl font-serif font-bold text-emerald-900 tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></span>
+                <span class="text-xl font-serif font-bold text-slate-900 tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></span>
             </a>
-            <div class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide text-stone-600 uppercase">
-                <a href="#services" class="hover:text-emerald-800 transition-colors">Services</a>
-                <a href="#why-us" class="hover:text-emerald-800 transition-colors">Why Choose Us</a>
-                <a href="#areas" class="hover:text-emerald-800 transition-colors">Service Areas</a>
-                <a href="#faqs" class="hover:text-emerald-800 transition-colors">FAQs</a>
+            <div class="hidden md:flex space-x-8 text-xs font-bold tracking-widest text-slate-600 uppercase">
+                <a href="#about" class="hover:text-blue-600 transition-colors">Tentang Kami</a>
+                <a href="#services" class="hover:text-blue-600 transition-colors">Harga & Layanan</a>
+                <a href="#why-us" class="hover:text-blue-600 transition-colors">Kenapa Kami</a>
+                <a href="#areas" class="hover:text-blue-600 transition-colors">Wilayah Layanan</a>
+                <a href="#faqs" class="hover:text-blue-600 transition-colors">FAQs</a>
             </div>
-            <a href="#services" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">Book Now</a>
+            <a href="#services" class="bg-[#AE7D64] hover:bg-[#91624a] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Pesan Sekarang</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-emerald-950 text-white pt-32 pb-24">
-        <!-- Decorative background elements -->
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-emerald-950 via-emerald-950 to-emerald-900/90"></div>
-            <!-- Large floating glyph for art-gallery styling -->
-            <div class="absolute -right-16 top-12 text-[26rem] font-serif text-emerald-900/10 select-none pointer-events-none leading-none">S</div>
-            <div class="absolute -left-16 bottom-12 text-[26rem] font-serif text-emerald-900/10 select-none pointer-events-none leading-none">O</div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center flex flex-col items-center">
-            <div class="max-w-4xl space-y-8">
-                <span class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold px-5 py-2 rounded-full text-xs uppercase tracking-widest">
-                    <i class="fas fa-crown text-[10px] mr-1"></i> Luxe Wellness Coming to You
+    <section id="hero" class="relative overflow-hidden bg-[#f2f5f7] py-20 lg:py-28 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full grid lg:grid-cols-12 gap-12 items-center">
+            <!-- Left Side Content -->
+            <div class="lg:col-span-7 space-y-6 text-left">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1.5 rounded-full">
+                    <i class="fas fa-certificate mr-1.5"></i> #1 Pijat Panggilan Bali
                 </span>
-                <h1 class="text-5xl sm:text-6xl lg:text-8xl font-serif font-bold text-white leading-tight tracking-tight">
-                    <?php echo htmlspecialchars($tagline); ?>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
+                    Truly Home Massage, Spa & Reflexology
                 </h1>
-                <p class="text-base sm:text-lg text-emerald-100/70 max-w-xl mx-auto leading-relaxed font-light">
-                    <?php echo htmlspecialchars($description); ?>
+                <p class="text-slate-500 text-sm sm:text-base max-w-xl font-light">
+                    Your TRULY Solutions - Nikmati kenyamanan spa mewah bintang 5 langsung di villa, hotel, rumah, atau apartemen Anda di seluruh wilayah Bali.
                 </p>
-                <div class="pt-4 flex flex-wrap justify-center gap-6">
-                    <a href="#services" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
-                        <i class="fas fa-spa mr-2"></i> Explore Treatments
+                
+                <!-- Bullet Checklist Guarantee -->
+                <ul class="space-y-3.5 pt-2">
+                    <li class="flex items-center space-x-3 text-slate-700 text-sm">
+                        <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="font-medium">Terapis Ramah, Bersertifikat &amp; Profesional</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-slate-700 text-sm">
+                        <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="font-medium">Pemesanan Mudah &amp; Cepat via WhatsApp</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-slate-700 text-sm">
+                        <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="font-medium text-[#AE7D64] font-bold">Gratis Biaya Transportasi area Bali</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-slate-700 text-sm">
+                        <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="font-medium">Melayani Area Bali: Kuta, Denpasar, Seminyak, Canggu, Ubud &amp; Nusa Dua</span>
+                    </li>
+                </ul>
+                
+                <div class="pt-6 flex flex-wrap gap-4">
+                    <a href="#services" class="bg-[#AE7D64] hover:bg-[#91624a] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                        <span>Pesan Sekarang</span>
                     </a>
-                    <a href="#why-us" class="border-2 border-emerald-500 hover:bg-emerald-500 hover:text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all transform hover:-translate-y-0.5 text-emerald-400">
-                        Our Philosophy
+                    <a href="#services" class="border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                        Lihat Harga
                     </a>
                 </div>
             </div>
-
-            <!-- Staggered Floating Gallery Wall (Lookbook Style) -->
-            <div class="flex items-center justify-center -space-x-12 sm:-space-x-16 md:-space-x-24 pt-20 w-full max-w-5xl z-10 relative">
-                <!-- Left Image (Small, tilted left) -->
-                <div class="w-36 h-56 sm:w-48 sm:h-72 rounded-t-full overflow-hidden shadow-2xl -rotate-6 transform -translate-y-8 border border-amber-500/20 flex-shrink-0 transition-transform duration-500 hover:rotate-0">
-                    <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=400" alt="Spa Room" class="w-full h-full object-cover">
-                </div>
-                <!-- Center Image (Largest, main arch) -->
-                <div class="w-48 h-72 sm:w-72 sm:h-[420px] rounded-t-full overflow-hidden shadow-2xl z-20 border-4 border-amber-500/30 flex-shrink-0 transition-transform duration-500 hover:scale-[1.03]">
-                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800" alt="Massage Treatment" class="w-full h-full object-cover">
-                </div>
-                <!-- Right Image (Medium, tilted right) -->
-                <div class="w-40 h-64 sm:w-56 sm:h-80 rounded-t-full overflow-hidden shadow-2xl rotate-6 transform translate-y-8 border border-amber-500/20 flex-shrink-0 transition-transform duration-500 hover:rotate-0">
-                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=400" alt="Relaxation Spa" class="w-full h-full object-cover">
+            
+            <!-- Right Side Image Mockup -->
+            <div class="lg:col-span-5 relative">
+                <div class="aspect-[4/5] sm:aspect-square bg-gradient-to-tr from-stone-100 to-slate-200 rounded-3xl overflow-hidden shadow-2xl relative border border-slate-200">
+                    <img src="https://trulyhomemassage.com/wp-content/uploads/2024/04/Apa-Itu-Spa.webp" alt="Bali Spa Treatment" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
