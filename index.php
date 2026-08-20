@@ -10,6 +10,7 @@ while ($row = $settings_query->fetch()) {
 }
 
 $brandName = $settings['brandName'] ?? 'Oncall & home service message';
+$brandLogo = $settings['brandLogo'] ?? '';
 $tagline = $settings['tagline'] ?? '';
 $description = $settings['description'] ?? '';
 $whatsapp = $settings['whatsapp'] ?? '';
@@ -126,7 +127,10 @@ $faqs = $faqs_query->fetchAll();
     <!-- Navigation -->
     <header class="sticky top-0 z-50 bg-white border-b border-stone-100 shadow-sm">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-2">
+            <a href="#" class="flex items-center space-x-3">
+                <?php if (!empty($brandLogo)): ?>
+                    <img src="<?php echo htmlspecialchars($brandLogo); ?>" alt="Logo" class="h-10 w-auto object-contain">
+                <?php endif; ?>
                 <span class="text-xl font-serif font-bold text-slate-900 tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></span>
             </a>
             <div class="hidden md:flex space-x-8 text-xs font-bold tracking-widest text-slate-600 uppercase">
@@ -434,7 +438,12 @@ $faqs = $faqs_query->fetchAll();
     <footer class="bg-[#192a3d] text-slate-300 py-20 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-16">
             <div class="space-y-6 text-left">
-                <h3 class="font-serif text-2xl font-bold text-white tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></h3>
+                <div class="flex items-center space-x-3">
+                    <?php if (!empty($brandLogo)): ?>
+                        <img src="<?php echo htmlspecialchars($brandLogo); ?>" alt="Logo" class="h-10 w-auto object-contain brightness-0 invert">
+                    <?php endif; ?>
+                    <h3 class="font-serif text-2xl font-bold text-white tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></h3>
+                </div>
                 <p class="text-slate-400 text-sm leading-relaxed font-light">Relaxation and spa therapeutic treatments at your convenience. Book in under 3 minutes.</p>
             </div>
             <div class="space-y-6 text-left">

@@ -47,11 +47,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_content']) && $i
             }
             $stmt_settings->execute([$key, $value, $value]);
         }
-
         // Ensure directories exist for file uploads
         $images_dir = __DIR__ . '/../assets/images';
         if (!is_dir($images_dir)) {
             mkdir($images_dir, 0755, true);
+        }
+
+        // Handle Logo Removal
+        if (isset($_POST['remove_logo']) && $_POST['remove_logo'] == '1') {
+            $current_logo_query = $db->prepare("SELECT setting_value FROM settings WHERE setting_key = 'brandLogo'");
+            $current_logo_query->execute();
+            $current_logo_path = $current_logo_query->fetchColumn();
+            if (!empty($current_logo_path) && file_exists(__DIR__ . '/../' . $current_logo_path)) {
+                @unlink(__DIR__ . '/../' . $current_logo_path);
+            }
+            $stmt_settings->execute(['brandLogo', '', '']);
+        }
+
+        // Handle Brand Logo Upload
+        if (isset($_FILES['brand_logo']) && $_FILES['brand_logo']['error'] === UPLOAD_ERR_OK) {
+            $file_tmp = $_FILES['brand_logo']['tmp_name'];
+            $file_name = preg_replace('/[^a-zA-Z0-9\.\-_]/', '', $_FILES['brand_logo']['name']);
+            
+            // Validate mime type
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mime_type = finfo_file($finfo, $file_tmp);
+            finfo_close($finfo);
+
+            $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/svg+xml'];
+            if (in_array($mime_type, $allowed_types)) {
+                $target_name = 'logo_' . time() . '_' . $file_name;
+                $target_file = $images_dir . '/' . $target_name;
+                if (move_uploaded_file($file_tmp, $target_file)) {
+                    $logo_path = 'assets/images/' . $target_name;
+                    $stmt_settings->execute(['brandLogo', $logo_path, $logo_path]);
+                }
+            }
         }
 
         // 2. Save Massage Services
@@ -346,9 +377,13 @@ $faqs = $faqs_query->fetchAll();
     <!-- Top Header Navigation -->
     <header class="bg-emerald-950 text-white px-8 py-5 flex justify-between items-center shadow-md">
         <div class="flex items-center space-x-4">
-            <div class="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-500 text-xl border border-amber-500/20">
-                <i class="fas fa-user-shield"></i>
-            </div>
+            <?php if (!empty($general['brandLogo'])): ?>
+                <img src="../<?php echo htmlspecialchars($general['brandLogo']); ?>" alt="Logo" class="h-10 w-auto object-contain rounded-lg">
+            <?php else: ?>
+                <div class="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-500 text-xl border border-amber-500/20">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+            <?php endif; ?>
             <div>
                 <h1 class="text-lg font-serif font-bold text-white tracking-wider">ADMIN CONTROL PORTAL</h1>
                 <p class="text-[10px] text-amber-400 font-semibold tracking-widest uppercase">MySQL Live Database Connection</p>
@@ -426,6 +461,21 @@ $faqs = $faqs_query->fetchAll();
                         <div>
                             <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Operating Hours</label>
                             <input type="text" name="general[operatingHours]" value="<?php echo htmlspecialchars($general['operatingHours'] ?? ''); ?>" required class="w-full border border-stone-200 px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm font-medium">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Brand Logo (Optional)</label>
+                            <div class="flex items-center space-x-6 mt-1">
+                                <?php if (!empty($general['brandLogo'])): ?>
+                                    <div class="w-16 h-16 bg-stone-100 rounded-xl overflow-hidden border border-stone-200 flex items-center justify-center">
+                                        <img src="../<?php echo htmlspecialchars($general['brandLogo']); ?>" alt="Current Logo" class="max-h-full max-w-full object-contain">
+                                    </div>
+                                    <label class="inline-flex items-center text-xs text-red-600 font-semibold cursor-pointer">
+                                        <input type="checkbox" name="remove_logo" value="1" class="mr-1.5 rounded text-red-600 focus:ring-red-500">
+                                        Remove Logo
+                                    </label>
+                                <?php endif; ?>
+                                <input type="file" name="brand_logo" accept="image/*" class="text-sm text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
+                            </div>
                         </div>
                     </div>
                 </div>
