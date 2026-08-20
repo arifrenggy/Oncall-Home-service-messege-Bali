@@ -42,15 +42,75 @@ $faqs = $faqs_query->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title><?php echo htmlspecialchars($brandName); ?> - Premium Home Service Massage in Bali</title>
-    <meta name="description" content="<?php echo htmlspecialchars(substr($description, 0, 160)); ?>">
-    <meta name="keywords" content="home service massage bali, massage home service bali, oncall spa bali, massage villa bali, massage seminyak, massage canggu, massage ubud">
+    <title>Best Home Service Massage Bali | 24/7 On-Call Spa &amp; Reflexology</title>
+    <meta name="description" content="Looking for the best home service massage in Bali? Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home. Book in 3 minutes!">
+    <meta name="keywords" content="home service massage bali, massage home service bali, oncall spa bali, massage villa bali, massage seminyak, massage canggu, massage ubud, hotel massage bali, balinese massage panggilan, spa panggilan bali, massage delivery bali, best massage bali, massage nusa dua, massage kuta">
     
-    <!-- OpenGraph Meta Tags (SEO/Social) -->
-    <meta property="og:title" content="<?php echo htmlspecialchars($brandName); ?> - Premium Home Service Massage in Bali">
-    <meta property="og:description" content="<?php echo htmlspecialchars($description); ?>">
+    <!-- OpenGraph Meta Tags (SEO/Social/WhatsApp Share Preview) -->
+    <meta property="og:title" content="Best Home Service Massage Bali | 24/7 On-Call Spa &amp; Reflexology">
+    <meta property="og:description" content="Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home in Bali. Book via WhatsApp!">
+    <meta property="og:image" content="<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800'; ?>">
     <meta property="og:type" content="website">
     
+    <!-- Local Business Schema (JSON-LD) for Google Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HealthAndBeautyBusiness",
+      "name": "<?php echo htmlspecialchars($brandName); ?>",
+      "image": "<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800'; ?>",
+      "description": "<?php echo htmlspecialchars($description); ?>",
+      "telephone": "+<?php echo htmlspecialchars($whatsapp); ?>",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Badung",
+        "addressRegion": "Bali",
+        "addressCountry": "ID"
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Seminyak"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Canggu"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Kuta"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Nusa Dua"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Ubud"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Denpasar"
+        }
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "23:00"
+      }
+    }
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/spa.png">
 
