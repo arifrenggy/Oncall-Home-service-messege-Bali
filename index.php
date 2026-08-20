@@ -222,39 +222,52 @@ $faqs = $faqs_query->fetchAll();
                 <p class="text-stone-500">Pick from our carefully selected list of authentic Balinese spa therapies. Book easily on WhatsApp.</p>
             </div>
             
-            <div id="services-list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-                <?php foreach ($services as $service): ?>
-                    <div class="group bg-white rounded-3xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                        <div class="h-64 bg-stone-100 overflow-hidden relative">
-                            <?php if ($service['featured']): ?>
-                                <span class="absolute top-4 left-4 bg-amber-500 text-stone-950 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm z-10">
-                                    <i class="fas fa-crown mr-1"></i> Featured
-                                </span>
-                            <?php endif; ?>
-                            <img src="<?php echo htmlspecialchars($service['image_path']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
-                        </div>
-                        <div class="p-8 flex-1 flex flex-col justify-between">
-                            <div class="space-y-3">
-                                <h3 class="text-xl font-serif font-bold text-stone-900"><?php echo htmlspecialchars($service['title']); ?></h3>
-                                <p class="text-stone-500 text-sm leading-relaxed"><?php echo htmlspecialchars($service['description']); ?></p>
-                            </div>
+            <div id="services-list" class="space-y-32 mt-24">
+                <?php foreach ($services as $index => $service): 
+                    $isEven = ($index % 2 == 0);
+                    $directionClass = $isEven ? 'md:flex-row' : 'md:flex-row-reverse';
+                    $alignTextClass = $isEven ? 'md:text-left md:items-start md:pl-16' : 'md:text-right md:items-end md:pr-16';
+                ?>
+                    <div class="flex flex-col <?php echo $directionClass; ?> items-center gap-12 md:gap-0 relative">
+                        <!-- Image Container with Archway Masking -->
+                        <div class="w-full md:w-1/2 relative z-0 flex-shrink-0">
+                            <!-- Background shadow glow for premium spa feeling -->
+                            <div class="absolute -inset-4 bg-amber-500/5 rounded-t-full blur-2xl pointer-events-none"></div>
                             
-                            <div class="mt-8 space-y-5">
-                                <div>
-                                    <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">Select Duration</label>
-                                    <select id="select-<?php echo $service['id']; ?>" class="w-full border border-stone-200 bg-stone-50 px-4 py-3 rounded-xl text-sm font-semibold focus:ring-2 focus:ring-emerald-800 focus:outline-none">
-                                        <?php foreach ($service['options'] as $opt): ?>
-                                            <option value="<?php echo htmlspecialchars($opt['duration']); ?>" data-price="<?php echo htmlspecialchars($opt['price']); ?>">
-                                                <?php echo htmlspecialchars($opt['duration']); ?> - <?php echo htmlspecialchars($opt['price']); ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
+                            <div class="aspect-[4/5] sm:aspect-[3/4] md:h-[500px] w-full max-w-md mx-auto rounded-t-full overflow-hidden border-2 border-amber-500/20 shadow-2xl relative group">
+                                <?php if ($service['featured']): ?>
+                                    <span class="absolute top-6 left-6 bg-amber-500 text-stone-950 text-[9px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md z-10">
+                                        <i class="fas fa-crown mr-1"></i> Featured Choice
+                                    </span>
+                                <?php endif; ?>
+                                <img src="<?php echo htmlspecialchars($service['image_path']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out">
+                            </div>
+                        </div>
+
+                        <!-- Content Description Container Overlapping with Image -->
+                        <div class="w-full md:w-1/2 flex flex-col justify-center items-center <?php echo $alignTextClass; ?> z-10 relative -mt-16 md:mt-0 px-4 sm:px-8">
+                            <div class="bg-white/95 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-stone-100 shadow-xl max-w-md space-y-6">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-amber-600">Premium treatment</span>
+                                <h3 class="text-3xl font-serif font-bold text-stone-900 leading-tight"><?php echo htmlspecialchars($service['title']); ?></h3>
+                                <p class="text-stone-500 text-sm leading-relaxed font-light"><?php echo htmlspecialchars($service['description']); ?></p>
                                 
-                                <button onclick="bookService('<?php echo addslashes($service['title']); ?>', '<?php echo $service['id']; ?>', '<?php echo htmlspecialchars($whatsapp); ?>')" class="w-full bg-emerald-800 hover:bg-emerald-950 text-white font-bold py-3.5 px-4 rounded-xl text-xs uppercase tracking-wider text-center transition-all duration-300 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg">
-                                    <i class="fab fa-whatsapp text-lg"></i>
-                                    <span>Book via WhatsApp</span>
-                                </button>
+                                <div class="border-t border-stone-100 pt-6 space-y-6">
+                                    <div class="text-left">
+                                        <label class="block text-xs font-bold uppercase tracking-widest text-stone-400 mb-2">Select Session Duration</label>
+                                        <select id="select-<?php echo $service['id']; ?>" class="w-full border border-stone-200 bg-stone-50 px-4 py-3.5 rounded-2xl text-sm font-semibold focus:ring-2 focus:ring-emerald-800 focus:outline-none">
+                                            <?php foreach ($service['options'] as $opt): ?>
+                                                <option value="<?php echo htmlspecialchars($opt['duration']); ?>" data-price="<?php echo htmlspecialchars($opt['price']); ?>">
+                                                    <?php echo htmlspecialchars($opt['duration']); ?> - <?php echo htmlspecialchars($opt['price']); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    
+                                    <button onclick="bookService('<?php echo addslashes($service['title']); ?>', '<?php echo $service['id']; ?>', '<?php echo htmlspecialchars($whatsapp); ?>')" class="w-full bg-emerald-800 hover:bg-emerald-950 text-white font-bold py-4 px-6 rounded-2xl text-xs uppercase tracking-widest text-center transition-all duration-300 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg">
+                                        <i class="fab fa-whatsapp text-lg"></i>
+                                        <span>Reserve via WhatsApp</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
