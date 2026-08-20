@@ -1,0 +1,7 @@
+# Robots.txt for Oncall & Home Service Massage Bali
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# Link to sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
