@@ -237,29 +237,31 @@ $faqs = $faqs_query->fetchAll();
     <section id="areas" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6">
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-theme-950">Service Area Coverage</h2>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900">Service Area Coverage</h2>
                 <p class="text-stone-600">Our on-call massage service is available across key tourist and residential areas in Bali. No transport fee is charged within these boundaries:</p>
                 
                 <ul class="space-y-3">
                     <?php foreach ($areas as $area): ?>
-                        <li class="flex items-center space-x-3 text-stone-600 text-sm">
-                            <span class="text-theme-600 text-lg">✓</span>
+                        <li class="flex items-center text-stone-600 text-sm">
+                            <i class="fas fa-check-circle text-amber-500 mr-3 text-base"></i>
                             <span class="font-medium"><?php echo htmlspecialchars($area); ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
                 
                 <div class="bg-theme-50 p-6 rounded-2xl border border-theme-100 flex items-start space-x-4">
-                    <span class="text-2xl mt-1">📍</span>
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 text-lg flex-shrink-0">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
                     <div>
-                        <h4 class="font-bold text-theme-900">Villa/Hotel/Home Panggilan</h4>
+                        <h4 class="font-bold text-stone-900">Villa/Hotel/Home Panggilan</h4>
                         <p class="text-stone-500 text-sm leading-relaxed">Our therapists arrive with massage tables/mats, professional massage oils, linen, and relaxing music setup.</p>
                     </div>
                 </div>
             </div>
             
             <!-- Google Maps Embed -->
-            <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-stone-200">
+            <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border-2 border-stone-100">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252438.48918239088!2d115.09312151676646!3d-8.67045813735076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd140d384d8b58b%3A0xa126509f7e1b7f94!2sBali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
                         width="100%" 
                         height="100%" 
@@ -276,16 +278,16 @@ $faqs = $faqs_query->fetchAll();
     <section id="faqs" class="py-20 bg-theme-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center space-y-4 mb-12">
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-theme-950">Frequently Asked Questions</h2>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-900">Frequently Asked Questions</h2>
                 <p class="text-stone-500">Everything you need to know about our Bali home massage services.</p>
             </div>
             
             <div class="space-y-4">
                 <?php foreach ($faqs as $i => $faq): ?>
-                    <div class="bg-white border border-theme-100 rounded-2xl overflow-hidden">
-                        <button onclick="toggleFaq(<?php echo $i; ?>)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-theme-900 hover:bg-theme-50/50 transition-colors">
+                    <div class="bg-white border border-stone-100 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(<?php echo $i; ?>)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-stone-900 hover:bg-theme-50/50 transition-colors">
                             <span><?php echo htmlspecialchars($faq['question']); ?></span>
-                            <span id="faq-icon-<?php echo $i; ?>" class="text-theme-600 transition-transform duration-200">+</span>
+                            <i id="faq-icon-<?php echo $i; ?>" class="fas fa-chevron-down text-amber-500 text-xs transition-transform duration-300"></i>
                         </button>
                         <div id="faq-ans-<?php echo $i; ?>" class="hidden px-6 pb-6 text-sm text-stone-600 leading-relaxed border-t border-stone-50 pt-4">
                             <?php echo htmlspecialchars($faq['answer']); ?>
@@ -297,29 +299,30 @@ $faqs = $faqs_query->fetchAll();
     </section>
 
     <!-- Footer -->
-    <footer class="bg-theme-900 text-theme-100 py-12 border-t border-theme-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
-            <div>
-                <h3 class="font-serif text-xl font-bold text-white mb-4"><?php echo htmlspecialchars($brandName); ?></h3>
-                <p class="text-stone-400 text-sm leading-relaxed">Relaxation and spa therapeutic treatments at your convenience. Book in under 3 minutes.</p>
+    <footer class="bg-emerald-950 text-emerald-100 py-16 border-t border-emerald-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <h3 class="font-serif text-2xl font-bold text-white tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></h3>
+                <p class="text-emerald-100/60 text-sm leading-relaxed font-light">Relaxation and spa therapeutic treatments at your convenience. Book in under 3 minutes.</p>
             </div>
-            <div>
-                <h4 class="font-semibold text-white mb-4">Contact Info</h4>
-                <ul class="space-y-2 text-stone-400 text-sm">
-                    <li>WhatsApp: <a href="https://wa.me/<?php echo $whatsapp; ?>" class="hover:text-white transition-colors text-theme-200">+<?php echo htmlspecialchars($whatsapp); ?></a></li>
-                    <li>Operating Hours: <span><?php echo htmlspecialchars($operatingHours); ?></span></li>
+            <div class="space-y-4">
+                <h4 class="font-semibold text-white uppercase tracking-wider text-xs">Contact Info</h4>
+                <ul class="space-y-3 text-emerald-100/60 text-sm">
+                    <li><i class="fab fa-whatsapp text-amber-500 mr-2 text-base"></i> WhatsApp: <a href="https://wa.me/<?php echo $whatsapp; ?>" class="hover:text-white transition-colors font-medium text-amber-400">+<?php echo htmlspecialchars($whatsapp); ?></a></li>
+                    <li><i class="far fa-clock text-amber-500 mr-2 text-base"></i> Operating Hours: <span><?php echo htmlspecialchars($operatingHours); ?></span></li>
                 </ul>
             </div>
-            <div>
-                <h4 class="font-semibold text-white mb-4">Follow Us</h4>
+            <div class="space-y-4">
+                <h4 class="font-semibold text-white uppercase tracking-wider text-xs">Follow Us</h4>
                 <?php if (!empty($instagram)): ?>
-                    <a href="<?php echo htmlspecialchars($instagram); ?>" target="_blank" class="hover:text-white transition-colors text-stone-400 text-sm flex items-center space-x-2">
+                    <a href="<?php echo htmlspecialchars($instagram); ?>" target="_blank" class="hover:text-amber-400 transition-colors text-emerald-100/60 text-sm flex items-center space-x-2">
+                        <i class="fab fa-instagram text-lg text-amber-500"></i>
                         <span>Instagram</span>
                     </a>
                 <?php endif; ?>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-theme-800 mt-8 pt-8 text-center text-stone-500 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-emerald-900 mt-12 pt-8 text-center text-emerald-100/40 text-xs">
             &copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($brandName); ?>. All Rights Reserved. Designed for wellness.
         </div>
     </footer>
@@ -333,11 +336,13 @@ $faqs = $faqs_query->fetchAll();
             
             // Hide all first
             document.querySelectorAll("[id^='faq-ans-']").forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll("[id^='faq-icon-']").forEach(el => el.textContent = '+');
+            document.querySelectorAll("[id^='faq-icon-']").forEach(el => {
+                el.classList.remove('rotate-180');
+            });
 
             if (isHidden) {
                 ans.classList.remove('hidden');
-                icon.textContent = '−';
+                icon.classList.add('rotate-180');
             }
         }
 
