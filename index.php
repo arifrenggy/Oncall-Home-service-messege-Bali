@@ -149,10 +149,10 @@ $faqs = $faqs_query->fetchAll();
                     <i class="fas fa-certificate mr-1.5"></i> #1 On-Call Massage Bali
                 </span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
-                    Truly Home Massage, Spa & Reflexology
+                    Oncall &amp; Home Service Massage
                 </h1>
                 <p class="text-slate-500 text-sm sm:text-base max-w-xl font-light">
-                    Your TRULY Solutions - Enjoy the convenience of a 5-star luxury spa directly in your villa, hotel, home, or apartment across Bali.
+                    Your Premium Wellness Solutions - Enjoy the convenience of a 5-star luxury spa directly in your villa, hotel, home, or apartment across Bali.
                 </p>
                 
                 <!-- Bullet Checklist Guarantee -->
@@ -197,7 +197,7 @@ $faqs = $faqs_query->fetchAll();
             <!-- Right Side Image Mockup -->
             <div class="lg:col-span-5 relative">
                 <div class="aspect-[4/5] sm:aspect-square bg-gradient-to-tr from-stone-100 to-slate-200 rounded-3xl overflow-hidden shadow-2xl relative border border-slate-200">
-                    <img src="https://trulyhomemassage.com/wp-content/uploads/2024/04/Apa-Itu-Spa.webp" alt="Bali Spa Treatment" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800" alt="Bali Spa Treatment" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -208,21 +208,21 @@ $faqs = $faqs_query->fetchAll();
             <!-- Left Side Image -->
             <div class="relative">
                 <div class="aspect-[4/3] bg-slate-100 rounded-3xl overflow-hidden shadow-xl border border-stone-200">
-                    <img src="https://trulyhomemassage.com/wp-content/uploads/2024/08/truly-home-massage-bali.jpg" alt="Truly Home Massage Bali" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=800" alt="Oncall & Home Service Massage Bali" class="w-full h-full object-cover">
                 </div>
             </div>
             <!-- Right Side Text -->
             <div class="space-y-6 text-left">
                 <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="fas fa-spa mr-1.5"></i> About Us</span>
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 leading-tight">
-                    Truly Home Massage, Spa &amp; Reflexology
+                    Oncall &amp; Home Service Massage
                 </h2>
                 <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-4 font-light">
                     <p><?php echo htmlspecialchars($description); ?></p>
                     <p>Through our friendly, certified, and professionally trained female therapists, we are committed to delivering the ultimate relaxation experience directly to you without ever having to leave your room.</p>
                 </div>
                 
-                <!-- Highlight Banner (Truly Style) -->
+                <!-- Highlight Banner -->
                 <div class="bg-amber-50 border border-amber-200/50 p-5 rounded-2xl flex items-center space-x-3 text-[#AE7D64] max-w-md">
                     <i class="fas fa-truck text-xl flex-shrink-0"></i>
                     <span class="font-bold text-xs uppercase tracking-wider">Free Transportation in Bali!</span>
@@ -317,7 +317,7 @@ $faqs = $faqs_query->fetchAll();
                                 <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight"><?php echo htmlspecialchars($service['title']); ?></h3>
                                 <p class="text-slate-500 text-sm leading-relaxed font-light"><?php echo htmlspecialchars($service['description']); ?></p>
                                 
-                                <!-- Truly Price List Style -->
+                                <!-- Price List Style -->
                                  <div class="space-y-2.5 py-4 border-t border-stone-100">
                                     <?php foreach ($service['options'] as $opt): ?>
                                         <div class="flex justify-between border-b border-dashed border-stone-200 pb-1 text-sm font-semibold">
