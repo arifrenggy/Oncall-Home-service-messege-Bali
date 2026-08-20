@@ -1,18 +1,32 @@
-# Menggunakan base image resmi PHP versi 8.2 dengan Apache
-FROM php:8.5-apache
+# Menggunakan base image Alpine Linux terbaru yang sangat ringan
+FROM alpine:3.19
 
-# Mengaktifkan mod_rewrite Apache (wajib jika sistem Anda menggunakan file .htaccess untuk routing)
-RUN a2enmod rewrite
+# Menginstal Apache, PHP 8.2, dan ekstensi database yang esensial
+RUN apk update && apk add --no-cache \
+    apache2 \
+    php82-apache2 \
+    php82 \
+    php82-mysqli \
+    php82-pdo \
+    php82-pdo_mysql \
+    php82-mbstring \
+    php82-session
 
-# Menginstal ekstensi database yang umum digunakan pada pemrograman PHP native
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+# Mengonfigurasi Apache agar membaca file index.php sebagai halaman utama
+RUN sed -i 's/DirectoryIndex index.html/DirectoryIndex index.php index.html/g' /etc/apache2/httpd.conf
 
-# Menyalin seluruh file kode program web ke direktori root Apache
-COPY . /var/www/html/
+# Menghapus file default bawaan Apache
+RUN rm -rf /var/www/localhost/htdocs/*
 
-# Mengatur kepemilikan dan hak akses direktori agar server dapat mengeksekusi dan menulis file (esensial untuk fitur upload)
-RUN chown -R www-data:www-data /var/www/html/ \
-    && chmod -R 755 /var/www/html/
+# Menyalin seluruh kode sistem informasi Anda ke direktori server Alpine
+COPY . /var/www/localhost/htdocs/
 
-# Mengekspos port 80 untuk menerima trafik HTTP
+# Menyesuaikan kepemilikan dan hak akses direktori 
+RUN chown -R apache:apache /var/www/localhost/htdocs/ \
+    && chmod -R 755 /var/www/localhost/htdocs/
+
+# Mengekspos port 80
 EXPOSE 80
+
+# Perintah utama untuk menjalankan service Apache di latar depan (foreground)
+CMD ["httpd", "-D", "FOREGROUND"]
