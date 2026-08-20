@@ -24,19 +24,24 @@ The architecture is transitioned to a full **PHP + MySQL** relational database s
 
 ## 3. UI/UX & Design Requirements
 *   **Mobile-First Design:** Optimized for smartphones (responsive layout), as most tourists browse on mobile.
-*   **Color Palette (Green Theme):**
-    *   **Primary Color:** Rich tropical greens (representing nature, serenity, wellness).
-    *   **Secondary/Accent Colors:** Soft gold, warm beige, and clean white to convey a premium, clean, and luxury spa vibe.
-*   **Typography:** Elegant serif fonts for headings (spa vibe) and clean sans-serif fonts for readable body copy.
+*   **Color Palette (Emerald & Gold Luxe Theme):**
+    *   **Primary/Background Color:** Rich deep emerald green (`#022c22` / `bg-emerald-950` / `bg-emerald-900`) for headers, footers, and hero overlays to convey luxury.
+    *   **Secondary/Accent Color:** Warm luxury spa gold (`#d4af37` / `text-amber-500` / `text-amber-600`) for headers, highlights, icons, and buttons.
+    *   **Base Background:** Clean porcelain warm beige (`#faf8f5` / `bg-theme-beige`) for page body and sections.
+    *   **Card Backgrounds:** Pure white (`#ffffff` / `bg-white`) with soft borders and micro-shadows.
+*   **Typography:**
+    *   **Headings Font:** **Cormorant Garamond** (Google Fonts) - Elegant, classic high-end serif typography.
+    *   **Body Copy Font:** **Inter** (Google Fonts) - Highly readable, modern sans-serif typography.
+*   **Icons:** **Font Awesome (CDN)** - All icons must use SVG-based vectors in gold/emerald, replacing standard text emojis.
 *   **Key Sections on Homepage:**
-    1.  **Header:** Logo and quick navigation links.
-    2.  **Hero Banner:** Catchy tagline, background image, and a "Book Now" CTA.
-    3.  **Why Choose Us:** Certified therapists, premium natural oils, high hygiene standards, and zero extra transport fees.
-    4.  **Massage Menu (Services list):** Clear cards with images, descriptions, durations, pricing, and direct WhatsApp booking CTAs.
-    5.  **How It Works:** 3-step booking explanation.
-    6.  **Service Area Coverage:** Clear list of serviced regions in Bali + Google Maps embed.
-    7.  **FAQ Section:** Collapsible accordion for common client inquiries.
-    8.  **Footer:** Direct contact details, operating hours, and social media links.
+    1.  **Header:** Absolute positioning or sticky navigation bar with a centered logo, quick navigation links, and a gold CTA button.
+    2.  **Hero Banner:** Full-width tropical spa image overlayed with deep emerald gradient, gold tagline, and a prominent gold booking CTA.
+    3.  **Why Choose Us:** Grid with certified therapists, organic oils, and transport inclusion highlights, decorated with gold Font Awesome icons.
+    4.  **Massage Menu (Services list):** Zoomable cards with duration selects, prices, featured badges, and custom green WhatsApp buttons.
+    5.  **How It Works:** 3-step numbered timeline.
+    6.  **Service Area Coverage:** List of serviced regions in Bali + Google Maps embed.
+    7.  **FAQ Section:** Transition-based accordion with rotating chevron arrows.
+    8.  **Footer:** Deep emerald background, gold text accents, and social links.
 
 ---
 
