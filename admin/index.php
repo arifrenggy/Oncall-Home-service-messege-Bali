@@ -1,10 +1,7 @@
 <?php
 // admin/index.php
 session_start();
-
-// Default hashed password for "adminbali123"
-// To generate a new hash: password_hash("your_password", PASSWORD_DEFAULT)
-$password_hash = '$2y$10$WpP9U142Y2h569L4v05Hau8VfLzBszXfA.q1aW45B0uX4V8G1v4fO'; // adminbali123
+require_once __DIR__ . '/../config.php';
 
 $error = '';
 
@@ -19,7 +16,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 // Handle login form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $password = $_POST['password'] ?? '';
-    if (password_verify($password, $password_hash)) {
+    if (password_verify($password, ADMIN_PASSWORD_HASH)) {
         $_SESSION['admin_logged_in'] = true;
         header("Location: index.php");
         exit;
