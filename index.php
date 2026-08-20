@@ -53,10 +53,10 @@ $faqs = $faqs_query->fetchAll();
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/spa.png">
 
-    <!-- Google Fonts: Cormorant Garamond & Inter -->
+    <!-- Google Fonts: Poppins & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome CDNs -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -69,22 +69,47 @@ $faqs = $faqs_query->fetchAll();
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        serif: ['Cormorant Garamond', 'serif'],
+                        serif: ['Poppins', 'sans-serif'],
                     },
                     colors: {
                         theme: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            300: '#86efac',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                            gold: '#d4af37',
-                            beige: '#faf8f5',
+                            50: '#f2f5f7',
+                            100: '#e5eaf0',
+                            200: '#cdd7e3',
+                            300: '#a3b7d1',
+                            400: '#7392bc',
+                            500: '#4e6fa0',
+                            600: '#3c5a87',
+                            700: '#324a6f',
+                            800: '#2c3e5a',
+                            900: '#192a3d',
+                            gold: '#AE7D64',
+                            beige: '#ffffff',
+                        },
+                        emerald: {
+                            50: '#f2f5f7',
+                            100: '#e5eaf0',
+                            200: '#cdd7e3',
+                            300: '#a3b7d1',
+                            400: '#2872fa', // Clean Royal Blue
+                            500: '#2872fa', // Clean Royal Blue
+                            600: '#2872fa', // Clean Royal Blue
+                            700: '#1d4ed8',
+                            800: '#AE7D64', // Terracotta/Copper Gold for primary CTAs
+                            900: '#192a3d', // Navy Blue
+                            950: '#192a3d', // Navy Blue
+                        },
+                        amber: {
+                            50: '#f7f4f2', // Light cream terracotta tint
+                            100: '#f7f4f2',
+                            200: '#ebdcd3',
+                            300: '#d7b9a7',
+                            400: '#AE7D64', // Terracotta/Copper Gold
+                            500: '#AE7D64', // Terracotta/Copper Gold
+                            600: '#AE7D64', // Terracotta/Copper Gold
+                            700: '#91624a',
+                            800: '#734e3a',
+                            900: '#5a3d2e',
                         }
                     }
                 }
@@ -92,7 +117,7 @@ $faqs = $faqs_query->fetchAll();
         }
     </script>
     <style>
-        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-serif { font-family: 'Poppins', sans-serif; }
         .font-sans { font-family: 'Inter', sans-serif; }
     </style>
 </head>
