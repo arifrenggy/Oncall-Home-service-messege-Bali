@@ -10,7 +10,8 @@ RUN apk update && apk add --no-cache \
     php82-pdo \
     php82-pdo_mysql \
     php82-mbstring \
-    php82-session
+    php82-session \
+    php82-fileinfo
 
 # Mengonfigurasi Apache agar membaca file index.php sebagai halaman utama
 RUN sed -i 's/DirectoryIndex index.html/DirectoryIndex index.php index.html/g' /etc/apache2/httpd.conf
