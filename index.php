@@ -115,36 +115,49 @@ $faqs = $faqs_query->fetchAll();
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-emerald-950 text-white">
-        <!-- Background Image with dark emerald overlay -->
+    <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-emerald-950 text-white pt-32 pb-24">
+        <!-- Decorative background elements -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1600" alt="Spa Background" class="w-full h-full object-cover object-center opacity-40 scale-105">
-            <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/95 via-emerald-950/90 to-emerald-900/85"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-emerald-950 via-emerald-950 to-emerald-900/90"></div>
+            <!-- Large floating glyph for art-gallery styling -->
+            <div class="absolute -right-16 top-12 text-[26rem] font-serif text-emerald-900/10 select-none pointer-events-none leading-none">S</div>
+            <div class="absolute -left-16 bottom-12 text-[26rem] font-serif text-emerald-900/10 select-none pointer-events-none leading-none">O</div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-24 md:py-32 grid lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7 space-y-8 text-left">
-                <span class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center flex flex-col items-center">
+            <div class="max-w-4xl space-y-8">
+                <span class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold px-5 py-2 rounded-full text-xs uppercase tracking-widest">
                     <i class="fas fa-crown text-[10px] mr-1"></i> Luxe Wellness Coming to You
                 </span>
-                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold text-white leading-tight">
+                <h1 class="text-5xl sm:text-6xl lg:text-8xl font-serif font-bold text-white leading-tight tracking-tight">
                     <?php echo htmlspecialchars($tagline); ?>
                 </h1>
-                <p class="text-base sm:text-lg text-emerald-100/80 max-w-xl leading-relaxed font-light">
+                <p class="text-base sm:text-lg text-emerald-100/70 max-w-xl mx-auto leading-relaxed font-light">
                     <?php echo htmlspecialchars($description); ?>
                 </p>
-                <div class="pt-4 flex flex-wrap gap-4">
-                    <a href="#services" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 px-8 py-3.5 rounded-full text-sm font-bold uppercase tracking-wider shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                <div class="pt-4 flex flex-wrap justify-center gap-6">
+                    <a href="#services" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
                         <i class="fas fa-spa mr-2"></i> Explore Treatments
                     </a>
-                    <a href="#why-us" class="border-2 border-emerald-500 hover:bg-emerald-500 hover:text-white px-8 py-3.5 rounded-full text-sm font-bold uppercase tracking-wider transition-all transform hover:-translate-y-0.5 text-emerald-400">
-                        Learn More
+                    <a href="#why-us" class="border-2 border-emerald-500 hover:bg-emerald-500 hover:text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all transform hover:-translate-y-0.5 text-emerald-400">
+                        Our Philosophy
                     </a>
                 </div>
             </div>
-            <div class="lg:col-span-5 relative hidden lg:block">
-                <div class="aspect-square bg-gradient-to-tr from-amber-500/20 to-emerald-950 rounded-2xl overflow-hidden shadow-2xl relative border-2 border-amber-500/40">
-                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800" alt="Balinese Massage Treatment" class="w-full h-full object-cover">
+
+            <!-- Staggered Floating Gallery Wall (Lookbook Style) -->
+            <div class="flex items-center justify-center -space-x-12 sm:-space-x-16 md:-space-x-24 pt-20 w-full max-w-5xl z-10 relative">
+                <!-- Left Image (Small, tilted left) -->
+                <div class="w-36 h-56 sm:w-48 sm:h-72 rounded-t-full overflow-hidden shadow-2xl -rotate-6 transform -translate-y-8 border border-amber-500/20 flex-shrink-0 transition-transform duration-500 hover:rotate-0">
+                    <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=400" alt="Spa Room" class="w-full h-full object-cover">
+                </div>
+                <!-- Center Image (Largest, main arch) -->
+                <div class="w-48 h-72 sm:w-72 sm:h-[420px] rounded-t-full overflow-hidden shadow-2xl z-20 border-4 border-amber-500/30 flex-shrink-0 transition-transform duration-500 hover:scale-[1.03]">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800" alt="Massage Treatment" class="w-full h-full object-cover">
+                </div>
+                <!-- Right Image (Medium, tilted right) -->
+                <div class="w-40 h-64 sm:w-56 sm:h-80 rounded-t-full overflow-hidden shadow-2xl rotate-6 transform translate-y-8 border border-amber-500/20 flex-shrink-0 transition-transform duration-500 hover:rotate-0">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=400" alt="Relaxation Spa" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
