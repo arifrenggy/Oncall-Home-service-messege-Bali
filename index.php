@@ -130,13 +130,13 @@ $faqs = $faqs_query->fetchAll();
                 <span class="text-xl font-serif font-bold text-slate-900 tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></span>
             </a>
             <div class="hidden md:flex space-x-8 text-xs font-bold tracking-widest text-slate-600 uppercase">
-                <a href="#about" class="hover:text-blue-600 transition-colors">Tentang Kami</a>
-                <a href="#services" class="hover:text-blue-600 transition-colors">Harga & Layanan</a>
-                <a href="#why-us" class="hover:text-blue-600 transition-colors">Kenapa Kami</a>
-                <a href="#areas" class="hover:text-blue-600 transition-colors">Wilayah Layanan</a>
+                <a href="#about" class="hover:text-blue-600 transition-colors">About Us</a>
+                <a href="#services" class="hover:text-blue-600 transition-colors">Treatments</a>
+                <a href="#why-us" class="hover:text-blue-600 transition-colors">Why Choose Us</a>
+                <a href="#areas" class="hover:text-blue-600 transition-colors">Service Areas</a>
                 <a href="#faqs" class="hover:text-blue-600 transition-colors">FAQs</a>
             </div>
-            <a href="#services" class="bg-[#AE7D64] hover:bg-[#91624a] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Pesan Sekarang</a>
+            <a href="#services" class="bg-[#AE7D64] hover:bg-[#91624a] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
         </nav>
     </header>
 
@@ -146,13 +146,13 @@ $faqs = $faqs_query->fetchAll();
             <!-- Left Side Content -->
             <div class="lg:col-span-7 space-y-6 text-left">
                 <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1.5 rounded-full">
-                    <i class="fas fa-certificate mr-1.5"></i> #1 Pijat Panggilan Bali
+                    <i class="fas fa-certificate mr-1.5"></i> #1 On-Call Massage Bali
                 </span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
                     Truly Home Massage, Spa & Reflexology
                 </h1>
                 <p class="text-slate-500 text-sm sm:text-base max-w-xl font-light">
-                    Your TRULY Solutions - Nikmati kenyamanan spa mewah bintang 5 langsung di villa, hotel, rumah, atau apartemen Anda di seluruh wilayah Bali.
+                    Your TRULY Solutions - Enjoy the convenience of a 5-star luxury spa directly in your villa, hotel, home, or apartment across Bali.
                 </p>
                 
                 <!-- Bullet Checklist Guarantee -->
@@ -161,35 +161,35 @@ $faqs = $faqs_query->fetchAll();
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
                             <i class="fas fa-check"></i>
                         </span>
-                        <span class="font-medium">Terapis Ramah, Bersertifikat &amp; Profesional</span>
+                        <span class="font-medium">Friendly, Certified &amp; Professional Female Therapists</span>
                     </li>
                     <li class="flex items-center space-x-3 text-slate-700 text-sm">
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
                             <i class="fas fa-check"></i>
                         </span>
-                        <span class="font-medium">Pemesanan Mudah &amp; Cepat via WhatsApp</span>
+                        <span class="font-medium">Easy &amp; Quick Booking via WhatsApp</span>
                     </li>
                     <li class="flex items-center space-x-3 text-slate-700 text-sm">
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
                             <i class="fas fa-check"></i>
                         </span>
-                        <span class="font-medium text-[#AE7D64] font-bold">Gratis Biaya Transportasi area Bali</span>
+                        <span class="font-medium text-[#AE7D64] font-bold">Free Transportation directly to your place in Bali</span>
                     </li>
                     <li class="flex items-center space-x-3 text-slate-700 text-sm">
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
                             <i class="fas fa-check"></i>
                         </span>
-                        <span class="font-medium">Melayani Area Bali: Kuta, Denpasar, Seminyak, Canggu, Ubud &amp; Nusa Dua</span>
+                        <span class="font-medium">Serving Bali Areas: Kuta, Denpasar, Seminyak, Canggu, Ubud &amp; Nusa Dua</span>
                     </li>
                 </ul>
                 
                 <div class="pt-6 flex flex-wrap gap-4">
                     <a href="#services" class="bg-[#AE7D64] hover:bg-[#91624a] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
                         <i class="fab fa-whatsapp text-sm"></i>
-                        <span>Pesan Sekarang</span>
+                        <span>Book Now</span>
                     </a>
                     <a href="#services" class="border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
-                        Lihat Harga
+                        View Prices
                     </a>
                 </div>
             </div>
@@ -213,19 +213,19 @@ $faqs = $faqs_query->fetchAll();
             </div>
             <!-- Right Side Text -->
             <div class="space-y-6 text-left">
-                <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="fas fa-spa mr-1.5"></i> Tentang Kami</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="fas fa-spa mr-1.5"></i> About Us</span>
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 leading-tight">
                     Truly Home Massage, Spa &amp; Reflexology
                 </h2>
                 <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-4 font-light">
                     <p><?php echo htmlspecialchars($description); ?></p>
-                    <p>Melalui terapis wanita kami yang ramah, bersertifikat, dan terlatih secara profesional, kami berkomitmen memberikan kepuasan relaksasi terbaik langsung ke hadapan Anda tanpa perlu keluar kamar.</p>
+                    <p>Through our friendly, certified, and professionally trained female therapists, we are committed to delivering the ultimate relaxation experience directly to you without ever having to leave your room.</p>
                 </div>
                 
                 <!-- Highlight Banner (Truly Style) -->
                 <div class="bg-amber-50 border border-amber-200/50 p-5 rounded-2xl flex items-center space-x-3 text-[#AE7D64] max-w-md">
                     <i class="fas fa-truck text-xl flex-shrink-0"></i>
-                    <span class="font-bold text-xs uppercase tracking-wider">Gratis Biaya Transportasi Area Bali!</span>
+                    <span class="font-bold text-xs uppercase tracking-wider">Free Transportation in Bali!</span>
                 </div>
             </div>
         </div>
@@ -237,8 +237,8 @@ $faqs = $faqs_query->fetchAll();
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-check-circle mr-1"></i> Keunggulan Kami</span>
-                <h2 class="text-4xl sm:text-5xl font-serif font-bold text-slate-900 leading-tight">Kenapa Harus Memilih Kami</h2>
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-check-circle mr-1"></i> Our Guarantees</span>
+                <h2 class="text-4xl sm:text-5xl font-serif font-bold text-slate-900 leading-tight">Why Choose Us</h2>
                 <p class="text-slate-500">We prioritize your health, comfort, and peace of mind. Here is why clients choose us.</p>
             </div>
             
@@ -286,9 +286,9 @@ $faqs = $faqs_query->fetchAll();
     <section id="services" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="fas fa-tags mr-1"></i> Daftar Harga</span>
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Layanan &amp; Harga</h2>
-                <p class="text-slate-500">Pilih dari daftar menu terapi tradisional Bali terbaik kami. Lakukan reservasi secara instan.</p>
+                <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="fas fa-tags mr-1"></i> Pricing Menu</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Treatments &amp; Pricing</h2>
+                <p class="text-slate-500">Choose from our selected list of authentic Balinese spa therapies. Book easily on WhatsApp.</p>
             </div>
             
             <div id="services-list" class="space-y-24 mt-20">
@@ -318,7 +318,7 @@ $faqs = $faqs_query->fetchAll();
                                 <p class="text-slate-500 text-sm leading-relaxed font-light"><?php echo htmlspecialchars($service['description']); ?></p>
                                 
                                 <!-- Truly Price List Style -->
-                                <div class="space-y-2.5 py-4 border-t border-stone-100">
+                                 <div class="space-y-2.5 py-4 border-t border-stone-100">
                                     <?php foreach ($service['options'] as $opt): ?>
                                         <div class="flex justify-between border-b border-dashed border-stone-200 pb-1 text-sm font-semibold">
                                             <span class="text-slate-700"><?php echo htmlspecialchars($opt['duration']); ?></span>
@@ -341,7 +341,7 @@ $faqs = $faqs_query->fetchAll();
                                     
                                     <button onclick="bookService('<?php echo addslashes($service['title']); ?>', '<?php echo $service['id']; ?>', '<?php echo htmlspecialchars($whatsapp); ?>')" class="w-full bg-[#AE7D64] hover:bg-[#91624a] text-white font-bold py-4 px-6 rounded-2xl text-xs uppercase tracking-widest text-center transition-all duration-300 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg">
                                         <i class="fab fa-whatsapp text-lg"></i>
-                                        <span>Pesan Sekarang</span>
+                                        <span>Book Now</span>
                                     </button>
                                 </div>
                             </div>
@@ -357,9 +357,9 @@ $faqs = $faqs_query->fetchAll();
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <!-- Areas List -->
             <div class="space-y-6 text-left">
-                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-map-marked-alt mr-1"></i> Area Jangkauan</span>
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 leading-tight">Wilayah Layanan Kami</h2>
-                <p class="text-slate-500 text-sm leading-relaxed font-light">Terapis profesional kami siap datang langsung ke tempat Anda tanpa biaya transportasi tambahan untuk wilayah-wilayah berikut:</p>
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-map-marked-alt mr-1"></i> Coverage Zones</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 leading-tight">Service Area Coverage</h2>
+                <p class="text-slate-500 text-sm leading-relaxed font-light">Our professional therapists arrive directly at your location without any extra transportation charges in these areas:</p>
                 
                 <ul class="grid sm:grid-cols-2 gap-4">
                     <?php foreach ($areas as $area): ?>
@@ -375,8 +375,8 @@ $faqs = $faqs_query->fetchAll();
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-slate-900 text-sm">Villa/Hotel/Rumah/Apartemen</h4>
-                        <p class="text-slate-500 text-xs leading-relaxed font-light">Terapis kami tiba dengan membawa matras pijat, minyak aromaterapi profesional, sprei bersih, serta musik relaksasi.</p>
+                        <h4 class="font-bold text-slate-900 text-sm">Villa / Hotel / Home / Apartment Call</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed font-light">Our therapists arrive fully equipped with massage tables/mats, premium essential oils, fresh linen, and relaxing spa music.</p>
                     </div>
                 </div>
             </div>
@@ -400,8 +400,8 @@ $faqs = $faqs_query->fetchAll();
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="max-w-4xl mx-auto px-4 relative z-10 space-y-4">
             <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="far fa-clock mr-1"></i> Available Daily</span>
-            <h2 class="text-3xl sm:text-4xl font-serif font-bold uppercase tracking-wider">JAM OPERASIONAL</h2>
-            <p class="text-2xl sm:text-3xl font-bold text-[#AE7D64]">Setiap Hari (08:00 - 23:00 WITA)</p>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold uppercase tracking-wider">OPERATING HOURS</h2>
+            <p class="text-2xl sm:text-3xl font-bold text-[#AE7D64]">Everyday (08:00 AM - 11:00 PM WITA)</p>
         </div>
     </section>
 
@@ -409,9 +409,9 @@ $faqs = $faqs_query->fetchAll();
     <section id="faqs" class="py-24 bg-[#f2f5f7]">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center space-y-4 mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-question-circle mr-1"></i> Pertanyaan</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-question-circle mr-1"></i> Questions</span>
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Frequently Asked Questions</h2>
-                <p class="text-slate-500">Semua informasi penting yang wajib Anda ketahui mengenai layanan pijat kami.</p>
+                <p class="text-slate-500">Everything you need to know about our Bali home massage services.</p>
             </div>
             
             <div class="space-y-4">
@@ -438,7 +438,7 @@ $faqs = $faqs_query->fetchAll();
                 <p class="text-slate-400 text-sm leading-relaxed font-light">Relaxation and spa therapeutic treatments at your convenience. Book in under 3 minutes.</p>
             </div>
             <div class="space-y-6 text-left">
-                <h4 class="font-bold text-white uppercase tracking-wider text-xs">Kontak &amp; Alamat</h4>
+                <h4 class="font-bold text-white uppercase tracking-wider text-xs">Contact &amp; Hours</h4>
                 <ul class="space-y-3.5 text-slate-400 text-sm">
                     <li class="flex items-center space-x-2">
                         <i class="fab fa-whatsapp text-[#AE7D64] text-base"></i> 
@@ -446,12 +446,12 @@ $faqs = $faqs_query->fetchAll();
                     </li>
                     <li class="flex items-center space-x-2">
                         <i class="far fa-clock text-[#AE7D64] text-base"></i> 
-                        <span>Jam Operasional: <?php echo htmlspecialchars($operatingHours); ?></span>
+                        <span>Operating Hours: <?php echo htmlspecialchars($operatingHours); ?></span>
                     </li>
                 </ul>
             </div>
             <div class="space-y-6 text-left">
-                <h4 class="font-bold text-white uppercase tracking-wider text-xs">Ikuti Media Sosial Kami</h4>
+                <h4 class="font-bold text-white uppercase tracking-wider text-xs">Follow Us</h4>
                 <?php if (!empty($instagram)): ?>
                     <a href="<?php echo htmlspecialchars($instagram); ?>" target="_blank" class="hover:text-white transition-colors text-slate-400 text-sm flex items-center space-x-2.5">
                         <i class="fab fa-instagram text-lg text-[#AE7D64]"></i>

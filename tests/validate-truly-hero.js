@@ -8,9 +8,9 @@ try {
     const homePath = path.join(__dirname, '../index.php');
     const content = fs.readFileSync(homePath, 'utf8');
 
-    // Check for key Truly sections and bullet points
-    assert.ok(content.includes('Gratis Biaya Transportasi') || content.includes('Free Transport'), "Missing transport cost highlight");
-    assert.ok(content.includes('Terapis Ramah'), "Missing friendly therapist tagline");
+    // Check for key Truly sections and bullet points in English
+    assert.ok(content.includes('Free Transportation') || content.includes('Free transport'), "Missing transport cost highlight");
+    assert.ok(content.includes('Friendly, Certified'), "Missing friendly therapist tagline");
 
     console.log("PASS: Truly Hero section is valid!");
     process.exit(0);
