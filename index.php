@@ -165,7 +165,7 @@ $faqs = $faqs_query->fetchAll();
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
                     Oncall &amp; Home Service Massage
                 </h1>
-                <p class="text-slate-500 text-sm sm:text-base max-w-xl font-light">
+                <p class="text-slate-600 text-sm sm:text-base max-w-xl font-light">
                     Your Premium Wellness Solutions - Enjoy the convenience of a 5-star luxury spa directly in your villa, hotel, home, or apartment across Bali.
                 </p>
                 
@@ -253,7 +253,7 @@ $faqs = $faqs_query->fetchAll();
             <div class="text-center max-w-3xl mx-auto space-y-4">
                 <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i aria-hidden="true" class="fas fa-check-circle mr-1"></i> Our Guarantees</span>
                 <h2 class="text-4xl sm:text-5xl font-serif font-bold text-slate-900 leading-tight">Why Choose Us</h2>
-                <p class="text-slate-500">We prioritize your health, comfort, and peace of mind. Here is why clients choose us.</p>
+                <p class="text-slate-600">We prioritize your health, comfort, and peace of mind. Here is why clients choose us.</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 lg:gap-12 mt-24 pb-12 items-stretch">
@@ -264,7 +264,7 @@ $faqs = $faqs_query->fetchAll();
                             <i aria-hidden="true" class="fas fa-spa"></i>
                         </div>
                         <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">Certified Therapists</h3>
-                        <p class="text-stone-600 text-sm leading-relaxed font-light">Our female therapists are fully trained, certified, and experienced in professional spa treatments and anatomy.</p>
+                        <p class="text-stone-700 text-sm leading-relaxed font-light">Our female therapists are fully trained, certified, and experienced in professional spa treatments and anatomy.</p>
                     </div>
                 </div>
                 
@@ -278,7 +278,7 @@ $faqs = $faqs_query->fetchAll();
                             <i aria-hidden="true" class="fas fa-leaf"></i>
                         </div>
                         <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">100% Organic Oils</h3>
-                        <p class="text-stone-600 text-sm leading-relaxed font-light">We use only organic, virgin coconut oil and premium essential oils to nourish your skin and enhance relaxation.</p>
+                        <p class="text-stone-700 text-sm leading-relaxed font-light">We use only organic, virgin coconut oil and premium essential oils to nourish your skin and enhance relaxation.</p>
                     </div>
                 </div>
                 
@@ -289,7 +289,7 @@ $faqs = $faqs_query->fetchAll();
                             <i aria-hidden="true" class="fas fa-car-side"></i>
                         </div>
                         <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">No Transport Fee</h3>
-                        <p class="text-stone-600 text-sm leading-relaxed font-light">No hidden charges. Our massage prices include all transport costs directly to your villa, hotel, or apartment.</p>
+                        <p class="text-stone-700 text-sm leading-relaxed font-light">No hidden charges. Our massage prices include all transport costs directly to your villa, hotel, or apartment.</p>
                     </div>
                 </div>
             </div>
@@ -402,14 +402,16 @@ $faqs = $faqs_query->fetchAll();
                     </div>
                     <div>
                         <h4 class="font-bold text-slate-900 text-sm">Villa / Hotel / Home / Apartment Call</h4>
-                        <p class="text-slate-500 text-xs leading-relaxed font-light">Our therapists arrive fully equipped with massage tables/mats, premium essential oils, fresh linen, and relaxing spa music.</p>
+                        <p class="text-slate-600 text-xs leading-relaxed font-light">Our therapists arrive fully equipped with massage tables/mats, premium essential oils, fresh linen, and relaxing spa music.</p>
                     </div>
                 </div>
             </div>
             
             <!-- Google Maps Embed -->
             <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border border-stone-200">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252438.48918239088!2d115.09312151676646!3d-8.67045813735076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd140d384d8b58b%3A0xa126509f7e1b7f94!2sBali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+                <iframe id="google-map-iframe"
+                        src="about:blank"
+                        data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252438.48918239088!2d115.09312151676646!3d-8.67045813735076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd140d384d8b58b%3A0xa126509f7e1b7f94!2sBali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
                         title="Google Maps showing Bali service coverage area"
                         width="100%" 
                         height="100%" 
@@ -438,13 +440,13 @@ $faqs = $faqs_query->fetchAll();
             <div class="text-center space-y-4 mb-16">
                 <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i aria-hidden="true" class="fas fa-question-circle mr-1"></i> Questions</span>
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Frequently Asked Questions</h2>
-                <p class="text-slate-500">Everything you need to know about our Bali home massage services.</p>
+                <p class="text-slate-600">Everything you need to know about our Bali home massage services.</p>
             </div>
             
             <div class="space-y-4">
                 <?php foreach ($faqs as $i => $faq): ?>
                     <div class="bg-white border border-stone-100 rounded-2xl overflow-hidden shadow-sm">
-                        <button onclick="toggleFaq(<?php echo $i; ?>)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-slate-900 hover:bg-slate-50 transition-colors">
+                        <button aria-expanded="false" aria-controls="faq-ans-<?php echo $i; ?>" onclick="toggleFaq(<?php echo $i; ?>)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-slate-900 hover:bg-slate-50 transition-colors">
                             <span><?php echo htmlspecialchars($faq['question']); ?></span>
                             <i aria-hidden="true" id="faq-icon-<?php echo $i; ?>" class="fas fa-chevron-down text-[#9c654d] text-xs transition-transform duration-300"></i>
                         </button>
@@ -485,7 +487,7 @@ $faqs = $faqs_query->fetchAll();
             <div class="space-y-6 text-left">
                 <h4 class="font-bold text-white uppercase tracking-wider text-xs">Follow Us</h4>
                 <?php if (!empty($instagram)): ?>
-                    <a href="<?php echo htmlspecialchars($instagram); ?>" target="_blank" class="hover:text-white transition-colors text-slate-400 text-sm flex items-center space-x-2.5">
+                    <a href="<?php echo htmlspecialchars($instagram); ?>" target="_blank" rel="noopener" class="hover:text-white transition-colors text-slate-400 text-sm flex items-center space-x-2.5">
                         <i aria-hidden="true" class="fab fa-instagram text-lg text-[#9c654d]"></i>
                         <span>Instagram</span>
                     </a>
@@ -502,6 +504,7 @@ $faqs = $faqs_query->fetchAll();
         function toggleFaq(index) {
             const ans = document.getElementById('faq-ans-' + index);
             const icon = document.getElementById('faq-icon-' + index);
+            const btn = document.querySelector(`button[aria-controls='faq-ans-${index}']`);
             const isHidden = ans.classList.contains('hidden');
             
             // Hide all first
@@ -509,12 +512,26 @@ $faqs = $faqs_query->fetchAll();
             document.querySelectorAll("[id^='faq-icon-']").forEach(el => {
                 el.classList.remove('rotate-180');
             });
+            document.querySelectorAll("button[aria-controls^='faq-ans-']").forEach(el => {
+                el.setAttribute('aria-expanded', 'false');
+            });
 
             if (isHidden) {
                 ans.classList.remove('hidden');
                 icon.classList.add('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'true');
             }
         }
+
+        // Defer Google Maps load to prevent render blocking on initial page speed test
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const mapIframe = document.getElementById('google-map-iframe');
+                if (mapIframe && mapIframe.getAttribute('data-src')) {
+                    mapIframe.setAttribute('src', mapIframe.getAttribute('data-src'));
+                }
+            }, 3000);
+        });
 
         function bookService(serviceName, selectId, whatsapp) {
             const select = document.getElementById('select-' + selectId);
