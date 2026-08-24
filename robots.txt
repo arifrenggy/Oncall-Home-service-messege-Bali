@@ -4,4 +4,4 @@ Allow: /
 Disallow: /admin/
 
 # Link to sitemap
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://honeymassagebali.shop/sitemap.xml
