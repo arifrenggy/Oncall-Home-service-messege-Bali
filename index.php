@@ -45,6 +45,7 @@ $faqs = $faqs_query->fetchAll();
     <title>Best Home Service Massage Bali | 24/7 On-Call Spa &amp; Reflexology</title>
     <meta name="description" content="Looking for the best home service massage in Bali? Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home. Book in 3 minutes!">
     <meta name="keywords" content="home service massage bali, massage home service bali, oncall spa bali, massage villa bali, massage seminyak, massage canggu, massage ubud, hotel massage bali, balinese massage panggilan, spa panggilan bali, massage delivery bali, best massage bali, massage nusa dua, massage kuta">
+    <link rel="canonical" href="https://honeymassagebali.shop/">
     
     <!-- OpenGraph Meta Tags (SEO/Social/WhatsApp Share Preview) -->
     <meta property="og:title" content="Best Home Service Massage Bali | 24/7 On-Call Spa &amp; Reflexology">
