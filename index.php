@@ -120,11 +120,10 @@ $faqs = $faqs_query->fetchAll();
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
 
     <!-- Font Awesome CDNs -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Preload LCP Image (Desktop Only, since it is below the fold on mobile) -->
-    <link rel="preload" as="image" href="assets/images/hero-massage.webp" type="image/webp" fetchpriority="high" media="(min-width: 1024px)">
+    <!-- Preload LCP Image -->
+    <link rel="preload" as="image" href="assets/images/hero-massage.webp" type="image/webp" fetchpriority="high">
 
     <!-- Static Tailwind CSS -->
     <link rel="stylesheet" href="assets/css/tailwind.min.css">
