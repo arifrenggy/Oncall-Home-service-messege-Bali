@@ -117,66 +117,16 @@ $faqs = $faqs_query->fetchAll();
     <!-- Google Fonts: Poppins & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
 
     <!-- Font Awesome CDNs -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Poppins', 'sans-serif'],
-                    },
-                    colors: {
-                        theme: {
-                            50: '#f2f5f7',
-                            100: '#e5eaf0',
-                            200: '#cdd7e3',
-                            300: '#a3b7d1',
-                            400: '#7392bc',
-                            500: '#4e6fa0',
-                            600: '#3c5a87',
-                            700: '#324a6f',
-                            800: '#2c3e5a',
-                            900: '#192a3d',
-                            gold: '#AE7D64',
-                            beige: '#ffffff',
-                        },
-                        emerald: {
-                            50: '#f2f5f7',
-                            100: '#e5eaf0',
-                            200: '#cdd7e3',
-                            300: '#a3b7d1',
-                            400: '#2872fa', // Clean Royal Blue
-                            500: '#2872fa', // Clean Royal Blue
-                            600: '#2872fa', // Clean Royal Blue
-                            700: '#1d4ed8',
-                            800: '#AE7D64', // Terracotta/Copper Gold for primary CTAs
-                            900: '#192a3d', // Navy Blue
-                            950: '#192a3d', // Navy Blue
-                        },
-                        amber: {
-                            50: '#f7f4f2', // Light cream terracotta tint
-                            100: '#f7f4f2',
-                            200: '#ebdcd3',
-                            300: '#d7b9a7',
-                            400: '#AE7D64', // Terracotta/Copper Gold
-                            500: '#AE7D64', // Terracotta/Copper Gold
-                            600: '#AE7D64', // Terracotta/Copper Gold
-                            700: '#91624a',
-                            800: '#734e3a',
-                            900: '#5a3d2e',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Preload LCP Image -->
+    <link rel="preload" as="image" href="assets/images/hero-massage.webp" type="image/webp" fetchpriority="high">
+
+    <!-- Static Tailwind CSS -->
+    <link rel="stylesheet" href="assets/css/tailwind.min.css">
     <style>
         .font-serif { font-family: 'Poppins', sans-serif; }
         .font-sans { font-family: 'Inter', sans-serif; }
@@ -200,7 +150,7 @@ $faqs = $faqs_query->fetchAll();
                 <a href="#areas" class="hover:text-blue-600 transition-colors">Service Areas</a>
                 <a href="#faqs" class="hover:text-blue-600 transition-colors">FAQs</a>
             </div>
-            <a href="#services" class="bg-[#AE7D64] hover:bg-[#91624a] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
+            <a href="#services" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
         </nav>
     </header>
 
@@ -210,7 +160,7 @@ $faqs = $faqs_query->fetchAll();
             <!-- Left Side Content -->
             <div class="lg:col-span-7 space-y-6 text-left">
                 <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1.5 rounded-full">
-                    <i class="fas fa-certificate mr-1.5"></i> #1 On-Call Massage Bali
+                    <i aria-hidden="true" class="fas fa-certificate mr-1.5"></i> #1 On-Call Massage Bali
                 </span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
                     Oncall &amp; Home Service Massage
@@ -223,33 +173,33 @@ $faqs = $faqs_query->fetchAll();
                 <ul class="space-y-3.5 pt-2">
                     <li class="flex items-center space-x-3 text-slate-700 text-sm">
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
-                            <i class="fas fa-check"></i>
+                            <i aria-hidden="true" class="fas fa-check"></i>
                         </span>
                         <span class="font-medium">Friendly, Certified &amp; Professional Female Therapists</span>
                     </li>
                     <li class="flex items-center space-x-3 text-slate-700 text-sm">
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
-                            <i class="fas fa-check"></i>
+                            <i aria-hidden="true" class="fas fa-check"></i>
                         </span>
                         <span class="font-medium">Easy &amp; Quick Booking via WhatsApp</span>
                     </li>
                     <li class="flex items-center space-x-3 text-slate-700 text-sm">
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
-                            <i class="fas fa-check"></i>
+                            <i aria-hidden="true" class="fas fa-check"></i>
                         </span>
-                        <span class="font-medium text-[#AE7D64] font-bold">Free Transportation directly to your place in Bali</span>
+                        <span class="font-medium text-[#9c654d] font-bold">Free Transportation directly to your place in Bali</span>
                     </li>
                     <li class="flex items-center space-x-3 text-slate-700 text-sm">
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
-                            <i class="fas fa-check"></i>
+                            <i aria-hidden="true" class="fas fa-check"></i>
                         </span>
                         <span class="font-medium">Serving Bali Areas: Kuta, Denpasar, Seminyak, Canggu, Ubud &amp; Nusa Dua</span>
                     </li>
                 </ul>
                 
                 <div class="pt-6 flex flex-wrap gap-4">
-                    <a href="#services" class="bg-[#AE7D64] hover:bg-[#91624a] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
-                        <i class="fab fa-whatsapp text-sm"></i>
+                    <a href="#services" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
+                        <i aria-hidden="true" class="fab fa-whatsapp text-sm"></i>
                         <span>Book Now</span>
                     </a>
                     <a href="#services" class="border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
@@ -277,7 +227,7 @@ $faqs = $faqs_query->fetchAll();
             </div>
             <!-- Right Side Text -->
             <div class="space-y-6 text-left">
-                <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="fas fa-spa mr-1.5"></i> About Us</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-[#9c654d]"><i aria-hidden="true" class="fas fa-spa mr-1.5"></i> About Us</span>
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 leading-tight">
                     Oncall &amp; Home Service Massage
                 </h2>
@@ -287,8 +237,8 @@ $faqs = $faqs_query->fetchAll();
                 </div>
                 
                 <!-- Highlight Banner -->
-                <div class="bg-amber-50 border border-amber-200/50 p-5 rounded-2xl flex items-center space-x-3 text-[#AE7D64] max-w-md">
-                    <i class="fas fa-truck text-xl flex-shrink-0"></i>
+                <div class="bg-amber-50 border border-amber-200/50 p-5 rounded-2xl flex items-center space-x-3 text-[#9c654d] max-w-md">
+                    <i aria-hidden="true" class="fas fa-truck text-xl flex-shrink-0"></i>
                     <span class="font-bold text-xs uppercase tracking-wider">Free Transportation in Bali!</span>
                 </div>
             </div>
@@ -301,7 +251,7 @@ $faqs = $faqs_query->fetchAll();
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-check-circle mr-1"></i> Our Guarantees</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i aria-hidden="true" class="fas fa-check-circle mr-1"></i> Our Guarantees</span>
                 <h2 class="text-4xl sm:text-5xl font-serif font-bold text-slate-900 leading-tight">Why Choose Us</h2>
                 <p class="text-slate-500">We prioritize your health, comfort, and peace of mind. Here is why clients choose us.</p>
             </div>
@@ -311,7 +261,7 @@ $faqs = $faqs_query->fetchAll();
                 <div class="bg-white p-8 rounded-3xl border border-stone-100 shadow-sm transition-all duration-300 md:-translate-y-6 hover:-translate-y-8 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-600 text-lg mb-8">
-                            <i class="fas fa-spa"></i>
+                            <i aria-hidden="true" class="fas fa-spa"></i>
                         </div>
                         <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">Certified Therapists</h3>
                         <p class="text-stone-600 text-sm leading-relaxed font-light">Our female therapists are fully trained, certified, and experienced in professional spa treatments and anatomy.</p>
@@ -325,7 +275,7 @@ $faqs = $faqs_query->fetchAll();
                     </span>
                     <div>
                         <div class="w-12 h-12 bg-emerald-950 text-amber-500 rounded-2xl flex items-center justify-center text-lg mb-8 border border-amber-500/30">
-                            <i class="fas fa-leaf"></i>
+                            <i aria-hidden="true" class="fas fa-leaf"></i>
                         </div>
                         <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">100% Organic Oils</h3>
                         <p class="text-stone-600 text-sm leading-relaxed font-light">We use only organic, virgin coconut oil and premium essential oils to nourish your skin and enhance relaxation.</p>
@@ -336,7 +286,7 @@ $faqs = $faqs_query->fetchAll();
                 <div class="bg-white p-8 rounded-3xl border border-stone-100 shadow-sm transition-all duration-300 md:translate-y-6 hover:translate-y-4 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-600 text-lg mb-8">
-                            <i class="fas fa-car-side"></i>
+                            <i aria-hidden="true" class="fas fa-car-side"></i>
                         </div>
                         <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">No Transport Fee</h3>
                         <p class="text-stone-600 text-sm leading-relaxed font-light">No hidden charges. Our massage prices include all transport costs directly to your villa, hotel, or apartment.</p>
@@ -350,7 +300,7 @@ $faqs = $faqs_query->fetchAll();
     <section id="services" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="fas fa-tags mr-1"></i> Pricing Menu</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-[#9c654d]"><i aria-hidden="true" class="fas fa-tags mr-1"></i> Pricing Menu</span>
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Treatments &amp; Pricing</h2>
                 <p class="text-slate-500">Choose from our selected list of authentic Balinese spa therapies. Book easily on WhatsApp.</p>
             </div>
@@ -367,7 +317,7 @@ $faqs = $faqs_query->fetchAll();
                             <div class="aspect-[4/3] w-full max-w-md mx-auto rounded-3xl overflow-hidden border border-stone-200 shadow-xl relative group">
                                 <?php if ($service['featured']): ?>
                                     <span class="absolute top-6 left-6 bg-amber-500 text-stone-950 text-[9px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md z-10">
-                                        <i class="fas fa-crown mr-1"></i> Featured Choice
+                                        <i aria-hidden="true" class="fas fa-crown mr-1"></i> Featured Choice
                                     </span>
                                 <?php endif; ?>
                                 <img src="<?php echo htmlspecialchars($service['image_path']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out">
@@ -377,7 +327,7 @@ $faqs = $faqs_query->fetchAll();
                         <!-- Content Description Container (Clean & Corporate) -->
                         <div class="w-full md:w-1/2 flex flex-col justify-center items-center <?php echo $alignTextClass; ?> z-10 relative px-4 sm:px-8">
                             <div class="bg-white p-8 md:p-10 rounded-3xl border border-stone-100 shadow-lg max-w-md space-y-6 text-left">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-[#AE7D64]">Treatments</span>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-[#9c654d]">Treatments</span>
                                 <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight"><?php echo htmlspecialchars($service['title']); ?></h3>
                                 <p class="text-slate-500 text-sm leading-relaxed font-light"><?php echo htmlspecialchars($service['description']); ?></p>
                                 
@@ -386,14 +336,14 @@ $faqs = $faqs_query->fetchAll();
                                     <?php foreach ($service['options'] as $opt): ?>
                                         <div class="flex justify-between border-b border-dashed border-stone-200 pb-1 text-sm font-semibold">
                                             <span class="text-slate-700"><?php echo htmlspecialchars($opt['duration']); ?></span>
-                                            <span class="text-[#AE7D64]"><?php echo htmlspecialchars($opt['price']); ?></span>
+                                            <span class="text-[#9c654d]"><?php echo htmlspecialchars($opt['price']); ?></span>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
                                 
                                 <div class="border-t border-stone-100 pt-6 space-y-6">
                                     <div class="text-left">
-                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Select Duration to Book</label>
+                                        <label for="select-<?php echo $service['id']; ?>" class="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Select Duration to Book</label>
                                         <select id="select-<?php echo $service['id']; ?>" class="w-full border border-stone-200 bg-stone-50 px-4 py-3.5 rounded-2xl text-sm font-semibold focus:ring-2 focus:ring-emerald-800 focus:outline-none">
                                             <?php foreach ($service['options'] as $opt): ?>
                                                 <option value="<?php echo htmlspecialchars($opt['duration']); ?>" data-price="<?php echo htmlspecialchars($opt['price']); ?>">
@@ -403,8 +353,8 @@ $faqs = $faqs_query->fetchAll();
                                         </select>
                                     </div>
                                     
-                                    <button onclick="bookService('<?php echo addslashes($service['title']); ?>', '<?php echo $service['id']; ?>', '<?php echo htmlspecialchars($whatsapp); ?>')" class="w-full bg-[#AE7D64] hover:bg-[#91624a] text-white font-bold py-4 px-6 rounded-2xl text-xs uppercase tracking-widest text-center transition-all duration-300 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg">
-                                        <i class="fab fa-whatsapp text-lg"></i>
+                                    <button onclick="bookService('<?php echo addslashes($service['title']); ?>', '<?php echo $service['id']; ?>', '<?php echo htmlspecialchars($whatsapp); ?>')" class="w-full bg-[#9c654d] hover:bg-[#7d4d38] text-white font-bold py-4 px-6 rounded-2xl text-xs uppercase tracking-widest text-center transition-all duration-300 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg">
+                                        <i aria-hidden="true" class="fab fa-whatsapp text-lg"></i>
                                         <span>Book Now</span>
                                     </button>
                                 </div>
@@ -421,22 +371,22 @@ $faqs = $faqs_query->fetchAll();
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <!-- Areas List -->
             <div class="space-y-6 text-left">
-                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-map-marked-alt mr-1"></i> Coverage Zones</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i aria-hidden="true" class="fas fa-map-marked-alt mr-1"></i> Coverage Zones</span>
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 leading-tight">Service Area Coverage</h2>
                 <p class="text-slate-500 text-sm leading-relaxed font-light">Our professional therapists arrive directly at your location without any extra transportation charges in these areas:</p>
                 
                 <ul class="grid sm:grid-cols-2 gap-4">
                     <?php foreach ($areas as $area): ?>
                         <li class="flex items-center text-slate-700 text-sm font-medium">
-                            <i class="fas fa-check text-emerald-500 mr-3 text-xs bg-emerald-50 p-1 rounded-full"></i>
+                            <i aria-hidden="true" class="fas fa-check text-emerald-500 mr-3 text-xs bg-emerald-50 p-1 rounded-full"></i>
                             <span><?php echo htmlspecialchars($area); ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
                 
                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start space-x-4">
-                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-[#AE7D64] text-lg flex-shrink-0">
-                        <i class="fas fa-map-marker-alt"></i>
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-[#9c654d] text-lg flex-shrink-0">
+                        <i aria-hidden="true" class="fas fa-map-marker-alt"></i>
                     </div>
                     <div>
                         <h4 class="font-bold text-slate-900 text-sm">Villa / Hotel / Home / Apartment Call</h4>
@@ -448,6 +398,7 @@ $faqs = $faqs_query->fetchAll();
             <!-- Google Maps Embed -->
             <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border border-stone-200">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252438.48918239088!2d115.09312151676646!3d-8.67045813735076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd140d384d8b58b%3A0xa126509f7e1b7f94!2sBali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+                        title="Google Maps showing Bali service coverage area"
                         width="100%" 
                         height="100%" 
                         style="border:0;" 
@@ -463,9 +414,9 @@ $faqs = $faqs_query->fetchAll();
     <section class="py-16 bg-[#192a3d] text-white text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="max-w-4xl mx-auto px-4 relative z-10 space-y-4">
-            <span class="text-xs font-bold uppercase tracking-widest text-[#AE7D64]"><i class="far fa-clock mr-1"></i> Available Daily</span>
+            <span class="text-xs font-bold uppercase tracking-widest text-[#9c654d]"><i aria-hidden="true" class="far fa-clock mr-1"></i> Available Daily</span>
             <h2 class="text-3xl sm:text-4xl font-serif font-bold uppercase tracking-wider">OPERATING HOURS</h2>
-            <p class="text-2xl sm:text-3xl font-bold text-[#AE7D64]">Everyday (08:00 AM - 11:00 PM WITA)</p>
+            <p class="text-2xl sm:text-3xl font-bold text-[#9c654d]">Everyday (08:00 AM - 11:00 PM WITA)</p>
         </div>
     </section>
 
@@ -473,7 +424,7 @@ $faqs = $faqs_query->fetchAll();
     <section id="faqs" class="py-24 bg-[#f2f5f7]">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center space-y-4 mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i class="fas fa-question-circle mr-1"></i> Questions</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i aria-hidden="true" class="fas fa-question-circle mr-1"></i> Questions</span>
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Frequently Asked Questions</h2>
                 <p class="text-slate-500">Everything you need to know about our Bali home massage services.</p>
             </div>
@@ -483,7 +434,7 @@ $faqs = $faqs_query->fetchAll();
                     <div class="bg-white border border-stone-100 rounded-2xl overflow-hidden shadow-sm">
                         <button onclick="toggleFaq(<?php echo $i; ?>)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-slate-900 hover:bg-slate-50 transition-colors">
                             <span><?php echo htmlspecialchars($faq['question']); ?></span>
-                            <i id="faq-icon-<?php echo $i; ?>" class="fas fa-chevron-down text-[#AE7D64] text-xs transition-transform duration-300"></i>
+                            <i aria-hidden="true" id="faq-icon-<?php echo $i; ?>" class="fas fa-chevron-down text-[#9c654d] text-xs transition-transform duration-300"></i>
                         </button>
                         <div id="faq-ans-<?php echo $i; ?>" class="hidden px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-50 pt-4 text-left">
                             <?php echo htmlspecialchars($faq['answer']); ?>
@@ -510,11 +461,11 @@ $faqs = $faqs_query->fetchAll();
                 <h4 class="font-bold text-white uppercase tracking-wider text-xs">Contact &amp; Hours</h4>
                 <ul class="space-y-3.5 text-slate-400 text-sm">
                     <li class="flex items-center space-x-2">
-                        <i class="fab fa-whatsapp text-[#AE7D64] text-base"></i> 
-                        <span>WhatsApp: <a href="https://wa.me/<?php echo $whatsapp; ?>" class="hover:text-white transition-colors font-semibold text-[#AE7D64]">+<?php echo htmlspecialchars($whatsapp); ?></a></span>
+                        <i aria-hidden="true" class="fab fa-whatsapp text-[#9c654d] text-base"></i> 
+                        <span>WhatsApp: <a href="https://wa.me/<?php echo $whatsapp; ?>" class="hover:text-white transition-colors font-semibold text-[#9c654d]">+<?php echo htmlspecialchars($whatsapp); ?></a></span>
                     </li>
                     <li class="flex items-center space-x-2">
-                        <i class="far fa-clock text-[#AE7D64] text-base"></i> 
+                        <i aria-hidden="true" class="far fa-clock text-[#9c654d] text-base"></i> 
                         <span>Operating Hours: <?php echo htmlspecialchars($operatingHours); ?></span>
                     </li>
                 </ul>
@@ -523,7 +474,7 @@ $faqs = $faqs_query->fetchAll();
                 <h4 class="font-bold text-white uppercase tracking-wider text-xs">Follow Us</h4>
                 <?php if (!empty($instagram)): ?>
                     <a href="<?php echo htmlspecialchars($instagram); ?>" target="_blank" class="hover:text-white transition-colors text-slate-400 text-sm flex items-center space-x-2.5">
-                        <i class="fab fa-instagram text-lg text-[#AE7D64]"></i>
+                        <i aria-hidden="true" class="fab fa-instagram text-lg text-[#9c654d]"></i>
                         <span>Instagram</span>
                     </a>
                 <?php endif; ?>

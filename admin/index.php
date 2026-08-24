@@ -211,43 +211,7 @@ if (!$is_logged_in):
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts: Poppins & Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Poppins', 'sans-serif'],
-                    },
-                    colors: {
-                        emerald: {
-                            50: '#f2f5f7',
-                            100: '#e5eaf0',
-                            200: '#cdd7e3',
-                            300: '#a3b7d1',
-                            400: '#2872fa', // Clean Royal Blue
-                            500: '#2872fa', // Clean Royal Blue
-                            600: '#2872fa', // Clean Royal Blue
-                            700: '#1d4ed8',
-                            800: '#AE7D64', // Terracotta/Copper Gold for primary CTAs
-                            900: '#192a3d', // Navy Blue
-                            950: '#192a3d', // Navy Blue
-                        },
-                        amber: {
-                            50: '#f7f4f2',
-                            100: '#f7f4f2',
-                            200: '#ebdcd3',
-                            300: '#d7b9a7',
-                            400: '#AE7D64', // Terracotta
-                            500: '#AE7D64',
-                            600: '#AE7D64',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="../assets/css/tailwind.min.css">
     <style>
         .font-serif { font-family: 'Poppins', sans-serif; }
         .font-sans { font-family: 'Inter', sans-serif; }
@@ -332,43 +296,7 @@ $faqs = $faqs_query->fetchAll();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts: Poppins & Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Poppins', 'sans-serif'],
-                    },
-                    colors: {
-                        emerald: {
-                            50: '#f2f5f7',
-                            100: '#e5eaf0',
-                            200: '#cdd7e3',
-                            300: '#a3b7d1',
-                            400: '#2872fa', // Clean Royal Blue
-                            500: '#2872fa', // Clean Royal Blue
-                            600: '#2872fa', // Clean Royal Blue
-                            700: '#1d4ed8',
-                            800: '#AE7D64', // Terracotta/Copper Gold for primary CTAs
-                            900: '#192a3d', // Navy Blue
-                            950: '#192a3d', // Navy Blue
-                        },
-                        amber: {
-                            50: '#f7f4f2',
-                            100: '#f7f4f2',
-                            200: '#ebdcd3',
-                            300: '#d7b9a7',
-                            400: '#AE7D64', // Terracotta
-                            500: '#AE7D64',
-                            600: '#AE7D64',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="../assets/css/tailwind.min.css">
     <style>
         .tab-content { display: none; }
         .tab-content.active { display: block; }
