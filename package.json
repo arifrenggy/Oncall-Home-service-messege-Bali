@@ -1,0 +1,11 @@
+{
+  "name": "oncall-massage-bali",
+  "version": "1.0.0",
+  "description": "Oncall Home Service Massage Bali",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/tailwind.min.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
