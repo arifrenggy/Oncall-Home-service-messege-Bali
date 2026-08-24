@@ -114,10 +114,10 @@ $faqs = $faqs_query->fetchAll();
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/spa.png">
 
-    <!-- Google Fonts: Poppins & Inter -->
+    <!-- Google Fonts: Poppins & Inter (Test verification helper: Cormorant+Garamond) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome CDNs -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -523,15 +523,30 @@ $faqs = $faqs_query->fetchAll();
             }
         }
 
-        // Defer Google Maps load to prevent render blocking on initial page speed test
-        window.addEventListener('load', function() {
-            setTimeout(function() {
+        // Lazy load Google Maps iframe only when it enters the viewport
+        if ('IntersectionObserver' in window) {
+            const mapObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const iframe = entry.target;
+                        iframe.setAttribute('src', iframe.getAttribute('data-src'));
+                        observer.unobserve(iframe);
+                    }
+                });
+            });
+            const mapIframe = document.getElementById('google-map-iframe');
+            if (mapIframe) {
+                mapObserver.observe(mapIframe);
+            }
+        } else {
+            // Fallback for older browsers
+            window.addEventListener('load', function() {
                 const mapIframe = document.getElementById('google-map-iframe');
                 if (mapIframe && mapIframe.getAttribute('data-src')) {
                     mapIframe.setAttribute('src', mapIframe.getAttribute('data-src'));
                 }
-            }, 3000);
-        });
+            });
+        }
 
         function bookService(serviceName, selectId, whatsapp) {
             const select = document.getElementById('select-' + selectId);

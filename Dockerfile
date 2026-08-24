@@ -16,6 +16,13 @@ RUN apk update && apk add --no-cache \
 # Mengonfigurasi Apache agar membaca file index.php sebagai halaman utama
 RUN sed -i 's/DirectoryIndex index.html/DirectoryIndex index.php index.html/g' /etc/apache2/httpd.conf
 
+# Mengaktifkan mod_deflate, mod_expires, mod_filter, mod_rewrite, dan mengizinkan .htaccess (AllowOverride All)
+RUN sed -i 's/#LoadModule deflate_module/LoadModule deflate_module/g' /etc/apache2/httpd.conf \
+    && sed -i 's/#LoadModule expires_module/LoadModule expires_module/g' /etc/apache2/httpd.conf \
+    && sed -i 's/#LoadModule filter_module/LoadModule filter_module/g' /etc/apache2/httpd.conf \
+    && sed -i 's/#LoadModule rewrite_module/LoadModule rewrite_module/g' /etc/apache2/httpd.conf \
+    && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/httpd.conf
+
 # Menghapus file default bawaan Apache
 RUN rm -rf /var/www/localhost/htdocs/*
 
