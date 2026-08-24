@@ -49,7 +49,7 @@ $faqs = $faqs_query->fetchAll();
     <!-- OpenGraph Meta Tags (SEO/Social/WhatsApp Share Preview) -->
     <meta property="og:title" content="Best Home Service Massage Bali | 24/7 On-Call Spa &amp; Reflexology">
     <meta property="og:description" content="Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home in Bali. Book via WhatsApp!">
-    <meta property="og:image" content="<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800'; ?>">
+    <meta property="og:image" content="<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/hero-massage.webp'; ?>">
     <meta property="og:type" content="website">
     
     <!-- Local Business Schema (JSON-LD) for Google Rich Snippets -->
@@ -58,7 +58,7 @@ $faqs = $faqs_query->fetchAll();
       "@context": "https://schema.org",
       "@type": "HealthAndBeautyBusiness",
       "name": "<?php echo htmlspecialchars($brandName); ?>",
-      "image": "<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800'; ?>",
+      "image": "<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/hero-massage.webp'; ?>",
       "description": "<?php echo htmlspecialchars($description); ?>",
       "telephone": "+<?php echo htmlspecialchars($whatsapp); ?>",
       "priceRange": "$$",
@@ -211,7 +211,7 @@ $faqs = $faqs_query->fetchAll();
             <!-- Right Side Image Mockup -->
             <div class="lg:col-span-5 relative">
                 <div class="aspect-[4/5] sm:aspect-square bg-gradient-to-tr from-stone-100 to-slate-200 rounded-3xl overflow-hidden shadow-2xl relative border border-slate-200">
-                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800" alt="Bali Spa Treatment" class="w-full h-full object-cover">
+                    <img src="assets/images/hero-massage.webp" width="600" height="750" alt="Bali Spa Treatment" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -222,7 +222,7 @@ $faqs = $faqs_query->fetchAll();
             <!-- Left Side Image -->
             <div class="relative">
                 <div class="aspect-[4/3] bg-slate-100 rounded-3xl overflow-hidden shadow-xl border border-stone-200">
-                    <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=800" alt="Oncall & Home Service Massage Bali" class="w-full h-full object-cover">
+                    <img src="assets/images/about-massage.webp" width="800" height="600" loading="lazy" alt="Oncall & Home Service Massage Bali" class="w-full h-full object-cover">
                 </div>
             </div>
             <!-- Right Side Text -->
@@ -310,6 +310,18 @@ $faqs = $faqs_query->fetchAll();
                     $isEven = ($index % 2 == 0);
                     $directionClass = $isEven ? 'md:flex-row' : 'md:flex-row-reverse';
                     $alignTextClass = $isEven ? 'md:text-left md:items-start md:pl-16' : 'md:text-right md:items-end md:pr-16';
+
+                    // Fallback to optimized local WebP images if the DB still contains remote Unsplash URLs
+                    $serviceImg = $service['image_path'];
+                    if (strpos($serviceImg, 'unsplash.com') !== false) {
+                        if ($service['service_id'] === 'balinese-massage') {
+                            $serviceImg = 'assets/images/hero-massage.webp';
+                        } elseif ($service['service_id'] === 'deep-tissue') {
+                            $serviceImg = 'assets/images/about-massage.webp';
+                        } elseif ($service['service_id'] === 'reflexology') {
+                            $serviceImg = 'assets/images/service-reflexology.webp';
+                        }
+                    }
                 ?>
                     <div class="flex flex-col <?php echo $directionClass; ?> items-center gap-12 relative">
                         <!-- Image Container with Clean Rounded Corners -->
@@ -320,7 +332,7 @@ $faqs = $faqs_query->fetchAll();
                                         <i aria-hidden="true" class="fas fa-crown mr-1"></i> Featured Choice
                                     </span>
                                 <?php endif; ?>
-                                <img src="<?php echo htmlspecialchars($service['image_path']); ?>" alt="<?php echo htmlspecialchars($service['title']); ?>" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out">
+                                <img src="<?php echo htmlspecialchars($serviceImg); ?>" width="448" height="336" loading="lazy" alt="<?php echo htmlspecialchars($service['title']); ?>" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out">
                             </div>
                         </div>
 
