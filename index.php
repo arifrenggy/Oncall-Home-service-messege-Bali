@@ -125,8 +125,10 @@ $faqs = $faqs_query->fetchAll();
     <!-- Preload LCP Image -->
     <link rel="preload" as="image" href="assets/images/hero-massage.webp" type="image/webp" fetchpriority="high">
 
-    <!-- Static Tailwind CSS -->
-    <link rel="stylesheet" href="assets/css/tailwind.min.css">
+    <!-- Static Tailwind CSS (Inlined for 0 render-blocking HTTP requests) -->
+    <style>
+        <?php echo file_get_contents(__DIR__ . '/assets/css/tailwind.min.css'); ?>
+    </style>
     <style>
         .font-serif { font-family: 'Poppins', sans-serif; }
         .font-sans { font-family: 'Inter', sans-serif; }
@@ -139,7 +141,7 @@ $faqs = $faqs_query->fetchAll();
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-3">
                 <?php if (!empty($brandLogo)): ?>
-                    <img src="<?php echo htmlspecialchars($brandLogo); ?>" alt="Logo" class="h-10 w-auto object-contain">
+                    <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="40" height="40" alt="Logo" class="h-10 w-auto object-contain">
                 <?php endif; ?>
                 <span class="text-xl font-serif font-bold text-slate-900 tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></span>
             </a>
@@ -465,7 +467,7 @@ $faqs = $faqs_query->fetchAll();
             <div class="space-y-6 text-left">
                 <div class="flex items-center space-x-3">
                     <?php if (!empty($brandLogo)): ?>
-                        <img src="<?php echo htmlspecialchars($brandLogo); ?>" alt="Logo" class="h-10 w-auto object-contain brightness-0 invert">
+                        <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="40" height="40" alt="Logo" class="h-10 w-auto object-contain brightness-0 invert">
                     <?php endif; ?>
                     <h3 class="font-serif text-2xl font-bold text-white tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></h3>
                 </div>
