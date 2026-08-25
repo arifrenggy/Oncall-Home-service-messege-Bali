@@ -476,7 +476,7 @@ $faqs = $faqs_query->fetchAll();
         <div class="max-w-4xl mx-auto px-4 relative z-10 space-y-4">
             <span class="text-xs font-bold uppercase tracking-widest text-[#9c654d]"><i aria-hidden="true" class="far fa-clock mr-1"></i> Available Daily</span>
             <h2 class="text-3xl sm:text-4xl font-serif font-bold uppercase tracking-wider">OPERATING HOURS</h2>
-            <p class="text-2xl sm:text-3xl font-bold text-[#9c654d]">Everyday (08:00 AM - 11:00 PM WITA)</p>
+            <p class="text-2xl sm:text-3xl font-bold text-[#9c654d]">Everyday (<?php echo htmlspecialchars($operatingHours); ?>)</p>
         </div>
     </section>
 
@@ -511,7 +511,7 @@ $faqs = $faqs_query->fetchAll();
             <div class="space-y-6 text-left">
                 <div class="flex items-center space-x-3">
                     <?php if (!empty($brandLogo)): ?>
-                        <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="40" height="40" alt="Logo" class="h-10 w-auto object-contain brightness-0 invert">
+                        <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="40" height="40" alt="Logo" class="h-10 w-auto object-contain">
                     <?php endif; ?>
                     <h3 class="font-serif text-2xl font-bold text-white tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></h3>
                 </div>
