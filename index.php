@@ -141,9 +141,12 @@ $faqs = $faqs_query->fetchAll();
     }
     </script>
 
-    <!-- Favicon (Local & Google Search Compliant) -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png" sizes="96x96">
-    <link rel="apple-touch-icon" href="assets/images/favicon.png">
+    <!-- Favicon (Dynamic & Google Search Compliant) -->
+    <?php 
+    $faviconSrc = !empty($brandLogo) ? htmlspecialchars($brandLogo) : 'assets/images/favicon.png'; 
+    ?>
+    <link rel="icon" type="image/png" href="<?php echo $faviconSrc; ?>" sizes="96x96">
+    <link rel="apple-touch-icon" href="<?php echo $faviconSrc; ?>">
 
     <!-- Google Fonts: Poppins & Inter (Test verification helper: Cormorant+Garamond) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
