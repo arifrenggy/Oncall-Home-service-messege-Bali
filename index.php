@@ -169,7 +169,7 @@ $faqs = $faqs_query->fetchAll();
                     Oncall &amp; Home Service Massage
                 </h1>
                 <p class="text-slate-600 text-sm sm:text-base max-w-xl font-light">
-                    Your Premium Wellness Solutions - Enjoy the convenience of a 5-star luxury spa directly in your villa, hotel, home, or apartment across Bali.
+                    Your Premium Wellness Solutions - Enjoy the convenience of a 5-star on-call massage & luxury spa delivered directly to your villa, hotel, or home in Seminyak, Canggu, Ubud, Kuta, Nusa Dua, Uluwatu, and across Bali.
                 </p>
                 
                 <!-- Bullet Checklist Guarantee -->
@@ -196,7 +196,7 @@ $faqs = $faqs_query->fetchAll();
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
                             <i aria-hidden="true" class="fas fa-check"></i>
                         </span>
-                        <span class="font-medium">Serving Bali Areas: Kuta, Denpasar, Seminyak, Canggu, Ubud &amp; Nusa Dua</span>
+                        <span class="font-medium">Serving Bali Areas: Seminyak, Canggu, Ubud, Uluwatu, Pecatu, Nusa Dua, Kuta, Denpasar, Tabanan &amp; Gianyar</span>
                     </li>
                 </ul>
                 
@@ -237,6 +237,9 @@ $faqs = $faqs_query->fetchAll();
                 <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-4 font-light">
                     <p><?php echo htmlspecialchars($description); ?></p>
                     <p>Through our friendly, certified, and professionally trained female therapists, we are committed to delivering the ultimate relaxation experience directly to you without ever having to leave your room.</p>
+                    <p class="text-xs text-slate-500 font-normal">
+                        Whether you are looking for a relaxing <strong>massage panggilan Seminyak</strong>, a professional <strong>on call massage Canggu</strong>, or a premium <strong>spa villa call Bali</strong> service, we are ready to serve you. Enjoy the best <strong>home service massage Bali</strong> has to offer, tailored to your wellness needs.
+                    </p>
                 </div>
                 
                 <!-- Highlight Banner -->
