@@ -402,6 +402,10 @@ $faqs = $faqs_query->fetchAll();
                     <?php endforeach; ?>
                 </ul>
                 
+                <p class="text-xs text-slate-500 leading-relaxed font-light mt-4">
+                    Kami melayani berbagai kebutuhan Anda mulai dari <strong>massage panggilan Kuta</strong>, <strong>massage panggilan Ubud</strong>, <strong>massage panggilan Nusa Dua</strong>, hingga layanan premium seperti <strong>spa panggilan Seminyak</strong> dan <strong>spa panggilan Canggu</strong>. Bagi Anda wisatawan asing maupun domestik yang membutuhkan <strong>on call massage Seminyak</strong>, <strong>on call spa Uluwatu</strong>, atau <strong>massage hotel Bali</strong> dan <strong>massage delivery Bali</strong>, terapis profesional kami siap datang langsung ke tempat Anda. Kami juga menyediakan opsi <strong>massage panggilan Bali 24 jam</strong> serta <strong>balinese massage panggilan</strong> yang autentik untuk relaksasi maksimal.
+                </p>
+                
                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start space-x-4">
                     <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-[#9c654d] text-lg flex-shrink-0">
                         <i aria-hidden="true" class="fas fa-map-marker-alt"></i>
