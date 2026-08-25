@@ -214,7 +214,7 @@ $faqs = $faqs_query->fetchAll();
             <!-- Right Side Image Mockup -->
             <div class="lg:col-span-5 relative">
                 <div class="aspect-[4/5] sm:aspect-square bg-gradient-to-tr from-stone-100 to-slate-200 rounded-3xl overflow-hidden shadow-2xl relative border border-slate-200">
-                    <img src="assets/images/hero-massage.webp" width="600" height="750" alt="Bali Spa Treatment" class="w-full h-full object-cover">
+                    <img src="assets/images/hero-massage.webp" width="600" height="750" alt="On-call and home service massage Canggu Seminyak Bali - Honey Massage" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -238,7 +238,7 @@ $faqs = $faqs_query->fetchAll();
                     <p><?php echo htmlspecialchars($description); ?></p>
                     <p>Through our friendly, certified, and professionally trained female therapists, we are committed to delivering the ultimate relaxation experience directly to you without ever having to leave your room.</p>
                     <p class="text-xs text-slate-500 font-normal">
-                        Whether you are looking for a relaxing <strong>massage panggilan Seminyak</strong>, a professional <strong>on call massage Canggu</strong>, or a premium <strong>spa villa call Bali</strong> service, we are ready to serve you. Enjoy the best <strong>home service massage Bali</strong> has to offer, tailored to your wellness needs.
+                        Whether you are looking for a relaxing <strong>outcall massage Seminyak</strong>, a professional <strong>on call massage Canggu</strong>, or a premium <strong>spa villa call Bali</strong> service, we are ready to serve you. Enjoy the best <strong>home service massage Bali</strong> has to offer, tailored to your wellness needs.
                     </p>
                 </div>
                 
@@ -308,7 +308,10 @@ $faqs = $faqs_query->fetchAll();
             <div class="text-center max-w-3xl mx-auto space-y-4">
                 <span class="text-xs font-bold uppercase tracking-widest text-[#9c654d]"><i aria-hidden="true" class="fas fa-tags mr-1"></i> Pricing Menu</span>
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Treatments &amp; Pricing</h2>
-                <p class="text-slate-500">Choose from our selected list of authentic Balinese spa therapies. Book easily on WhatsApp.</p>
+                <p class="text-slate-600">Choose from our selected list of authentic Balinese spa therapies. Book easily on WhatsApp.</p>
+                <p class="text-xs text-slate-500 font-light max-w-2xl mx-auto mt-2 leading-relaxed">
+                    We offer the <strong>best home service massage Bali</strong> has to offer, delivering professional <strong>in-villa massage Bali</strong>, <strong>home massage Seminyak</strong>, and <strong>mobile massage Canggu</strong>. Experience a <strong>traditional Balinese massage home service</strong> or a relaxing <strong>couples massage at home</strong> directly in your room.
+                </p>
             </div>
             
             <div id="services-list" class="space-y-24 mt-20">
@@ -504,8 +507,13 @@ $faqs = $faqs_query->fetchAll();
                 <?php endif; ?>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800 mt-16 pt-8 text-center text-slate-500 text-xs">
-            &copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($brandName); ?>. All Rights Reserved. Designed for wellness.
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800 mt-16 pt-8 text-center text-slate-500 text-xs space-y-4">
+            <p class="max-w-3xl mx-auto leading-relaxed">
+                Premium <strong>massage on call Seminyak</strong>, <strong>in-villa massage Canggu</strong>, and <strong>outcall spa Seminyak</strong> services. Our <strong>professional mobile spa Bali</strong> also serves Kuta, Denpasar, Nusa Dua, Ubud, Pecatu, Uluwatu, Tanah Lot, Tabanan, and Gianyar with <strong>24 hour massage Bali</strong> and <strong>deep tissue massage villa</strong> treatments.
+            </p>
+            <p>
+                &copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($brandName); ?>. All Rights Reserved. Designed for wellness.
+            </p>
         </div>
     </footer>
 
