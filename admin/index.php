@@ -394,6 +394,14 @@ $faqs = $faqs_query->fetchAll();
                             <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Operating Hours</label>
                             <input type="text" name="general[operatingHours]" value="<?php echo htmlspecialchars($general['operatingHours'] ?? ''); ?>" required class="w-full border border-stone-200 px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm font-medium">
                         </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Google Rating (e.g. 4.9)</label>
+                            <input type="text" name="general[ratingValue]" value="<?php echo htmlspecialchars($general['ratingValue'] ?? '4.9'); ?>" required class="w-full border border-stone-200 px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Google Review Count (e.g. 24)</label>
+                            <input type="number" name="general[reviewCount]" value="<?php echo htmlspecialchars($general['reviewCount'] ?? '24'); ?>" required class="w-full border border-stone-200 px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm font-medium">
+                        </div>
                         <div class="md:col-span-2">
                             <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Brand Logo (Optional)</label>
                             <div class="flex items-center space-x-6 mt-1">

@@ -16,6 +16,8 @@ $description = $settings['description'] ?? '';
 $whatsapp = $settings['whatsapp'] ?? '';
 $instagram = $settings['instagram'] ?? '';
 $operatingHours = $settings['operatingHours'] ?? '';
+$ratingValue = $settings['ratingValue'] ?? '4.9';
+$reviewCount = $settings['reviewCount'] ?? '24';
 
 // 2. Fetch services and their price options
 $services_query = $db->query("SELECT * FROM services ORDER BY id ASC");
@@ -65,8 +67,8 @@ $faqs = $faqs_query->fetchAll();
       "priceRange": "$$",
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "24",
+        "ratingValue": "<?php echo htmlspecialchars($ratingValue); ?>",
+        "reviewCount": "<?php echo htmlspecialchars($reviewCount); ?>",
         "bestRating": "5",
         "worstRating": "1"
       },
