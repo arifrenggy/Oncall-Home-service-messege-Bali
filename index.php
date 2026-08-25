@@ -120,6 +120,26 @@ $faqs = $faqs_query->fetchAll();
       }
     }
     </script>
+    
+    <!-- FAQ Page Schema (JSON-LD) for dynamic Google Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        <?php foreach ($faqs as $i => $faq): ?>
+        {
+          "@type": "Question",
+          "name": "<?php echo htmlspecialchars($faq['question']); ?>",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<?php echo htmlspecialchars($faq['answer']); ?>"
+          }
+        }<?php echo ($i < count($faqs) - 1) ? ',' : ''; ?>
+        <?php endforeach; ?>
+      ]
+    }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/spa.png">
