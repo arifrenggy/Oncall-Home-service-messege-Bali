@@ -63,6 +63,13 @@ $faqs = $faqs_query->fetchAll();
       "description": "<?php echo htmlspecialchars($description); ?>",
       "telephone": "+<?php echo htmlspecialchars($whatsapp); ?>",
       "priceRange": "$$",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "24",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Badung",
