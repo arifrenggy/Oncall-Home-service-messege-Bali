@@ -56,7 +56,7 @@ ON DUPLICATE KEY UPDATE `setting_value`=VALUES(`setting_value`);
 -- SEED SERVICES
 INSERT INTO `services` (`id`, `service_id`, `title`, `description`, `image_path`, `featured`) VALUES
 (1, 'balinese-massage', 'Balinese Traditional Massage', 'Enjoy the best traditional Balinese massage at your villa, hotel, or home in Canggu, Seminyak, or Kuta. A full-body holistic treatment using premium organic aromatherapy oils.', 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600', 1),
-(2, 'deep-tissue', 'Deep Tissue Massage', 'Our on-call deep tissue massage in Bali focuses on realigning deeper layers of muscles. Highly beneficial for chronic aches, muscle tension, or jet lag recovery after your flight.', 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600', 1),
+(2, 'deep-tissue', 'Deep Tissue Massage', 'Our on-call deep tissue massage in Bali focuses on realigning deeper layers of muscles. Highly beneficial for muscle recovery, tension relief, or jet lag recovery after your flight.', 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600', 1),
 (3, 'reflexology', 'Foot Reflexology', 'Authentic foot reflexology delivered directly to your place. Applies precise pressure to restore energy flow and relieve tired feet after exploring Ubud or Uluwatu.', 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600', 0);
 
 -- SEED SERVICE OPTIONS

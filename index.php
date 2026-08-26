@@ -44,13 +44,13 @@ $faqs = $faqs_query->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>Best Home Service Massage Bali | 24/7 On-Call Spa &amp; Reflexology</title>
+    <title>Best Home Service Massage Bali | On-Call Spa &amp; Reflexology</title>
     <meta name="description" content="Looking for the best home service massage in Bali? Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home. Book in 3 minutes!">
     <meta name="keywords" content="home service massage bali, massage home service bali, oncall spa bali, massage villa bali, massage seminyak, massage canggu, massage ubud, hotel massage bali, balinese massage panggilan, spa panggilan bali, massage delivery bali, best massage bali, massage nusa dua, massage kuta">
     <link rel="canonical" href="https://honeymassagebali.shop/">
     
     <!-- OpenGraph Meta Tags (SEO/Social/WhatsApp Share Preview) -->
-    <meta property="og:title" content="Best Home Service Massage Bali | 24/7 On-Call Spa &amp; Reflexology">
+    <meta property="og:title" content="Best Home Service Massage Bali | On-Call Spa &amp; Reflexology">
     <meta property="og:description" content="Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home in Bali. Book via WhatsApp!">
     <meta property="og:image" content="<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/hero-massage.webp'; ?>">
     <meta property="og:type" content="website">
@@ -439,7 +439,7 @@ $faqs = $faqs_query->fetchAll();
                 </ul>
                 
                 <p class="text-xs text-slate-500 leading-relaxed font-light mt-4">
-                    Kami melayani berbagai kebutuhan Anda mulai dari <strong>massage panggilan Kuta</strong>, <strong>massage panggilan Ubud</strong>, <strong>massage panggilan Nusa Dua</strong>, hingga layanan premium seperti <strong>spa panggilan Seminyak</strong> dan <strong>spa panggilan Canggu</strong>. Bagi Anda wisatawan asing maupun domestik yang membutuhkan <strong>on call massage Seminyak</strong>, <strong>on call spa Uluwatu</strong>, atau <strong>massage hotel Bali</strong> dan <strong>massage delivery Bali</strong>, terapis profesional kami siap datang langsung ke tempat Anda. Kami juga menyediakan opsi <strong>massage panggilan Bali 24 jam</strong> serta <strong>balinese massage panggilan</strong> yang autentik untuk relaksasi maksimal.
+                    Kami melayani berbagai kebutuhan Anda mulai dari <strong>massage panggilan Kuta</strong>, <strong>massage panggilan Ubud</strong>, <strong>massage panggilan Nusa Dua</strong>, hingga layanan premium seperti <strong>spa panggilan Seminyak</strong> dan <strong>spa panggilan Canggu</strong>. Bagi Anda wisatawan asing maupun domestik yang membutuhkan <strong>on call massage Seminyak</strong>, <strong>on call spa Uluwatu</strong>, atau <strong>massage hotel Bali</strong> dan <strong>massage delivery Bali</strong>, terapis profesional kami siap datang langsung ke tempat Anda. Kami juga menyediakan opsi <strong>massage panggilan Bali profesional</strong> serta <strong>balinese massage panggilan</strong> yang autentik untuk relaksasi maksimal.
                 </p>
                 
                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start space-x-4">
@@ -542,7 +542,7 @@ $faqs = $faqs_query->fetchAll();
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800 mt-16 pt-8 text-center text-slate-500 text-xs space-y-4">
             <p class="max-w-3xl mx-auto leading-relaxed">
-                Premium <strong>massage on call Seminyak</strong>, <strong>in-villa massage Canggu</strong>, and <strong>outcall spa Seminyak</strong> services. Our <strong>professional mobile spa Bali</strong> also serves Kuta, Denpasar, Nusa Dua, Ubud, Pecatu, Uluwatu, Tanah Lot, Tabanan, and Gianyar with <strong>24 hour massage Bali</strong> and <strong>deep tissue massage villa</strong> treatments.
+                Premium <strong>massage on call Seminyak</strong>, <strong>in-villa massage Canggu</strong>, and <strong>outcall spa Seminyak</strong> services. Our <strong>professional mobile spa Bali</strong> also serves Kuta, Denpasar, Nusa Dua, Ubud, Pecatu, Uluwatu, Tanah Lot, Tabanan, and Gianyar with <strong>massage panggilan Bali</strong> and <strong>deep tissue massage villa</strong> treatments.
             </p>
             <p>
                 &copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($brandName); ?>. All Rights Reserved. Designed for wellness.
