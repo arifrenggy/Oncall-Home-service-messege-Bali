@@ -127,6 +127,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <style>
         .font-serif { font-family: 'Poppins', sans-serif; }
         .font-sans { font-family: 'Inter', sans-serif; }
+        @media (min-width: 768px) {
+            .md-hidden-forced { display: none !important; }
+        }
     </style>
 </head>
 <body class="bg-theme-beige text-stone-800 font-sans antialiased">
@@ -153,7 +156,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <a href="services.php" class="hidden md:inline-flex bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
                 
                 <!-- Mobile Hamburger Button -->
-                <button onclick="toggleMobileMenu()" aria-label="Toggle menu" class="md:hidden text-slate-700 focus:outline-none p-2 rounded-lg hover:bg-stone-50 transition-colors">
+                <button onclick="toggleMobileMenu()" aria-label="Toggle menu" class="md:hidden md-hidden-forced text-slate-700 focus:outline-none p-2 rounded-lg hover:bg-stone-50 transition-colors">
                     <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
                 </button>
             </div>
