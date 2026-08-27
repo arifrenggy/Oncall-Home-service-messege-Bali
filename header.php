@@ -134,12 +134,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- Navigation -->
     <header class="sticky top-0 z-50 bg-white border-b border-stone-100 shadow-sm">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="index.php" class="flex items-center space-x-3">
+            <a href="index.php" class="flex items-center space-x-2 sm:space-x-3">
                 <?php if (!empty($brandLogo)): ?>
-                    <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="40" height="40" alt="Logo" class="h-10 w-auto object-contain">
+                    <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="32" height="32" alt="Logo" class="h-8 w-auto object-contain sm:h-10">
                 <?php endif; ?>
-                <span class="text-xl font-serif font-bold text-slate-900 tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></span>
+                <span class="text-base sm:text-xl font-serif font-bold text-slate-900 tracking-wider uppercase truncate max-w-[150px] sm:max-w-none"><?php echo htmlspecialchars($brandName); ?></span>
             </a>
+            
+            <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-8 text-xs font-bold tracking-widest text-slate-600 uppercase">
                 <a href="index.php" class="<?php echo ($current_page == 'index.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Home</a>
                 <a href="about.php" class="<?php echo ($current_page == 'about.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">About Us</a>
@@ -148,6 +150,43 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <a href="faqs.php" class="<?php echo ($current_page == 'faqs.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">FAQs</a>
                 <a href="reviews.php" class="<?php echo ($current_page == 'reviews.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Reviews</a>
             </div>
-            <a href="services.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
+            
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <!-- Book Now Button (Responsive sizing) -->
+                <a href="services.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
+                
+                <!-- Mobile Hamburger Button -->
+                <button onclick="toggleMobileMenu()" aria-label="Toggle menu" class="md:hidden text-slate-700 focus:outline-none p-2 rounded-lg hover:bg-stone-50 transition-colors">
+                    <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
         </nav>
+        
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-stone-100 bg-white px-4 pt-2 pb-6 space-y-1 shadow-md">
+            <a href="index.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'index.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Home</a>
+            <a href="about.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'about.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">About Us</a>
+            <a href="services.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'services.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Treatments</a>
+            <a href="areas.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'areas.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Service Areas</a>
+            <a href="faqs.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'faqs.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">FAQs</a>
+            <a href="reviews.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'reviews.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Reviews</a>
+        </div>
     </header>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('hamburger-icon');
+            const isHidden = menu.classList.contains('hidden');
+            
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark'); // Change to X icon
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars'); // Change back to Hamburger
+            }
+        }
+    </script>
