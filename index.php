@@ -305,11 +305,11 @@ $reviews = $reviews_query->fetchAll();
                 <?php endforeach; ?>
             </div>
             
-            <div class="text-center space-x-4">
-                <a href="reviews.php" class="inline-block bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md transition-all">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
+                <a href="reviews.php" class="w-full sm:w-auto text-center bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md transition-all">
                     Write A Review
                 </a>
-                <a href="reviews.php" class="inline-block border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                <a href="reviews.php" class="w-full sm:w-auto text-center border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
                     Read All Reviews
                 </a>
             </div>
