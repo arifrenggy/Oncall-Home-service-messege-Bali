@@ -1,6 +1,7 @@
 <?php
 // footer.php
 ?>
+    </main>
     <!-- Footer -->
     <footer class="bg-[#192a3d] text-slate-300 py-20 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-16">

@@ -301,7 +301,7 @@ $reviews = $reviews_query->fetchAll();
                             <p class="text-slate-600 text-sm leading-relaxed font-light italic">"<?php echo htmlspecialchars($rev['comment']); ?>"</p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-slate-900 text-sm"><?php echo htmlspecialchars($rev['name']); ?></h4>
+                            <h3 class="font-bold text-slate-900 text-sm"><?php echo htmlspecialchars($rev['name']); ?></h3>
                             <span class="text-[10px] text-slate-400 font-light"><?php echo date('d M Y', strtotime($rev['created_at'])); ?></span>
                         </div>
                     </div>

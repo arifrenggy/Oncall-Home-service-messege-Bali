@@ -155,7 +155,7 @@ $faqs = $faqs_query->fetchAll();
                         <i aria-hidden="true" class="fas fa-map-marker-alt"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-slate-900 text-sm">Villa / Hotel / Home / Apartment Call</h4>
+                        <h3 class="font-bold text-slate-900 text-sm">Villa / Hotel / Home / Apartment Call</h3>
                         <p class="text-slate-650 text-xs leading-relaxed font-light">Our therapists arrive fully equipped with massage tables/mats, premium essential oils, fresh linen, and relaxing spa music.</p>
                     </div>
                 </div>

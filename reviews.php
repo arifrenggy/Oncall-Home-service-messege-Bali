@@ -59,7 +59,7 @@ $reviews = $reviews_query->fetchAll();
             <div class="lg:col-span-5 bg-[#f2f5f7] p-8 md:p-10 rounded-3xl border border-stone-150 shadow-md space-y-6">
                 <div class="space-y-2">
                     <span class="text-[10px] font-bold uppercase tracking-widest text-[#9c654d]">Your Feedback</span>
-                    <h3 class="text-2xl font-serif font-bold text-slate-900 leading-tight">Write a Review</h3>
+                    <h2 class="text-2xl font-serif font-bold text-slate-900 leading-tight">Write a Review</h2>
                     <p class="text-slate-500 text-xs font-light">Your feedback helps us maintain our high standard of service across Bali.</p>
                 </div>
 
@@ -107,7 +107,7 @@ $reviews = $reviews_query->fetchAll();
             <!-- Right Side: Display Reviews List -->
             <div class="lg:col-span-7 space-y-6">
                 <div class="flex items-center justify-between border-b border-stone-100 pb-4">
-                    <h3 class="text-2xl font-serif font-bold text-slate-900 leading-tight">Reviews (<?php echo count($reviews); ?>)</h3>
+                    <h2 class="text-2xl font-serif font-bold text-slate-900 leading-tight">Reviews (<?php echo count($reviews); ?>)</h2>
                     <div class="flex items-center space-x-2 text-sm text-slate-500">
                         <span class="font-bold text-slate-900"><?php echo htmlspecialchars($ratingValue); ?></span>
                         <div class="flex text-amber-500">
@@ -135,7 +135,7 @@ $reviews = $reviews_query->fetchAll();
                                     <p class="text-slate-650 text-sm leading-relaxed font-light italic">"<?php echo htmlspecialchars($rev['comment']); ?>"</p>
                                 </div>
                                 <div class="flex justify-between items-center text-xs">
-                                    <h4 class="font-bold text-slate-900"><?php echo htmlspecialchars($rev['name']); ?></h4>
+                                    <h3 class="font-bold text-slate-900"><?php echo htmlspecialchars($rev['name']); ?></h3>
                                     <span class="text-slate-400 font-light"><?php echo date('d M Y, H:i', strtotime($rev['created_at'])); ?></span>
                                 </div>
                             </div>
