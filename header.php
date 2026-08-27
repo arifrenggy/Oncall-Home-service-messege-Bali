@@ -151,20 +151,25 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <a href="reviews.php" class="<?php echo ($current_page == 'reviews.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Reviews</a>
             </div>
             
-            <!-- Mobile Hamburger Button -->
-            <button onclick="toggleMobileMenu()" aria-label="Toggle menu" class="md:hidden text-slate-700 focus:outline-none p-2 rounded-lg hover:bg-stone-50 transition-colors">
-                <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
-            </button>
+            <!-- Desktop Book Now Button & Mobile Hamburger -->
+            <div class="flex items-center space-x-4">
+                <a href="services.php" class="hidden md:inline-flex bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
+                
+                <!-- Mobile Hamburger Button -->
+                <button onclick="toggleMobileMenu()" aria-label="Toggle menu" class="md:hidden text-slate-700 focus:outline-none p-2 rounded-lg hover:bg-stone-50 transition-colors">
+                    <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
         </nav>
         
         <!-- Mobile Dropdown Menu -->
         <div id="mobile-menu" class="hidden md:hidden border-t border-stone-100 bg-white px-4 pt-2 pb-6 space-y-1 shadow-md">
-            <a href="index.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'index.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Home</a>
-            <a href="about.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'about.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">About Us</a>
-            <a href="services.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'services.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Treatments</a>
-            <a href="areas.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'areas.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Service Areas</a>
-            <a href="faqs.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'faqs.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">FAQs</a>
-            <a href="reviews.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'reviews.php') ? 'bg-blue-55 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Reviews</a>
+            <a href="index.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'index.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Home</a>
+            <a href="about.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'about.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">About Us</a>
+            <a href="services.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'services.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Treatments</a>
+            <a href="areas.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'areas.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Service Areas</a>
+            <a href="faqs.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'faqs.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">FAQs</a>
+            <a href="reviews.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'reviews.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Reviews</a>
         </div>
     </header>
 
