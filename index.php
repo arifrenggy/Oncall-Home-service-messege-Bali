@@ -1,5 +1,8 @@
 <?php
 // index.php
+$pageTitle = "Best Home Service Massage Bali | On-Call Spa & Reflexology";
+$pageDesc = "Enjoy a 5-star on-call massage and luxury spa delivered directly to your villa, hotel, or home in Canggu, Seminyak, Ubud, and across Bali. Certified female therapists.";
+$canonicalUrl = "https://honeymassagebali.shop/";
 require_once 'header.php';
 
 // 1. Fetch featured services (limit to 3 for homepage)

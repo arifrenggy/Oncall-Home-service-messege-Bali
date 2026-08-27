@@ -1,27 +1,38 @@
 <?php
 // reviews.php
+$pageTitle = "Customer Reviews & Write a Review | Honey Massage Bali";
+$pageDesc = "Read testimonials from customers who ordered our spa services in Bali, or submit your own review of your massage experience.";
+$canonicalUrl = "https://honeymassagebali.shop/reviews.php";
 require_once 'header.php';
 
 $error = '';
 $success = '';
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // Handle review submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
-    $name = trim($_POST['name'] ?? '');
-    $rating = intval($_POST['rating'] ?? 5);
-    $comment = trim($_POST['comment'] ?? '');
-
-    if (empty($name) || empty($comment)) {
-        $error = 'Please fill in both your name and comment.';
-    } elseif ($rating < 1 || $rating > 5) {
-        $error = 'Invalid rating value.';
+    if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        $error = 'Security check failed: Invalid CSRF token. Please refresh the page and try again.';
     } else {
-        try {
-            $stmt = $db->prepare("INSERT INTO reviews (name, rating, comment, status) VALUES (?, ?, ?, 'approved')");
-            $stmt->execute([$name, $rating, $comment]);
-            $success = 'Thank you! Your review has been submitted successfully.';
-        } catch (PDOException $e) {
-            $error = 'Database error: ' . $e->getMessage();
+        $name = trim($_POST['name'] ?? '');
+        $rating = intval($_POST['rating'] ?? 5);
+        $comment = trim($_POST['comment'] ?? '');
+
+        if (empty($name) || empty($comment)) {
+            $error = 'Please fill in both your name and comment.';
+        } elseif ($rating < 1 || $rating > 5) {
+            $error = 'Invalid rating value.';
+        } else {
+            try {
+                $stmt = $db->prepare("INSERT INTO reviews (name, rating, comment, status) VALUES (?, ?, ?, 'approved')");
+                $stmt->execute([$name, $rating, $comment]);
+                $success = 'Thank you! Your review has been submitted successfully.';
+            } catch (PDOException $e) {
+                $error = 'Database error: ' . $e->getMessage();
+            }
         }
     }
 }
@@ -65,6 +76,7 @@ $reviews = $reviews_query->fetchAll();
                 <?php endif; ?>
 
                 <form method="POST" action="reviews.php" class="space-y-4">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                     <div>
                         <label for="name" class="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">Full Name</label>
                         <input type="text" name="name" id="name" required placeholder="e.g. John Doe" class="w-full border border-stone-200 bg-white px-4 py-3 rounded-xl text-sm font-medium focus:ring-2 focus:ring-emerald-800 focus:outline-none">
