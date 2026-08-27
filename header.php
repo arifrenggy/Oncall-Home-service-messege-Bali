@@ -151,15 +151,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <a href="reviews.php" class="<?php echo ($current_page == 'reviews.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Reviews</a>
             </div>
             
-            <div class="flex items-center space-x-2 sm:space-x-4">
-                <!-- Book Now Button (Responsive sizing) -->
-                <a href="services.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
-                
-                <!-- Mobile Hamburger Button -->
-                <button onclick="toggleMobileMenu()" aria-label="Toggle menu" class="md:hidden text-slate-700 focus:outline-none p-2 rounded-lg hover:bg-stone-50 transition-colors">
-                    <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
+            <!-- Mobile Hamburger Button -->
+            <button onclick="toggleMobileMenu()" aria-label="Toggle menu" class="md:hidden text-slate-700 focus:outline-none p-2 rounded-lg hover:bg-stone-50 transition-colors">
+                <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
+            </button>
         </nav>
         
         <!-- Mobile Dropdown Menu -->
