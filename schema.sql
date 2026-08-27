@@ -82,3 +82,19 @@ INSERT INTO `faqs` (`question`, `answer`) VALUES
 ('How do I book a massage?', 'Simply select your service on our website, click \'Book on WhatsApp\', fill in your details (date, time, villa/hotel address), and our admin will confirm your booking instantly.'),
 ('Are there any transport fees?', 'No, all transport costs are included in the menu price for our service coverage areas.'),
 ('What payment methods do you accept?', 'We accept Cash (IDR) directly to the therapist, Bank Transfers, or Wise payments.');
+
+-- 6. Reviews Table
+CREATE TABLE IF NOT EXISTS `reviews` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `rating` INT NOT NULL,
+  `comment` TEXT NOT NULL,
+  `status` VARCHAR(20) DEFAULT 'approved',
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- SEED REVIEWS
+INSERT INTO `reviews` (`name`, `rating`, `comment`, `status`) VALUES
+('Sarah Jenkins', 5, 'Absolutely amazing massage! The therapist arrived at our Seminyak villa on time, brought fresh towels, and the massage was incredibly relaxing after a long flight.', 'approved'),
+('Michael Go', 5, 'Highly professional deep tissue massage. Helped so much with my muscle stiffness. Will definitely book again during my stay in Canggu.', 'approved'),
+('Emily Watson', 5, 'Best home service spa in Bali! The aromatherapy oils smelled wonderful and the therapists were very polite and skilled. Very easy to book via WhatsApp.', 'approved');

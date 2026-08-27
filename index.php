@@ -1,26 +1,9 @@
 <?php
 // index.php
-require_once 'config.php';
+require_once 'header.php';
 
-// 1. Fetch settings
-$settings_query = $db->query("SELECT * FROM settings");
-$settings = [];
-while ($row = $settings_query->fetch()) {
-    $settings[$row['setting_key']] = $row['setting_value'];
-}
-
-$brandName = $settings['brandName'] ?? 'Oncall & home service message';
-$brandLogo = $settings['brandLogo'] ?? '';
-$tagline = $settings['tagline'] ?? '';
-$description = $settings['description'] ?? '';
-$whatsapp = $settings['whatsapp'] ?? '';
-$instagram = $settings['instagram'] ?? '';
-$operatingHours = $settings['operatingHours'] ?? '';
-$ratingValue = $settings['ratingValue'] ?? '4.9';
-$reviewCount = $settings['reviewCount'] ?? '24';
-
-// 2. Fetch services and their price options
-$services_query = $db->query("SELECT * FROM services ORDER BY id ASC");
+// 1. Fetch featured services (limit to 3 for homepage)
+$services_query = $db->query("SELECT * FROM services ORDER BY id ASC LIMIT 3");
 $services = [];
 while ($service = $services_query->fetch()) {
     $options_stmt = $db->prepare("SELECT duration, price FROM service_options WHERE service_ref = ? ORDER BY id ASC");
@@ -29,166 +12,14 @@ while ($service = $services_query->fetch()) {
     $services[] = $service;
 }
 
-// 3. Fetch areas
-$areas_query = $db->query("SELECT area_name FROM areas ORDER BY id ASC");
+// 2. Fetch areas
+$areas_query = $db->query("SELECT area_name FROM areas ORDER BY id ASC LIMIT 4");
 $areas = $areas_query->fetchAll(PDO::FETCH_COLUMN);
 
-// 4. Fetch faqs
-$faqs_query = $db->query("SELECT question, answer FROM faqs ORDER BY id ASC");
-$faqs = $faqs_query->fetchAll();
+// 3. Fetch 3 latest reviews
+$reviews_query = $db->query("SELECT * FROM reviews WHERE status = 'approved' ORDER BY id DESC LIMIT 3");
+$reviews = $reviews_query->fetchAll();
 ?>
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
-    <title>Best Home Service Massage Bali | On-Call Spa &amp; Reflexology</title>
-    <meta name="description" content="Looking for the best home service massage in Bali? Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home. Book in 3 minutes!">
-    <meta name="keywords" content="home service massage bali, massage home service bali, oncall spa bali, massage villa bali, massage seminyak, massage canggu, massage ubud, hotel massage bali, balinese massage panggilan, spa panggilan bali, massage delivery bali, best massage bali, massage nusa dua, massage kuta">
-    <link rel="canonical" href="https://honeymassagebali.shop/">
-    
-    <!-- OpenGraph Meta Tags (SEO/Social/WhatsApp Share Preview) -->
-    <meta property="og:title" content="Best Home Service Massage Bali | On-Call Spa &amp; Reflexology">
-    <meta property="og:description" content="Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home in Bali. Book via WhatsApp!">
-    <meta property="og:image" content="<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/hero-massage.webp'; ?>">
-    <meta property="og:type" content="website">
-    
-    <!-- Local Business Schema (JSON-LD) for Google Rich Snippets -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HealthAndBeautyBusiness",
-      "name": "<?php echo htmlspecialchars($brandName); ?>",
-      "image": "<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/hero-massage.webp'; ?>",
-      "description": "<?php echo htmlspecialchars($description); ?>",
-      "telephone": "+<?php echo htmlspecialchars($whatsapp); ?>",
-      "priceRange": "$$",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "<?php echo htmlspecialchars($ratingValue); ?>",
-        "reviewCount": "<?php echo htmlspecialchars($reviewCount); ?>",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Badung",
-        "addressRegion": "Bali",
-        "addressCountry": "ID"
-      },
-      "areaServed": [
-        {
-          "@type": "AdministrativeArea",
-          "name": "Seminyak"
-        },
-        {
-          "@type": "AdministrativeArea",
-          "name": "Canggu"
-        },
-        {
-          "@type": "AdministrativeArea",
-          "name": "Kuta"
-        },
-        {
-          "@type": "AdministrativeArea",
-          "name": "Nusa Dua"
-        },
-        {
-          "@type": "AdministrativeArea",
-          "name": "Ubud"
-        },
-        {
-          "@type": "AdministrativeArea",
-          "name": "Denpasar"
-        }
-      ],
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "08:00",
-        "closes": "23:00"
-      }
-    }
-    </script>
-    
-    <!-- FAQ Page Schema (JSON-LD) for dynamic Google Rich Snippets -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        <?php foreach ($faqs as $i => $faq): ?>
-        {
-          "@type": "Question",
-          "name": "<?php echo htmlspecialchars($faq['question']); ?>",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "<?php echo htmlspecialchars($faq['answer']); ?>"
-          }
-        }<?php echo ($i < count($faqs) - 1) ? ',' : ''; ?>
-        <?php endforeach; ?>
-      ]
-    }
-    </script>
-
-    <!-- Favicon (Dynamic & Google Search Compliant) -->
-    <?php 
-    $faviconSrc = !empty($brandLogo) ? htmlspecialchars($brandLogo) : 'assets/images/favicon.png'; 
-    ?>
-    <link rel="icon" type="image/png" href="<?php echo $faviconSrc; ?>" sizes="96x96">
-    <link rel="apple-touch-icon" href="<?php echo $faviconSrc; ?>">
-
-    <!-- Google Fonts: Poppins & Inter (Test verification helper: Cormorant+Garamond) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome CDNs -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Preload LCP Image -->
-    <link rel="preload" as="image" href="assets/images/hero-massage.webp" type="image/webp" fetchpriority="high">
-
-    <!-- Static Tailwind CSS (Inlined for 0 render-blocking HTTP requests) -->
-    <style>
-        <?php echo file_get_contents(__DIR__ . '/assets/css/tailwind.min.css'); ?>
-    </style>
-    <style>
-        .font-serif { font-family: 'Poppins', sans-serif; }
-        .font-sans { font-family: 'Inter', sans-serif; }
-    </style>
-</head>
-<body class="bg-theme-beige text-stone-800 font-sans antialiased">
-
-    <!-- Navigation -->
-    <header class="sticky top-0 z-50 bg-white border-b border-stone-100 shadow-sm">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3">
-                <?php if (!empty($brandLogo)): ?>
-                    <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="40" height="40" alt="Logo" class="h-10 w-auto object-contain">
-                <?php endif; ?>
-                <span class="text-xl font-serif font-bold text-slate-900 tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></span>
-            </a>
-            <div class="hidden md:flex space-x-8 text-xs font-bold tracking-widest text-slate-600 uppercase">
-                <a href="#about" class="hover:text-blue-600 transition-colors">About Us</a>
-                <a href="#services" class="hover:text-blue-600 transition-colors">Treatments</a>
-                <a href="#why-us" class="hover:text-blue-600 transition-colors">Why Choose Us</a>
-                <a href="#areas" class="hover:text-blue-600 transition-colors">Service Areas</a>
-                <a href="#faqs" class="hover:text-blue-600 transition-colors">FAQs</a>
-            </div>
-            <a href="#services" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
-        </nav>
-    </header>
 
     <!-- Hero Section -->
     <section id="hero" class="relative overflow-hidden bg-[#f2f5f7] py-20 lg:py-28 flex items-center">
@@ -225,20 +56,14 @@ $faqs = $faqs_query->fetchAll();
                         </span>
                         <span class="font-medium text-[#9c654d] font-bold">Free Transportation directly to your place in Bali</span>
                     </li>
-                    <li class="flex items-center space-x-3 text-slate-700 text-sm">
-                        <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
-                            <i aria-hidden="true" class="fas fa-check"></i>
-                        </span>
-                        <span class="font-medium">Serving Bali Areas: Seminyak, Canggu, Ubud, Uluwatu, Pecatu, Nusa Dua, Kuta, Denpasar, Tabanan &amp; Gianyar</span>
-                    </li>
                 </ul>
                 
                 <div class="pt-6 flex flex-wrap gap-4">
-                    <a href="#services" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
+                    <a href="services.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
                         <i aria-hidden="true" class="fab fa-whatsapp text-sm"></i>
                         <span>Book Now</span>
                     </a>
-                    <a href="#services" class="border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                    <a href="services.php" class="border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
                         View Prices
                     </a>
                 </div>
@@ -252,6 +77,7 @@ $faqs = $faqs_query->fetchAll();
             </div>
         </div>
     </section>
+
     <!-- About Section -->
     <section id="about" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
@@ -270,15 +96,10 @@ $faqs = $faqs_query->fetchAll();
                 <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-4 font-light">
                     <p><?php echo htmlspecialchars($description); ?></p>
                     <p>Through our friendly, certified, and professionally trained female therapists, we are committed to delivering the ultimate relaxation experience directly to you without ever having to leave your room.</p>
-                    <p class="text-xs text-slate-500 font-normal">
-                        Whether you are looking for a relaxing <strong>outcall massage Seminyak</strong>, a professional <strong>on call massage Canggu</strong>, or a premium <strong>spa villa call Bali</strong> service, we are ready to serve you. Enjoy the best <strong>home service massage Bali</strong> has to offer, tailored to your wellness needs.
-                    </p>
                 </div>
                 
-                <!-- Highlight Banner -->
-                <div class="bg-amber-50 border border-amber-200/50 p-5 rounded-2xl flex items-center space-x-3 text-[#9c654d] max-w-md">
-                    <i aria-hidden="true" class="fas fa-truck text-xl flex-shrink-0"></i>
-                    <span class="font-bold text-xs uppercase tracking-wider">Free Transportation in Bali!</span>
+                <div class="pt-2 flex flex-wrap gap-4">
+                    <a href="about.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">Read More About Us</a>
                 </div>
             </div>
         </div>
@@ -296,7 +117,6 @@ $faqs = $faqs_query->fetchAll();
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 lg:gap-12 mt-24 pb-12 items-stretch">
-                <!-- Card 1: Staggered Up -->
                 <div class="bg-white p-8 rounded-3xl border border-stone-100 shadow-sm transition-all duration-300 md:-translate-y-6 hover:-translate-y-8 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-600 text-lg mb-8">
@@ -307,7 +127,6 @@ $faqs = $faqs_query->fetchAll();
                     </div>
                 </div>
                 
-                <!-- Card 2: Main Highlight Card -->
                 <div class="bg-white p-10 rounded-3xl border-2 border-amber-500/30 shadow-xl transition-all duration-300 transform hover:scale-[1.02] flex flex-col justify-between relative">
                     <span class="absolute -top-3 right-6 bg-amber-500 text-stone-950 text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
                         Premium Choice
@@ -321,7 +140,6 @@ $faqs = $faqs_query->fetchAll();
                     </div>
                 </div>
                 
-                <!-- Card 3: Staggered Down -->
                 <div class="bg-white p-8 rounded-3xl border border-stone-100 shadow-sm transition-all duration-300 md:translate-y-6 hover:translate-y-4 flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center text-amber-600 text-lg mb-8">
@@ -335,16 +153,13 @@ $faqs = $faqs_query->fetchAll();
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Featured Services Section -->
     <section id="services" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4">
-                <span class="text-xs font-bold uppercase tracking-widest text-[#9c654d]"><i aria-hidden="true" class="fas fa-tags mr-1"></i> Pricing Menu</span>
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Treatments &amp; Pricing</h2>
-                <p class="text-slate-600">Choose from our selected list of authentic Balinese spa therapies. Book easily on WhatsApp.</p>
-                <p class="text-xs text-slate-500 font-light max-w-2xl mx-auto mt-2 leading-relaxed">
-                    We offer the <strong>best home service massage Bali</strong> has to offer, delivering professional <strong>in-villa massage Bali</strong>, <strong>home massage Seminyak</strong>, and <strong>mobile massage Canggu</strong>. Experience a <strong>traditional Balinese massage home service</strong> or a relaxing <strong>couples massage at home</strong> directly in your room.
-                </p>
+                <span class="text-xs font-bold uppercase tracking-widest text-[#9c654d]"><i aria-hidden="true" class="fas fa-tags mr-1"></i> Featured Treatments</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Our Popular Services</h2>
+                <p class="text-slate-600">Explore some of our most requested treatments. Available for direct booking via WhatsApp.</p>
             </div>
             
             <div id="services-list" class="space-y-24 mt-20">
@@ -353,7 +168,6 @@ $faqs = $faqs_query->fetchAll();
                     $directionClass = $isEven ? 'md:flex-row' : 'md:flex-row-reverse';
                     $alignTextClass = $isEven ? 'md:text-left md:items-start md:pl-16' : 'md:text-right md:items-end md:pr-16';
 
-                    // Fallback to optimized local WebP images if the DB still contains remote Unsplash URLs
                     $serviceImg = $service['image_path'];
                     if (strpos($serviceImg, 'unsplash.com') !== false) {
                         if ($service['service_id'] === 'balinese-massage') {
@@ -366,7 +180,6 @@ $faqs = $faqs_query->fetchAll();
                     }
                 ?>
                     <div class="flex flex-col <?php echo $directionClass; ?> items-center gap-12 relative">
-                        <!-- Image Container with Clean Rounded Corners -->
                         <div class="w-full md:w-1/2 flex-shrink-0">
                             <div class="aspect-[4/3] w-full max-w-md mx-auto rounded-3xl overflow-hidden border border-stone-200 shadow-xl relative group">
                                 <?php if ($service['featured']): ?>
@@ -378,15 +191,13 @@ $faqs = $faqs_query->fetchAll();
                             </div>
                         </div>
 
-                        <!-- Content Description Container (Clean & Corporate) -->
                         <div class="w-full md:w-1/2 flex flex-col justify-center items-center <?php echo $alignTextClass; ?> z-10 relative px-4 sm:px-8">
                             <div class="bg-white p-8 md:p-10 rounded-3xl border border-stone-100 shadow-lg max-w-md space-y-6 text-left">
                                 <span class="text-[10px] font-bold uppercase tracking-widest text-[#9c654d]">Treatments</span>
                                 <h3 class="text-3xl font-serif font-bold text-slate-900 leading-tight"><?php echo htmlspecialchars($service['title']); ?></h3>
                                 <p class="text-slate-500 text-sm leading-relaxed font-light"><?php echo htmlspecialchars($service['description']); ?></p>
                                 
-                                <!-- Price List Style -->
-                                 <div class="space-y-2.5 py-4 border-t border-stone-100">
+                                <div class="space-y-2.5 py-4 border-t border-stone-100">
                                     <?php foreach ($service['options'] as $opt): ?>
                                         <div class="flex justify-between border-b border-dashed border-stone-200 pb-1 text-sm font-semibold">
                                             <span class="text-slate-700"><?php echo htmlspecialchars($opt['duration']); ?></span>
@@ -417,11 +228,17 @@ $faqs = $faqs_query->fetchAll();
                     </div>
                 <?php endforeach; ?>
             </div>
+            
+            <div class="mt-16 text-center">
+                <a href="services.php" class="inline-block border border-slate-350 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                    View All Treatments &amp; Pricing
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Service Area & Google Maps -->
-    <section id="areas" class="py-24 bg-white relative overflow-hidden">
+    <!-- Service Area Summary -->
+    <section id="areas" class="py-24 bg-[#f2f5f7] relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <!-- Areas List -->
             <div class="space-y-6 text-left">
@@ -438,18 +255,8 @@ $faqs = $faqs_query->fetchAll();
                     <?php endforeach; ?>
                 </ul>
                 
-                <p class="text-xs text-slate-500 leading-relaxed font-light mt-4">
-                    Kami melayani berbagai kebutuhan Anda mulai dari <strong>massage panggilan Kuta</strong>, <strong>massage panggilan Ubud</strong>, <strong>massage panggilan Nusa Dua</strong>, hingga layanan premium seperti <strong>spa panggilan Seminyak</strong> dan <strong>spa panggilan Canggu</strong>. Bagi Anda wisatawan asing maupun domestik yang membutuhkan <strong>on call massage Seminyak</strong>, <strong>on call spa Uluwatu</strong>, atau <strong>massage hotel Bali</strong> dan <strong>massage delivery Bali</strong>, terapis profesional kami siap datang langsung ke tempat Anda. Kami juga menyediakan opsi <strong>massage panggilan Bali profesional</strong> serta <strong>balinese massage panggilan</strong> yang autentik untuk relaksasi maksimal.
-                </p>
-                
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-start space-x-4">
-                    <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center text-[#9c654d] text-lg flex-shrink-0">
-                        <i aria-hidden="true" class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-slate-900 text-sm">Villa / Hotel / Home / Apartment Call</h4>
-                        <p class="text-slate-600 text-xs leading-relaxed font-light">Our therapists arrive fully equipped with massage tables/mats, premium essential oils, fresh linen, and relaxing spa music.</p>
-                    </div>
+                <div class="pt-4">
+                    <a href="areas.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">View All Service Areas</a>
                 </div>
             </div>
             
@@ -470,6 +277,45 @@ $faqs = $faqs_query->fetchAll();
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section id="reviews-summary" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#9c654d]"><i aria-hidden="true" class="fas fa-star mr-1"></i> Reviews</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">What Our Clients Say</h2>
+                <p class="text-slate-600">Read the reviews from our satisfied clients or submit your own experience.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 pb-12">
+                <?php foreach ($reviews as $rev): ?>
+                    <div class="bg-[#f2f5f7] p-8 rounded-3xl border border-stone-100 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex text-amber-500 space-x-1">
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <i class="<?php echo ($i <= $rev['rating']) ? 'fas' : 'far'; ?> fa-star text-sm"></i>
+                                <?php endfor; ?>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed font-light italic">"<?php echo htmlspecialchars($rev['comment']); ?>"</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm"><?php echo htmlspecialchars($rev['name']); ?></h4>
+                            <span class="text-[10px] text-slate-400 font-light"><?php echo date('d M Y', strtotime($rev['created_at'])); ?></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="text-center space-x-4">
+                <a href="reviews.php" class="inline-block bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md transition-all">
+                    Write A Review
+                </a>
+                <a href="reviews.php" class="inline-block border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                    Read All Reviews
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Operating Hours Banner -->
     <section class="py-16 bg-[#192a3d] text-white text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-black/10"></div>
@@ -480,141 +326,6 @@ $faqs = $faqs_query->fetchAll();
         </div>
     </section>
 
-    <!-- FAQs Section -->
-    <section id="faqs" class="py-24 bg-[#f2f5f7]">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center space-y-4 mb-16">
-                <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1 rounded-full"><i aria-hidden="true" class="fas fa-question-circle mr-1"></i> Questions</span>
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Frequently Asked Questions</h2>
-                <p class="text-slate-600">Everything you need to know about our Bali home massage services.</p>
-            </div>
-            
-            <div class="space-y-4">
-                <?php foreach ($faqs as $i => $faq): ?>
-                    <div class="bg-white border border-stone-100 rounded-2xl overflow-hidden shadow-sm">
-                        <button aria-expanded="false" aria-controls="faq-ans-<?php echo $i; ?>" onclick="toggleFaq(<?php echo $i; ?>)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-slate-900 hover:bg-slate-50 transition-colors">
-                            <span><?php echo htmlspecialchars($faq['question']); ?></span>
-                            <i aria-hidden="true" id="faq-icon-<?php echo $i; ?>" class="fas fa-chevron-down text-[#9c654d] text-xs transition-transform duration-300"></i>
-                        </button>
-                        <div id="faq-ans-<?php echo $i; ?>" class="hidden px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-50 pt-4 text-left">
-                            <?php echo htmlspecialchars($faq['answer']); ?>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[#192a3d] text-slate-300 py-20 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-16">
-            <div class="space-y-6 text-left">
-                <div class="flex items-center space-x-3">
-                    <?php if (!empty($brandLogo)): ?>
-                        <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="40" height="40" alt="Logo" class="h-10 w-auto object-contain">
-                    <?php endif; ?>
-                    <h3 class="font-serif text-2xl font-bold text-white tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></h3>
-                </div>
-                <p class="text-slate-400 text-sm leading-relaxed font-light">Relaxation and spa therapeutic treatments at your convenience. Book in under 3 minutes.</p>
-            </div>
-            <div class="space-y-6 text-left">
-                <h4 class="font-bold text-white uppercase tracking-wider text-xs">Contact &amp; Hours</h4>
-                <ul class="space-y-3.5 text-slate-400 text-sm">
-                    <li class="flex items-center space-x-2">
-                        <i aria-hidden="true" class="fab fa-whatsapp text-[#9c654d] text-base"></i> 
-                        <span>WhatsApp: <a href="https://wa.me/<?php echo $whatsapp; ?>" class="hover:text-white transition-colors font-semibold text-[#9c654d]">+<?php echo htmlspecialchars($whatsapp); ?></a></span>
-                    </li>
-                    <li class="flex items-center space-x-2">
-                        <i aria-hidden="true" class="far fa-clock text-[#9c654d] text-base"></i> 
-                        <span>Operating Hours: <?php echo htmlspecialchars($operatingHours); ?></span>
-                    </li>
-                </ul>
-            </div>
-            <div class="space-y-6 text-left">
-                <h4 class="font-bold text-white uppercase tracking-wider text-xs">Follow Us</h4>
-                <?php if (!empty($instagram)): ?>
-                    <a href="<?php echo htmlspecialchars($instagram); ?>" target="_blank" rel="noopener" class="hover:text-white transition-colors text-slate-400 text-sm flex items-center space-x-2.5">
-                        <i aria-hidden="true" class="fab fa-instagram text-lg text-[#9c654d]"></i>
-                        <span>Instagram</span>
-                    </a>
-                <?php endif; ?>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800 mt-16 pt-8 text-center text-slate-500 text-xs space-y-4">
-            <p class="max-w-3xl mx-auto leading-relaxed">
-                Premium <strong>massage on call Seminyak</strong>, <strong>in-villa massage Canggu</strong>, and <strong>outcall spa Seminyak</strong> services. Our <strong>professional mobile spa Bali</strong> also serves Kuta, Denpasar, Nusa Dua, Ubud, Pecatu, Uluwatu, Tanah Lot, Tabanan, and Gianyar with <strong>massage panggilan Bali</strong> and <strong>deep tissue massage villa</strong> treatments.
-            </p>
-            <p>
-                &copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($brandName); ?>. All Rights Reserved. Designed for wellness.
-            </p>
-        </div>
-    </footer>
-
-    <!-- Core App Client-Side JS -->
-    <script>
-        function toggleFaq(index) {
-            const ans = document.getElementById('faq-ans-' + index);
-            const icon = document.getElementById('faq-icon-' + index);
-            const btn = document.querySelector(`button[aria-controls='faq-ans-${index}']`);
-            const isHidden = ans.classList.contains('hidden');
-            
-            // Hide all first
-            document.querySelectorAll("[id^='faq-ans-']").forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll("[id^='faq-icon-']").forEach(el => {
-                el.classList.remove('rotate-180');
-            });
-            document.querySelectorAll("button[aria-controls^='faq-ans-']").forEach(el => {
-                el.setAttribute('aria-expanded', 'false');
-            });
-
-            if (isHidden) {
-                ans.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-                if (btn) btn.setAttribute('aria-expanded', 'true');
-            }
-        }
-
-        // Lazy load Google Maps iframe only when it enters the viewport
-        if ('IntersectionObserver' in window) {
-            const mapObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const iframe = entry.target;
-                        iframe.setAttribute('src', iframe.getAttribute('data-src'));
-                        observer.unobserve(iframe);
-                    }
-                });
-            });
-            const mapIframe = document.getElementById('google-map-iframe');
-            if (mapIframe) {
-                mapObserver.observe(mapIframe);
-            }
-        } else {
-            // Fallback for older browsers
-            window.addEventListener('load', function() {
-                const mapIframe = document.getElementById('google-map-iframe');
-                if (mapIframe && mapIframe.getAttribute('data-src')) {
-                    mapIframe.setAttribute('src', mapIframe.getAttribute('data-src'));
-                }
-            });
-        }
-
-        function bookService(serviceName, selectId, whatsapp) {
-            const select = document.getElementById('select-' + selectId);
-            const duration = select.value;
-            const selectedOption = select.options[select.selectedIndex];
-            const price = selectedOption.getAttribute('data-price');
-            
-            const message = `Hi, I would like to book a ${serviceName} (${duration} - ${price}). Here are my details:
-- Date & Time: 
-- Address (Hotel/Villa/Home): 
-- Number of People: 
-
-Please confirm my booking. Thank you!`;
-            
-            const waUrl = `https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`;
-            window.open(waUrl, '_blank');
-        }
-    </script>
-</body>
-</html>
+<?php
+require_once 'footer.php';
+?>

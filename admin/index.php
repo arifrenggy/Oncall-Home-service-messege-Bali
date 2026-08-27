@@ -29,6 +29,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 // Check session
 $is_logged_in = isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
 
+// Handle individual review actions
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $is_logged_in) {
+    if (isset($_POST['delete_review_id'])) {
+        $del_id = intval($_POST['delete_review_id']);
+        $stmt = $db->prepare("DELETE FROM reviews WHERE id = ?");
+        $stmt->execute([$del_id]);
+        $success = "Review deleted successfully.";
+    } elseif (isset($_POST['toggle_review_id'])) {
+        $tog_id = intval($_POST['toggle_review_id']);
+        $current_status = $_POST['current_status'] ?? 'approved';
+        $new_status = ($current_status === 'approved') ? 'pending' : 'approved';
+        $stmt = $db->prepare("UPDATE reviews SET status = ? WHERE id = ?");
+        $stmt->execute([$new_status, $tog_id]);
+        $success = "Review status updated successfully.";
+    }
+}
+
 // Process saving content to MySQL
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_content']) && $is_logged_in) {
     try {
@@ -285,6 +302,10 @@ $areas = $areas_query->fetchAll(PDO::FETCH_COLUMN);
 // 4. Fetch FAQs
 $faqs_query = $db->query("SELECT question, answer FROM faqs ORDER BY id ASC");
 $faqs = $faqs_query->fetchAll();
+
+// 5. Fetch Reviews
+$reviews_query = $db->query("SELECT * FROM reviews ORDER BY id DESC");
+$admin_reviews = $reviews_query->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -353,6 +374,10 @@ $faqs = $faqs_query->fetchAll();
             <button onclick="switchTab('faqs')" id="tab-btn-faqs" class="w-full text-left px-5 py-3.5 rounded-xl text-sm font-semibold transition-colors hover:bg-emerald-50 text-stone-700 hover:text-emerald-900 flex items-center space-x-3">
                 <i class="fas fa-question-circle text-base w-5"></i>
                 <span>FAQs</span>
+            </button>
+            <button onclick="switchTab('reviews')" id="tab-btn-reviews" class="w-full text-left px-5 py-3.5 rounded-xl text-sm font-semibold transition-colors hover:bg-emerald-50 text-stone-700 hover:text-emerald-900 flex items-center space-x-3">
+                <i class="fas fa-star text-base w-5"></i>
+                <span>Manage Reviews</span>
             </button>
         </div>
 
@@ -547,6 +572,74 @@ $faqs = $faqs_query->fetchAll();
                     </button>
                 </div>
             </form>
+
+            <!-- TAB 5: MANAGE REVIEWS -->
+            <div id="tab-reviews" class="tab-content space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-stone-900">Manage Customer Reviews</h2>
+                    <p class="text-xs text-stone-500 mt-1">Approve, disapprove, or delete reviews submitted by users on the website.</p>
+                </div>
+                
+                <div class="overflow-x-auto border border-stone-250 rounded-2xl shadow-sm">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-stone-50 border-b border-stone-200 text-xs font-bold uppercase tracking-wider text-slate-500">
+                                <th class="p-4 border-r border-stone-200">User</th>
+                                <th class="p-4 border-r border-stone-200">Rating</th>
+                                <th class="p-4 border-r border-stone-200 w-1/2">Comment</th>
+                                <th class="p-4 border-r border-stone-200">Status</th>
+                                <th class="p-4 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-stone-200 text-sm">
+                            <?php if (count($admin_reviews) === 0): ?>
+                                <tr>
+                                    <td colspan="5" class="p-6 text-center text-stone-400 italic">No reviews found.</td>
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($admin_reviews as $rev): ?>
+                                    <tr class="hover:bg-stone-50">
+                                        <td class="p-4 border-r border-stone-200 font-semibold text-slate-800">
+                                            <?php echo htmlspecialchars($rev['name']); ?><br>
+                                            <span class="text-[10px] text-slate-400 font-light font-sans"><?php echo date('Y-m-d H:i', strtotime($rev['created_at'])); ?></span>
+                                        </td>
+                                        <td class="p-4 border-r border-stone-200 text-amber-500 font-bold whitespace-nowrap">
+                                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                                                <i class="<?php echo ($i <= $rev['rating']) ? 'fas' : 'far'; ?> fa-star text-xs"></i>
+                                            <?php endfor; ?>
+                                        </td>
+                                        <td class="p-4 border-r border-stone-200 font-light text-slate-650 italic">
+                                            "<?php echo htmlspecialchars($rev['comment']); ?>"
+                                        </td>
+                                        <td class="p-4 border-r border-stone-200">
+                                            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider <?php echo ($rev['status'] === 'approved') ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'; ?>">
+                                                <?php echo htmlspecialchars($rev['status']); ?>
+                                            </span>
+                                        </td>
+                                        <td class="p-4 text-center">
+                                            <div class="flex items-center justify-center space-x-2">
+                                                <form method="POST" action="" class="inline">
+                                                    <input type="hidden" name="toggle_review_id" value="<?php echo $rev['id']; ?>">
+                                                    <input type="hidden" name="current_status" value="<?php echo htmlspecialchars($rev['status']); ?>">
+                                                    <button type="submit" class="px-3 py-1.5 rounded-lg text-xs font-bold border transition-colors <?php echo ($rev['status'] === 'approved') ? 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100' : 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100'; ?>">
+                                                        <?php echo ($rev['status'] === 'approved') ? 'Disapprove' : 'Approve'; ?>
+                                                    </button>
+                                                </form>
+                                                <form method="POST" action="" onsubmit="return confirm('Are you sure you want to delete this review?');" class="inline">
+                                                    <input type="hidden" name="delete_review_id" value="<?php echo $rev['id']; ?>">
+                                                    <button type="submit" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition-colors">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         </main>
     </div>

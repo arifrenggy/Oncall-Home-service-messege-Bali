@@ -1,0 +1,153 @@
+<?php
+// header.php
+require_once __DIR__ . '/config.php';
+
+// 1. Fetch settings
+$settings_query = $db->query("SELECT * FROM settings");
+$settings = [];
+while ($row = $settings_query->fetch()) {
+    $settings[$row['setting_key']] = $row['setting_value'];
+}
+
+$brandName = $settings['brandName'] ?? 'Oncall & home service message';
+$brandLogo = $settings['brandLogo'] ?? '';
+$tagline = $settings['tagline'] ?? '';
+$description = $settings['description'] ?? '';
+$whatsapp = $settings['whatsapp'] ?? '';
+$instagram = $settings['instagram'] ?? '';
+$operatingHours = $settings['operatingHours'] ?? '';
+$ratingValue = $settings['ratingValue'] ?? '4.9';
+$reviewCount = $settings['reviewCount'] ?? '24';
+
+// Auto-create reviews table if it doesn't exist
+$db->exec("CREATE TABLE IF NOT EXISTS `reviews` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL,
+  `rating` INT NOT NULL,
+  `comment` TEXT NOT NULL,
+  `status` VARCHAR(20) DEFAULT 'approved',
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+// Seed reviews table if empty
+$check_reviews = $db->query("SELECT COUNT(*) FROM reviews")->fetchColumn();
+if ($check_reviews == 0) {
+    $db->exec("INSERT INTO `reviews` (`name`, `rating`, `comment`, `status`) VALUES
+        ('Sarah Jenkins', 5, 'Absolutely amazing massage! The therapist arrived at our Seminyak villa on time, brought fresh towels, and the massage was incredibly relaxing after a long flight.', 'approved'),
+        ('Michael Go', 5, 'Highly professional deep tissue massage. Helped so much with my muscle stiffness. Will definitely book again during my stay in Canggu.', 'approved'),
+        ('Emily Watson', 5, 'Best home service spa in Bali! The aromatherapy oils smelled wonderful and the therapists were very polite and skilled. Very easy to book via WhatsApp.', 'approved')
+    ;");
+}
+
+// Get current page file name to active states in menu
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Best Home Service Massage Bali | On-Call Spa &amp; Reflexology</title>
+    <meta name="description" content="Looking for the best home service massage in Bali? Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home. Book in 3 minutes!">
+    <meta name="keywords" content="home service massage bali, massage home service bali, oncall spa bali, massage villa bali, massage seminyak, massage canggu, massage ubud, hotel massage bali, balinese massage panggilan, spa panggilan bali, massage delivery bali, best massage bali, massage nusa dua, massage kuta">
+    <link rel="canonical" href="https://honeymassagebali.shop/">
+    
+    <!-- OpenGraph Meta Tags (SEO/Social/WhatsApp Share Preview) -->
+    <meta property="og:title" content="Best Home Service Massage Bali | On-Call Spa &amp; Reflexology">
+    <meta property="og:description" content="Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home in Bali. Book via WhatsApp!">
+    <meta property="og:image" content="<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/hero-massage.webp'; ?>">
+    <meta property="og:type" content="website">
+    
+    <!-- Local Business Schema (JSON-LD) for Google Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HealthAndBeautyBusiness",
+      "name": "<?php echo htmlspecialchars($brandName); ?>",
+      "image": "<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/hero-massage.webp'; ?>",
+      "description": "<?php echo htmlspecialchars($description); ?>",
+      "telephone": "+<?php echo htmlspecialchars($whatsapp); ?>",
+      "priceRange": "$$",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "<?php echo htmlspecialchars($ratingValue); ?>",
+        "reviewCount": "<?php echo htmlspecialchars($reviewCount); ?>",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Badung",
+        "addressRegion": "Bali",
+        "addressCountry": "ID"
+      },
+      "areaServed": [
+        {"@type": "AdministrativeArea", "name": "Seminyak"},
+        {"@type": "AdministrativeArea", "name": "Canggu"},
+        {"@type": "AdministrativeArea", "name": "Kuta"},
+        {"@type": "AdministrativeArea", "name": "Nusa Dua"},
+        {"@type": "AdministrativeArea", "name": "Ubud"},
+        {"@type": "AdministrativeArea", "name": "Denpasar"}
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "23:00"
+      }
+    }
+    </script>
+    
+    <!-- Favicon (Dynamic & Google Search Compliant) -->
+    <?php 
+    $faviconSrc = !empty($brandLogo) ? htmlspecialchars($brandLogo) : 'assets/images/favicon.png'; 
+    ?>
+    <link rel="icon" type="image/png" href="<?php echo $faviconSrc; ?>" sizes="96x96">
+    <link rel="apple-touch-icon" href="<?php echo $faviconSrc; ?>">
+
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Preload LCP Image -->
+    <link rel="preload" as="image" href="assets/images/hero-massage.webp" type="image/webp" fetchpriority="high">
+
+    <!-- Static Tailwind CSS -->
+    <style>
+        <?php echo file_get_contents(__DIR__ . '/assets/css/tailwind.min.css'); ?>
+    </style>
+    <style>
+        .font-serif { font-family: 'Poppins', sans-serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-theme-beige text-stone-800 font-sans antialiased">
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white border-b border-stone-100 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.php" class="flex items-center space-x-3">
+                <?php if (!empty($brandLogo)): ?>
+                    <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="40" height="40" alt="Logo" class="h-10 w-auto object-contain">
+                <?php endif; ?>
+                <span class="text-xl font-serif font-bold text-slate-900 tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></span>
+            </a>
+            <div class="hidden md:flex space-x-8 text-xs font-bold tracking-widest text-slate-600 uppercase">
+                <a href="index.php" class="<?php echo ($current_page == 'index.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Home</a>
+                <a href="about.php" class="<?php echo ($current_page == 'about.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">About Us</a>
+                <a href="services.php" class="<?php echo ($current_page == 'services.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Treatments</a>
+                <a href="areas.php" class="<?php echo ($current_page == 'areas.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Service Areas</a>
+                <a href="faqs.php" class="<?php echo ($current_page == 'faqs.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">FAQs</a>
+                <a href="reviews.php" class="<?php echo ($current_page == 'reviews.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Reviews</a>
+            </div>
+            <a href="services.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
+        </nav>
+    </header>
