@@ -62,11 +62,11 @@ $reviews = $reviews_query->fetchAll();
                 </ul>
                 
                 <div class="pt-6 flex flex-wrap gap-4">
-                    <a href="services.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
+                    <a href="services" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
                         <i aria-hidden="true" class="fab fa-whatsapp text-sm"></i>
                         <span>Book Now</span>
                     </a>
-                    <a href="services.php" class="border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                    <a href="services" class="border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
                         View Prices
                     </a>
                 </div>
@@ -102,7 +102,7 @@ $reviews = $reviews_query->fetchAll();
                 </div>
                 
                 <div class="pt-2 flex flex-wrap gap-4">
-                    <a href="services.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">View Treatments &amp; Pricing</a>
+                    <a href="services" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">View Treatments &amp; Pricing</a>
                 </div>
             </div>
         </div>
@@ -233,7 +233,7 @@ $reviews = $reviews_query->fetchAll();
             </div>
             
             <div class="mt-16 text-center">
-                <a href="services.php" class="inline-block border border-slate-350 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                <a href="services" class="inline-block border border-slate-350 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
                     View All Treatments &amp; Pricing
                 </a>
             </div>
@@ -259,7 +259,7 @@ $reviews = $reviews_query->fetchAll();
                 </ul>
                 
                 <div class="pt-4">
-                    <a href="areas.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">View All Service Areas</a>
+                    <a href="services#areas" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">View All Service Areas</a>
                 </div>
             </div>
             
@@ -309,10 +309,10 @@ $reviews = $reviews_query->fetchAll();
             </div>
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
-                <a href="reviews.php" class="w-full sm:w-auto text-center bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md transition-all">
+                <a href="reviews" class="w-full sm:w-auto text-center bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md transition-all">
                     Write A Review
                 </a>
-                <a href="reviews.php" class="w-full sm:w-auto text-center border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                <a href="reviews" class="w-full sm:w-auto text-center border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
                     Read All Reviews
                 </a>
             </div>

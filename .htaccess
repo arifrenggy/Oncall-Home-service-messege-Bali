@@ -26,6 +26,24 @@
     ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
+# URL Rewriting for Clean URLs (Remove .php extension)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # 1. Redirect index.php to the root folder /
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
+    RewriteRule ^index\.php$ / [R=301,L]
+    
+    # 2. Redirect any request to /page.php to /page
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php\ HTTP/
+    RewriteRule ^([^/]+)\.php$ /$1 [R=301,L]
+    
+    # 3. Internally rewrite /page to /page.php
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\.php -f
+    RewriteRule ^([^/]+)$ $1.php [L]
+</IfModule>
+
 # Security: Prevent directory listings
 Options -Indexes
 

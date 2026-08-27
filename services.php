@@ -2,7 +2,7 @@
 // services.php
 $pageTitle = "Spa Treatments Menu & Booking Info | Honey Massage Bali";
 $pageDesc = "Browse our professional Balinese massage, deep tissue treatments, and foot reflexology pricing. Check our free transport coverage areas and FAQs in Bali.";
-$canonicalUrl = "https://honeymassagebali.shop/services.php";
+$canonicalUrl = "https://honeymassagebali.shop/services";
 require_once 'header.php';
 
 // 1. Fetch all services

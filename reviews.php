@@ -2,7 +2,7 @@
 // reviews.php
 $pageTitle = "Customer Reviews & Write a Review | Honey Massage Bali";
 $pageDesc = "Read testimonials from customers who ordered our spa services in Bali, or submit your own review of your massage experience.";
-$canonicalUrl = "https://honeymassagebali.shop/reviews.php";
+$canonicalUrl = "https://honeymassagebali.shop/reviews";
 require_once 'header.php';
 
 $error = '';

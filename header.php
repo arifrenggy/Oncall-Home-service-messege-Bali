@@ -140,7 +140,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- Navigation -->
     <header class="sticky top-0 z-50 bg-white border-b border-stone-100 shadow-sm">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="index.php" class="flex items-center space-x-2 sm:space-x-3">
+            <a href="./" class="flex items-center space-x-2 sm:space-x-3">
                 <?php if (!empty($brandLogo)): ?>
                     <img src="<?php echo htmlspecialchars($brandLogo); ?>" alt="Logo" class="h-8 w-auto object-contain sm:h-10" style="max-height: 40px; max-width: 120px; object-fit: contain;">
                 <?php endif; ?>
@@ -149,14 +149,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-8 text-xs font-bold tracking-widest text-slate-600 uppercase">
-                <a href="index.php" class="<?php echo ($current_page == 'index.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Home</a>
-                <a href="services.php" class="<?php echo ($current_page == 'services.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Treatments &amp; Info</a>
-                <a href="reviews.php" class="<?php echo ($current_page == 'reviews.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Reviews</a>
+                <a href="./" class="<?php echo ($current_page == 'index.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Home</a>
+                <a href="services" class="<?php echo ($current_page == 'services.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Treatments &amp; Info</a>
+                <a href="reviews" class="<?php echo ($current_page == 'reviews.php') ? 'text-blue-600' : 'hover:text-blue-600'; ?> transition-colors">Reviews</a>
             </div>
             
             <!-- Desktop Book Now Button & Mobile Hamburger -->
             <div class="flex items-center space-x-4">
-                <a href="services.php" class="hidden md:inline-flex bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
+                <a href="services" class="hidden md:inline-flex bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all">Book Now</a>
                 
                 <!-- Mobile Hamburger Button -->
                 <button onclick="toggleMobileMenu()" aria-label="Toggle menu" class="md:hidden md-hidden-forced text-slate-700 focus:outline-none p-2 rounded-lg hover:bg-stone-50 transition-colors">
@@ -167,9 +167,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
         
         <!-- Mobile Dropdown Menu -->
         <div id="mobile-menu" class="hidden md:hidden border-t border-stone-100 bg-white px-4 pt-2 pb-6 space-y-1 shadow-md">
-            <a href="index.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'index.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Home</a>
-            <a href="services.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'services.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Treatments &amp; Info</a>
-            <a href="reviews.php" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'reviews.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Reviews</a>
+            <a href="./" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'index.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Home</a>
+            <a href="services" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'services.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Treatments &amp; Info</a>
+            <a href="reviews" class="block px-3 py-2.5 rounded-xl text-sm font-semibold tracking-wide text-slate-700 <?php echo ($current_page == 'reviews.php') ? 'bg-blue-50 text-blue-600' : 'hover:bg-stone-50'; ?> transition-colors">Reviews</a>
         </div>
     </header>
 
