@@ -99,7 +99,7 @@ $reviews = $reviews_query->fetchAll();
                 </div>
                 
                 <div class="pt-2 flex flex-wrap gap-4">
-                    <a href="about.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">Read More About Us</a>
+                    <a href="services.php" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">View Treatments &amp; Pricing</a>
                 </div>
             </div>
         </div>
