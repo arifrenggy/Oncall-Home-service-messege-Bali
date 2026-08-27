@@ -136,7 +136,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="index.php" class="flex items-center space-x-2 sm:space-x-3">
                 <?php if (!empty($brandLogo)): ?>
-                    <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="32" height="32" alt="Logo" class="h-8 w-auto object-contain sm:h-10">
+                    <img src="<?php echo htmlspecialchars($brandLogo); ?>" alt="Logo" class="h-8 w-auto object-contain sm:h-10" style="max-height: 40px; max-width: 120px; object-fit: contain;">
                 <?php endif; ?>
                 <span class="text-base sm:text-xl font-serif font-bold text-slate-900 tracking-wider uppercase truncate max-w-[150px] sm:max-w-none"><?php echo htmlspecialchars($brandName); ?></span>
             </a>
