@@ -108,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $is_logged_in) {
                         if (move_uploaded_file($file_tmp, $target_file)) {
                             $logo_path = 'assets/images/' . $target_name;
                             $stmt_settings->execute(['brandLogo', $logo_path, $logo_path]);
+                            @copy($target_file, __DIR__ . '/../favicon.png');
                         }
                     }
                 }

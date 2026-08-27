@@ -105,9 +105,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
     }
     </script>
     
-    <!-- Favicon (Dynamic & Google Search Compliant) -->
+    <!-- Favicon (Stable URL for Google Indexing compliance) -->
     <?php 
-    $faviconSrc = !empty($brandLogo) ? htmlspecialchars($brandLogo) : 'assets/images/favicon.png'; 
+    $faviconSrc = 'favicon.png';
+    if (!file_exists(__DIR__ . '/favicon.png') && !empty($brandLogo) && file_exists(__DIR__ . '/' . $brandLogo)) {
+        @copy(__DIR__ . '/' . $brandLogo, __DIR__ . '/favicon.png');
+    }
+    if (!file_exists(__DIR__ . '/favicon.png')) {
+        $faviconSrc = 'assets/images/favicon.png';
+    }
     ?>
     <link rel="icon" type="image/png" href="<?php echo $faviconSrc; ?>" sizes="96x96">
     <link rel="apple-touch-icon" href="<?php echo $faviconSrc; ?>">
