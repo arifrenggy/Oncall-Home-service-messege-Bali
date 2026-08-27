@@ -29,189 +29,199 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 // Check session
 $is_logged_in = isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
 
-// Handle individual review actions
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $is_logged_in) {
-    if (isset($_POST['delete_review_id'])) {
-        $del_id = intval($_POST['delete_review_id']);
-        $stmt = $db->prepare("DELETE FROM reviews WHERE id = ?");
-        $stmt->execute([$del_id]);
-        $success = "Review deleted successfully.";
-    } elseif (isset($_POST['toggle_review_id'])) {
-        $tog_id = intval($_POST['toggle_review_id']);
-        $current_status = $_POST['current_status'] ?? 'approved';
-        $new_status = ($current_status === 'approved') ? 'pending' : 'approved';
-        $stmt = $db->prepare("UPDATE reviews SET status = ? WHERE id = ?");
-        $stmt->execute([$new_status, $tog_id]);
-        $success = "Review status updated successfully.";
-    }
+// Generate CSRF token if logged in
+if ($is_logged_in && empty($_SESSION['admin_csrf_token'])) {
+    $_SESSION['admin_csrf_token'] = bin2hex(random_bytes(32));
 }
 
-// Process saving content to MySQL
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_content']) && $is_logged_in) {
-    try {
-        $db->beginTransaction();
-
-        // 1. Save General Settings (UPDATE settings)
-        $new_general = $_POST['general'] ?? [];
-        $stmt_settings = $db->prepare("INSERT INTO settings (setting_key, setting_value) VALUES (?, ?) 
-                                      ON DUPLICATE KEY UPDATE setting_value = ?");
-        
-        foreach ($new_general as $key => $value) {
-            if ($key === 'whatsapp') {
-                $value = preg_replace('/[^0-9]/', '', $value);
-            } else {
-                $value = trim($value);
-            }
-            $stmt_settings->execute([$key, $value, $value]);
-        }
-        // Ensure directories exist for file uploads
-        $images_dir = __DIR__ . '/../assets/images';
-        if (!is_dir($images_dir)) {
-            mkdir($images_dir, 0755, true);
+// Handle POST submissions (with CSRF verification)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $is_logged_in) {
+    if (!isset($_POST['csrf_token']) || !hash_equals($_SESSION['admin_csrf_token'], $_POST['csrf_token'])) {
+        $error = 'Security check failed: Invalid CSRF token. Please refresh the page and try again.';
+    } else {
+        // Handle individual review actions
+        if (isset($_POST['delete_review_id'])) {
+            $del_id = intval($_POST['delete_review_id']);
+            $stmt = $db->prepare("DELETE FROM reviews WHERE id = ?");
+            $stmt->execute([$del_id]);
+            $success = "Review deleted successfully.";
+        } elseif (isset($_POST['toggle_review_id'])) {
+            $tog_id = intval($_POST['toggle_review_id']);
+            $current_status = $_POST['current_status'] ?? 'approved';
+            $new_status = ($current_status === 'approved') ? 'pending' : 'approved';
+            $stmt = $db->prepare("UPDATE reviews SET status = ? WHERE id = ?");
+            $stmt->execute([$new_status, $tog_id]);
+            $success = "Review status updated successfully.";
         }
 
-        // Handle Logo Removal
-        if (isset($_POST['remove_logo']) && $_POST['remove_logo'] == '1') {
-            $current_logo_query = $db->prepare("SELECT setting_value FROM settings WHERE setting_key = 'brandLogo'");
-            $current_logo_query->execute();
-            $current_logo_path = $current_logo_query->fetchColumn();
-            if (!empty($current_logo_path) && file_exists(__DIR__ . '/../' . $current_logo_path)) {
-                @unlink(__DIR__ . '/../' . $current_logo_path);
-            }
-            $stmt_settings->execute(['brandLogo', '', '']);
-        }
+        // Process saving content to MySQL
+        if (isset($_POST['save_content'])) {
+            try {
+                $db->beginTransaction();
 
-        // Handle Brand Logo Upload
-        if (isset($_FILES['brand_logo']) && $_FILES['brand_logo']['error'] === UPLOAD_ERR_OK) {
-            $file_tmp = $_FILES['brand_logo']['tmp_name'];
-            $file_name = preg_replace('/[^a-zA-Z0-9\.\-_]/', '', $_FILES['brand_logo']['name']);
-            
-            // Validate mime type
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
-            $mime_type = finfo_file($finfo, $file_tmp);
-            if (is_resource($finfo)) {
-                finfo_close($finfo);
-            }
-
-            $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/svg+xml'];
-            if (in_array($mime_type, $allowed_types)) {
-                $target_name = 'logo_' . time() . '_' . $file_name;
-                $target_file = $images_dir . '/' . $target_name;
-                if (move_uploaded_file($file_tmp, $target_file)) {
-                    $logo_path = 'assets/images/' . $target_name;
-                    $stmt_settings->execute(['brandLogo', $logo_path, $logo_path]);
-                }
-            }
-        }
-
-        // 2. Save Massage Services
-        $submitted_services = $_POST['services'] ?? [];
-        $kept_service_ids = [];
-
-        foreach ($submitted_services as $sKey => $service) {
-            $service_id = preg_replace('/[^a-zA-Z0-9\-]/', '', $service['id'] ?? '');
-            if (empty($service_id)) continue;
-
-            $title = trim($service['title'] ?? '');
-            $desc = trim($service['description'] ?? '');
-            $image_path = $service['image'] ?? '';
-            $featured = isset($service['featured']) && $service['featured'] == 'true' ? 1 : 0;
-
-            // Handle Image Upload
-            $file_key = "service_image_" . $sKey;
-            if (isset($_FILES[$file_key]) && $_FILES[$file_key]['error'] === UPLOAD_ERR_OK) {
-                $file_tmp = $_FILES[$file_key]['tmp_name'];
-                $file_name = preg_replace('/[^a-zA-Z0-9\.\-_]/', '', $_FILES[$file_key]['name']);
+                // 1. Save General Settings (UPDATE settings)
+                $new_general = $_POST['general'] ?? [];
+                $stmt_settings = $db->prepare("INSERT INTO settings (setting_key, setting_value) VALUES (?, ?) 
+                                              ON DUPLICATE KEY UPDATE setting_value = ?");
                 
-                // Validate mime type
-                $finfo = finfo_open(FILEINFO_MIME_TYPE);
-                $mime_type = finfo_file($finfo, $file_tmp);
-                if (is_resource($finfo)) {
-                    finfo_close($finfo);
+                foreach ($new_general as $key => $value) {
+                    if ($key === 'whatsapp') {
+                        $value = preg_replace('/[^0-9]/', '', $value);
+                    } else {
+                        $value = trim($value);
+                    }
+                    $stmt_settings->execute([$key, $value, $value]);
+                }
+                // Ensure directories exist for file uploads
+                $images_dir = __DIR__ . '/../assets/images';
+                if (!is_dir($images_dir)) {
+                    mkdir($images_dir, 0755, true);
                 }
 
-                $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-                if (in_array($mime_type, $allowed_types)) {
-                    $target_name = time() . '_' . $file_name;
-                    $target_file = $images_dir . '/' . $target_name;
-                    if (move_uploaded_file($file_tmp, $target_file)) {
-                        $image_path = 'assets/images/' . $target_name;
+                // Handle Logo Removal
+                if (isset($_POST['remove_logo']) && $_POST['remove_logo'] == '1') {
+                    $current_logo_query = $db->prepare("SELECT setting_value FROM settings WHERE setting_key = 'brandLogo'");
+                    $current_logo_query->execute();
+                    $current_logo_path = $current_logo_query->fetchColumn();
+                    if (!empty($current_logo_path) && file_exists(__DIR__ . '/../' . $current_logo_path)) {
+                        @unlink(__DIR__ . '/../' . $current_logo_path);
+                    }
+                    $stmt_settings->execute(['brandLogo', '', '']);
+                }
+
+                // Handle Brand Logo Upload
+                if (isset($_FILES['brand_logo']) && $_FILES['brand_logo']['error'] === UPLOAD_ERR_OK) {
+                    $file_tmp = $_FILES['brand_logo']['tmp_name'];
+                    $file_name = preg_replace('/[^a-zA-Z0-9\.\-_]/', '', $_FILES['brand_logo']['name']);
+                    
+                    // Validate mime type
+                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                    $mime_type = finfo_file($finfo, $file_tmp);
+                    if (is_resource($finfo)) {
+                        finfo_close($finfo);
+                    }
+
+                    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/svg+xml'];
+                    if (in_array($mime_type, $allowed_types)) {
+                        $target_name = 'logo_' . time() . '_' . $file_name;
+                        $target_file = $images_dir . '/' . $target_name;
+                        if (move_uploaded_file($file_tmp, $target_file)) {
+                            $logo_path = 'assets/images/' . $target_name;
+                            $stmt_settings->execute(['brandLogo', $logo_path, $logo_path]);
+                        }
                     }
                 }
-            }
 
-            // Check if service already exists in DB
-            if (strpos($sKey, 'new_') === 0) {
-                // Insert new service
-                $stmt_ins_service = $db->prepare("INSERT INTO services (service_id, title, description, image_path, featured) VALUES (?, ?, ?, ?, ?)");
-                $stmt_ins_service->execute([$service_id, $title, $desc, $image_path, $featured]);
-                $db_service_id = $db->lastInsertId();
-            } else {
-                // Update existing service
-                $db_service_id = (int)$sKey;
-                $stmt_up_service = $db->prepare("UPDATE services SET service_id = ?, title = ?, description = ?, image_path = ?, featured = ? WHERE id = ?");
-                $stmt_up_service->execute([$service_id, $title, $desc, $image_path, $featured, $db_service_id]);
-            }
+                // 2. Save Massage Services
+                $submitted_services = $_POST['services'] ?? [];
+                $kept_service_ids = [];
 
-            $kept_service_ids[] = $db_service_id;
+                foreach ($submitted_services as $sKey => $service) {
+                    $service_id = preg_replace('/[^a-zA-Z0-9\-]/', '', $service['id'] ?? '');
+                    if (empty($service_id)) continue;
 
-            // Delete existing options for this service
-            $db->prepare("DELETE FROM service_options WHERE service_ref = ?")->execute([$db_service_id]);
+                    $title = trim($service['title'] ?? '');
+                    $desc = trim($service['description'] ?? '');
+                    $image_path = $service['image'] ?? '';
+                    $featured = isset($service['featured']) && $service['featured'] == 'true' ? 1 : 0;
 
-            // Save new options
-            $options_raw = $service['options'] ?? [];
-            $stmt_ins_option = $db->prepare("INSERT INTO service_options (service_ref, duration, price) VALUES (?, ?, ?)");
-            foreach ($options_raw as $oOpt) {
-                $dur = trim($oOpt['duration'] ?? '');
-                $prc = trim($oOpt['price'] ?? '');
-                if (!empty($dur) && !empty($prc)) {
-                    $stmt_ins_option->execute([$db_service_id, $dur, $prc]);
+                    // Handle Image Upload
+                    $file_key = "service_image_" . $sKey;
+                    if (isset($_FILES[$file_key]) && $_FILES[$file_key]['error'] === UPLOAD_ERR_OK) {
+                        $file_tmp = $_FILES[$file_key]['tmp_name'];
+                        $file_name = preg_replace('/[^a-zA-Z0-9\.\-_]/', '', $_FILES[$file_key]['name']);
+                        
+                        // Validate mime type
+                        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                        $mime_type = finfo_file($finfo, $file_tmp);
+                        if (is_resource($finfo)) {
+                            finfo_close($finfo);
+                        }
+
+                        $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+                        if (in_array($mime_type, $allowed_types)) {
+                            $target_name = time() . '_' . $file_name;
+                            $target_file = $images_dir . '/' . $target_name;
+                            if (move_uploaded_file($file_tmp, $target_file)) {
+                                $image_path = 'assets/images/' . $target_name;
+                            }
+                        }
+                    }
+
+                    // Check if service already exists in DB
+                    if (strpos($sKey, 'new_') === 0) {
+                        // Insert new service
+                        $stmt_ins_service = $db->prepare("INSERT INTO services (service_id, title, description, image_path, featured) VALUES (?, ?, ?, ?, ?)");
+                        $stmt_ins_service->execute([$service_id, $title, $desc, $image_path, $featured]);
+                        $db_service_id = $db->lastInsertId();
+                    } else {
+                        // Update existing service
+                        $db_service_id = (int)$sKey;
+                        $stmt_up_service = $db->prepare("UPDATE services SET service_id = ?, title = ?, description = ?, image_path = ?, featured = ? WHERE id = ?");
+                        $stmt_up_service->execute([$service_id, $title, $desc, $image_path, $featured, $db_service_id]);
+                    }
+
+                    $kept_service_ids[] = $db_service_id;
+
+                    // Delete existing options for this service
+                    $db->prepare("DELETE FROM service_options WHERE service_ref = ?")->execute([$db_service_id]);
+
+                    // Save new options
+                    $options_raw = $service['options'] ?? [];
+                    $stmt_ins_option = $db->prepare("INSERT INTO service_options (service_ref, duration, price) VALUES (?, ?, ?)");
+                    foreach ($options_raw as $oOpt) {
+                        $dur = trim($oOpt['duration'] ?? '');
+                        $prc = trim($oOpt['price'] ?? '');
+                        if (!empty($dur) && !empty($prc)) {
+                            $stmt_ins_option->execute([$db_service_id, $dur, $prc]);
+                        }
+                    }
                 }
+
+                // Delete services not submitted (CRUD delete)
+                if (!empty($kept_service_ids)) {
+                    $in_clause = implode(',', array_fill(0, count($kept_service_ids), '?'));
+                    
+                    // Delete service options first (due to foreign key constraint, though Cascade handles it, it is safer)
+                    $db->prepare("DELETE FROM service_options WHERE service_ref NOT IN ($in_clause)")->execute($kept_service_ids);
+                    // Delete services
+                    $db->prepare("DELETE FROM services WHERE id NOT IN ($in_clause)")->execute($kept_service_ids);
+                } else {
+                    $db->query("DELETE FROM service_options");
+                    $db->query("DELETE FROM services");
+                }
+
+                // 3. Save Service Areas
+                $new_areas = $_POST['areas'] ?? [];
+                $db->query("DELETE FROM areas");
+                $stmt_ins_area = $db->prepare("INSERT INTO areas (area_name) VALUES (?)");
+                foreach ($new_areas as $area) {
+                    $val = trim($area);
+                    if (!empty($val)) {
+                        $stmt_ins_area->execute([$val]);
+                    }
+                }
+
+                // 4. Save FAQs
+                $new_faqs = $_POST['faqs'] ?? [];
+                $db->query("DELETE FROM faqs");
+                $stmt_ins_faq = $db->prepare("INSERT INTO faqs (question, answer) VALUES (?, ?)");
+                foreach ($new_faqs as $faq) {
+                    $q = trim($faq['question'] ?? '');
+                    $a = trim($faq['answer'] ?? '');
+                    if (!empty($q) && !empty($a)) {
+                        $stmt_ins_faq->execute([$q, $a]);
+                    }
+                }
+
+                $db->commit();
+                header("Location: " . $_SERVER['SCRIPT_NAME'] . "?saved=1");
+                exit;
+            } catch (Exception $e) {
+                $db->rollBack();
+                $error = 'Failed to save changes: ' . $e->getMessage();
             }
         }
-
-        // Delete services not submitted (CRUD delete)
-        if (!empty($kept_service_ids)) {
-            $in_clause = implode(',', array_fill(0, count($kept_service_ids), '?'));
-            
-            // Delete service options first (due to foreign key constraint, though Cascade handles it, it is safer)
-            $db->prepare("DELETE FROM service_options WHERE service_ref NOT IN ($in_clause)")->execute($kept_service_ids);
-            // Delete services
-            $db->prepare("DELETE FROM services WHERE id NOT IN ($in_clause)")->execute($kept_service_ids);
-        } else {
-            $db->query("DELETE FROM service_options");
-            $db->query("DELETE FROM services");
-        }
-
-        // 3. Save Service Areas
-        $new_areas = $_POST['areas'] ?? [];
-        $db->query("DELETE FROM areas");
-        $stmt_ins_area = $db->prepare("INSERT INTO areas (area_name) VALUES (?)");
-        foreach ($new_areas as $area) {
-            $val = trim($area);
-            if (!empty($val)) {
-                $stmt_ins_area->execute([$val]);
-            }
-        }
-
-        // 4. Save FAQs
-        $new_faqs = $_POST['faqs'] ?? [];
-        $db->query("DELETE FROM faqs");
-        $stmt_ins_faq = $db->prepare("INSERT INTO faqs (question, answer) VALUES (?, ?)");
-        foreach ($new_faqs as $faq) {
-            $q = trim($faq['question'] ?? '');
-            $a = trim($faq['answer'] ?? '');
-            if (!empty($q) && !empty($a)) {
-                $stmt_ins_faq->execute([$q, $a]);
-            }
-        }
-
-        $db->commit();
-        header("Location: " . $_SERVER['SCRIPT_NAME'] . "?saved=1");
-        exit;
-    } catch (Exception $e) {
-        $db->rollBack();
-        $error = 'Failed to save changes: ' . $e->getMessage();
     }
 }
 
@@ -386,6 +396,7 @@ $admin_reviews = $reviews_query->fetchAll();
             
             <form id="admin-form" method="POST" action="" enctype="multipart/form-data">
                 <input type="hidden" name="save_content" value="1">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['admin_csrf_token'] ?? ''; ?>">
                 
                 <!-- TAB 1: GENERAL SETTINGS -->
                 <div id="tab-general" class="tab-content active space-y-6">
@@ -619,6 +630,7 @@ $admin_reviews = $reviews_query->fetchAll();
                                         <td class="p-4 text-center">
                                             <div class="flex items-center justify-center space-x-2">
                                                 <form method="POST" action="" class="inline">
+                                                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['admin_csrf_token'] ?? ''; ?>">
                                                     <input type="hidden" name="toggle_review_id" value="<?php echo $rev['id']; ?>">
                                                     <input type="hidden" name="current_status" value="<?php echo htmlspecialchars($rev['status']); ?>">
                                                     <button type="submit" class="px-3 py-1.5 rounded-lg text-xs font-bold border transition-colors <?php echo ($rev['status'] === 'approved') ? 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100' : 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100'; ?>">
@@ -626,6 +638,7 @@ $admin_reviews = $reviews_query->fetchAll();
                                                     </button>
                                                 </form>
                                                 <form method="POST" action="" onsubmit="return confirm('Are you sure you want to delete this review?');" class="inline">
+                                                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['admin_csrf_token'] ?? ''; ?>">
                                                     <input type="hidden" name="delete_review_id" value="<?php echo $rev['id']; ?>">
                                                     <button type="submit" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition-colors">
                                                         Delete
