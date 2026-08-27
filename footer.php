@@ -7,7 +7,7 @@
             <div class="space-y-6 text-left">
                 <div class="flex items-center space-x-3">
                     <?php if (!empty($brandLogo)): ?>
-                        <img src="<?php echo htmlspecialchars($brandLogo); ?>" width="40" height="40" alt="Logo" class="h-10 w-auto object-contain">
+                        <img src="<?php echo htmlspecialchars($brandLogo); ?>" alt="Logo" class="h-10 w-auto object-contain" style="max-height: 40px; max-width: 120px; object-fit: contain;">
                     <?php endif; ?>
                     <h3 class="font-serif text-2xl font-bold text-white tracking-wider uppercase"><?php echo htmlspecialchars($brandName); ?></h3>
                 </div>
