@@ -50,7 +50,9 @@ INSERT INTO `settings` (`setting_key`, `setting_value`) VALUES
 ('description', 'Premium on-call massage and spa treatments delivered directly to your villa, hotel, or home in Bali. Certified therapists, organic oils, and pure relaxation.'),
 ('whatsapp', '6281234567890'),
 ('instagram', 'https://instagram.com/baligreenoasis'),
-('operatingHours', '09:00 AM - 10:00 PM')
+('operatingHours', '09:00 AM - 10:00 PM'),
+('heroImage', 'assets/images/hero-massage.webp'),
+('aboutImage', 'assets/images/about-massage.webp')
 ON DUPLICATE KEY UPDATE `setting_value`=VALUES(`setting_value`);
 
 -- SEED SERVICES

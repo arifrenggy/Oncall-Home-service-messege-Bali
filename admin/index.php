@@ -113,6 +113,74 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $is_logged_in) {
                     }
                 }
 
+                // Handle Hero Image Removal / Reset
+                if (isset($_POST['remove_hero_image']) && $_POST['remove_hero_image'] == '1') {
+                    $current_hero_query = $db->prepare("SELECT setting_value FROM settings WHERE setting_key = 'heroImage'");
+                    $current_hero_query->execute();
+                    $current_hero_path = $current_hero_query->fetchColumn();
+                    if (!empty($current_hero_path) && $current_hero_path !== 'assets/images/hero-massage.webp' && file_exists(__DIR__ . '/../' . $current_hero_path)) {
+                        @unlink(__DIR__ . '/../' . $current_hero_path);
+                    }
+                    $stmt_settings->execute(['heroImage', 'assets/images/hero-massage.webp', 'assets/images/hero-massage.webp']);
+                }
+
+                // Handle Hero Image Upload
+                if (isset($_FILES['hero_image']) && $_FILES['hero_image']['error'] === UPLOAD_ERR_OK) {
+                    $file_tmp = $_FILES['hero_image']['tmp_name'];
+                    $file_name = preg_replace('/[^a-zA-Z0-9\.\-_]/', '', $_FILES['hero_image']['name']);
+                    
+                    // Validate mime type
+                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                    $mime_type = finfo_file($finfo, $file_tmp);
+                    if (is_resource($finfo)) {
+                        finfo_close($finfo);
+                    }
+
+                    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+                    if (in_array($mime_type, $allowed_types)) {
+                        $target_name = 'hero_' . time() . '_' . $file_name;
+                        $target_file = $images_dir . '/' . $target_name;
+                        if (move_uploaded_file($file_tmp, $target_file)) {
+                            $hero_path = 'assets/images/' . $target_name;
+                            $stmt_settings->execute(['heroImage', $hero_path, $hero_path]);
+                        }
+                    }
+                }
+
+                // Handle About Image Removal / Reset
+                if (isset($_POST['remove_about_image']) && $_POST['remove_about_image'] == '1') {
+                    $current_about_query = $db->prepare("SELECT setting_value FROM settings WHERE setting_key = 'aboutImage'");
+                    $current_about_query->execute();
+                    $current_about_path = $current_about_query->fetchColumn();
+                    if (!empty($current_about_path) && $current_about_path !== 'assets/images/about-massage.webp' && file_exists(__DIR__ . '/../' . $current_about_path)) {
+                        @unlink(__DIR__ . '/../' . $current_about_path);
+                    }
+                    $stmt_settings->execute(['aboutImage', 'assets/images/about-massage.webp', 'assets/images/about-massage.webp']);
+                }
+
+                // Handle About Image Upload
+                if (isset($_FILES['about_image']) && $_FILES['about_image']['error'] === UPLOAD_ERR_OK) {
+                    $file_tmp = $_FILES['about_image']['tmp_name'];
+                    $file_name = preg_replace('/[^a-zA-Z0-9\.\-_]/', '', $_FILES['about_image']['name']);
+                    
+                    // Validate mime type
+                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                    $mime_type = finfo_file($finfo, $file_tmp);
+                    if (is_resource($finfo)) {
+                        finfo_close($finfo);
+                    }
+
+                    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+                    if (in_array($mime_type, $allowed_types)) {
+                        $target_name = 'about_' . time() . '_' . $file_name;
+                        $target_file = $images_dir . '/' . $target_name;
+                        if (move_uploaded_file($file_tmp, $target_file)) {
+                            $about_path = 'assets/images/' . $target_name;
+                            $stmt_settings->execute(['aboutImage', $about_path, $about_path]);
+                        }
+                    }
+                }
+
                 // 2. Save Massage Services
                 $submitted_services = $_POST['services'] ?? [];
                 $kept_service_ids = [];
@@ -439,11 +507,16 @@ $admin_reviews = $reviews_query->fetchAll();
                             <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Google Review Count (e.g. 24)</label>
                             <input type="number" name="general[reviewCount]" value="<?php echo htmlspecialchars($general['reviewCount'] ?? '24'); ?>" required class="w-full border border-stone-200 px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm font-medium">
                         </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Brand Logo (Optional)</label>
-                            <div class="flex items-center space-x-6 mt-1">
+                        <div class="md:col-span-2 border-t border-stone-200 pt-6">
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-stone-800 mb-4">Website Images &amp; Branding</h3>
+                        </div>
+
+                        <div class="md:col-span-2 bg-stone-50 p-5 rounded-2xl border border-stone-200 space-y-3">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-700">Brand Logo (Header / Favicon)</label>
+                            <p class="text-[11px] text-stone-400">Upload your brand logo for the navbar, footer, and browser favicon.</p>
+                            <div class="flex items-center space-x-6 pt-1">
                                 <?php if (!empty($general['brandLogo'])): ?>
-                                    <div class="w-16 h-16 bg-stone-100 rounded-xl overflow-hidden border border-stone-200 flex items-center justify-center">
+                                    <div class="w-16 h-16 bg-white rounded-xl overflow-hidden border border-stone-200 flex items-center justify-center p-1 shadow-sm">
                                         <img src="../<?php echo htmlspecialchars($general['brandLogo']); ?>" alt="Current Logo" class="max-h-full max-w-full object-contain">
                                     </div>
                                     <label class="inline-flex items-center text-xs text-red-600 font-semibold cursor-pointer">
@@ -452,6 +525,52 @@ $admin_reviews = $reviews_query->fetchAll();
                                     </label>
                                 <?php endif; ?>
                                 <input type="file" name="brand_logo" accept="image/*" class="text-sm text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
+                            </div>
+                        </div>
+
+                        <!-- Homepage Hero Image -->
+                        <div class="md:col-span-1 bg-stone-50 p-5 rounded-2xl border border-stone-200 space-y-3">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-700">Homepage Hero Image</label>
+                            <p class="text-[11px] text-stone-400">Main hero image shown at the top of the homepage.</p>
+                            <?php 
+                                $currentHeroImg = !empty($general['heroImage']) ? $general['heroImage'] : 'assets/images/hero-massage.webp'; 
+                            ?>
+                            <div class="flex items-center space-x-4 pt-1">
+                                <div class="w-20 h-24 bg-stone-200 rounded-xl overflow-hidden border border-stone-300 flex-shrink-0 shadow-sm">
+                                    <img src="../<?php echo htmlspecialchars($currentHeroImg); ?>" alt="Current Hero Image" class="w-full h-full object-cover">
+                                </div>
+                                <div class="space-y-2 flex-1">
+                                    <input type="file" name="hero_image" accept="image/*" class="w-full text-xs text-stone-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
+                                    <?php if (!empty($general['heroImage']) && $general['heroImage'] !== 'assets/images/hero-massage.webp'): ?>
+                                        <label class="inline-flex items-center text-xs text-red-600 font-semibold cursor-pointer">
+                                            <input type="checkbox" name="remove_hero_image" value="1" class="mr-1.5 rounded text-red-600 focus:ring-red-500">
+                                            Reset to default image
+                                        </label>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Homepage About Us Image -->
+                        <div class="md:col-span-1 bg-stone-50 p-5 rounded-2xl border border-stone-200 space-y-3">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-700">Homepage About Us Image</label>
+                            <p class="text-[11px] text-stone-400">Image shown in the About section on the homepage.</p>
+                            <?php 
+                                $currentAboutImg = !empty($general['aboutImage']) ? $general['aboutImage'] : 'assets/images/about-massage.webp'; 
+                            ?>
+                            <div class="flex items-center space-x-4 pt-1">
+                                <div class="w-24 h-20 bg-stone-200 rounded-xl overflow-hidden border border-stone-300 flex-shrink-0 shadow-sm">
+                                    <img src="../<?php echo htmlspecialchars($currentAboutImg); ?>" alt="Current About Image" class="w-full h-full object-cover">
+                                </div>
+                                <div class="space-y-2 flex-1">
+                                    <input type="file" name="about_image" accept="image/*" class="w-full text-xs text-stone-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
+                                    <?php if (!empty($general['aboutImage']) && $general['aboutImage'] !== 'assets/images/about-massage.webp'): ?>
+                                        <label class="inline-flex items-center text-xs text-red-600 font-semibold cursor-pointer">
+                                            <input type="checkbox" name="remove_about_image" value="1" class="mr-1.5 rounded text-red-600 focus:ring-red-500">
+                                            Reset to default image
+                                        </label>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -101,17 +101,17 @@
             if (!select) return;
             const duration = select.value;
             const selectedOption = select.options[select.selectedIndex];
-            const price = selectedOption.getAttribute('data-price');
+            const price = selectedOption ? selectedOption.getAttribute('data-price') : '';
             
-            const message = `Hi, I would like to book a ${serviceName} (${duration} - ${price}). Here are my details:
-- Date & Time: 
-- Address (Hotel/Villa/Home): 
-- Number of People: 
-
-Please confirm my booking. Thank you!`;
+            const message = `Hi, I would like to book a ${serviceName} (${duration} - ${price}). Here are my details:\n- Name: \n- Date & Time: \n- Address (Hotel/Villa/Home): \n- Notes: \n\nPlease confirm my booking. Thank you!`;
             
-            const waUrl = `https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`;
-            window.open(waUrl, '_blank');
+            const cleanWa = String(whatsapp).replace(/[^0-9]/g, '');
+            const waUrl = `https://wa.me/${cleanWa}?text=${encodeURIComponent(message)}`;
+            
+            const newTab = window.open(waUrl, '_blank');
+            if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
+                window.location.href = waUrl;
+            }
         }
     </script>
 </body>

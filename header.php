@@ -21,6 +21,8 @@ $instagram = $settings['instagram'] ?? '';
 $operatingHours = $settings['operatingHours'] ?? '';
 $ratingValue = $settings['ratingValue'] ?? '4.9';
 $reviewCount = $settings['reviewCount'] ?? '24';
+$heroImage = !empty($settings['heroImage']) ? $settings['heroImage'] : 'assets/images/hero-massage.webp';
+$aboutImage = !empty($settings['aboutImage']) ? $settings['aboutImage'] : 'assets/images/about-massage.webp';
 
 // Auto-create reviews table if it doesn't exist
 $db->exec("CREATE TABLE IF NOT EXISTS `reviews` (
@@ -60,7 +62,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- OpenGraph Meta Tags (SEO/Social/WhatsApp Share Preview) -->
     <meta property="og:title" content="<?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Best Home Service Massage Bali | On-Call Spa &amp; Reflexology'; ?>">
     <meta property="og:description" content="<?php echo isset($pageDesc) ? htmlspecialchars($pageDesc) : 'Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home in Bali. Book via WhatsApp!'; ?>">
-    <meta property="og:image" content="<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/hero-massage.webp'; ?>">
+    <meta property="og:image" content="<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($heroImage); ?>">
     <meta property="og:type" content="website">
     
     <!-- Local Business Schema (JSON-LD) for Google Rich Snippets -->
@@ -69,7 +71,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
       "@context": "https://schema.org",
       "@type": "HealthAndBeautyBusiness",
       "name": "<?php echo htmlspecialchars($brandName); ?>",
-      "image": "<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/hero-massage.webp'; ?>",
+      "image": "<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($heroImage); ?>",
       "description": "<?php echo htmlspecialchars($description); ?>",
       "telephone": "+<?php echo htmlspecialchars($whatsapp); ?>",
       "priceRange": "$$",
@@ -138,7 +140,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </noscript>
 
     <!-- Preload LCP Image -->
-    <link rel="preload" as="image" href="assets/images/hero-massage.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="<?php echo htmlspecialchars($heroImage); ?>" fetchpriority="high">
 
     <!-- Static Tailwind CSS -->
     <style>

@@ -62,11 +62,11 @@ $reviews = $reviews_query->fetchAll();
                 </ul>
                 
                 <div class="pt-6 flex flex-wrap gap-4">
-                    <a href="services" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
+                    <a href="https://wa.me/<?php echo htmlspecialchars($whatsapp); ?>?text=<?php echo urlencode('Hi, I would like to book a massage treatment in Bali. Could you please share available slots?'); ?>" target="_blank" rel="noopener" class="bg-[#9c654d] hover:bg-[#7d4d38] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
                         <i aria-hidden="true" class="fab fa-whatsapp text-sm"></i>
                         <span>Book Now</span>
                     </a>
-                    <a href="services" class="border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                    <a href="#services" class="border border-slate-300 hover:border-slate-800 text-slate-700 hover:text-slate-900 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
                         View Prices
                     </a>
                 </div>
@@ -75,7 +75,7 @@ $reviews = $reviews_query->fetchAll();
             <!-- Right Side Image Mockup -->
             <div class="lg:col-span-5 relative">
                 <div class="aspect-[4/5] sm:aspect-square bg-gradient-to-tr from-stone-100 to-slate-200 rounded-3xl overflow-hidden shadow-2xl relative border border-slate-200">
-                    <img src="assets/images/hero-massage.webp" width="600" height="750" alt="On-call and home service massage Canggu Seminyak Bali - Honey Massage" class="w-full h-full object-cover">
+                    <img src="<?php echo htmlspecialchars($heroImage); ?>" width="600" height="750" alt="On-call and home service massage Canggu Seminyak Bali - <?php echo htmlspecialchars($brandName); ?>" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@ $reviews = $reviews_query->fetchAll();
             <!-- Left Side Image -->
             <div class="relative">
                 <div class="aspect-[4/3] bg-slate-100 rounded-3xl overflow-hidden shadow-xl border border-stone-200">
-                    <img src="assets/images/about-massage.webp" width="800" height="600" loading="lazy" alt="Oncall & Home Service Massage Bali" class="w-full h-full object-cover">
+                    <img src="<?php echo htmlspecialchars($aboutImage); ?>" width="800" height="600" loading="lazy" alt="<?php echo htmlspecialchars($brandName); ?>" class="w-full h-full object-cover">
                 </div>
             </div>
             <!-- Right Side Text -->
