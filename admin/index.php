@@ -608,11 +608,26 @@ $admin_reviews = $reviews_query->fetchAll();
                                     </div>
                                     
                                     <!-- Image Upload & Preview -->
-                                    <div>
+                                    <div class="space-y-2">
                                         <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Service Image</label>
-                                        <input type="file" name="service_image_<?php echo $db_id; ?>" class="w-full text-xs text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
-                                        <input type="hidden" name="services[<?php echo $db_id; ?>][image]" value="<?php echo htmlspecialchars($service['image_path']); ?>">
-                                        <p class="text-[10px] text-stone-400 mt-1">Current path: <?php echo htmlspecialchars($service['image_path']); ?></p>
+                                        <div class="flex items-center space-x-4">
+                                            <?php 
+                                                $serviceImgPreview = $service['image_path'];
+                                                if (strpos($serviceImgPreview, 'http') === 0) {
+                                                    $serviceImgPreviewPath = $serviceImgPreview;
+                                                } else {
+                                                    $serviceImgPreviewPath = '../' . $serviceImgPreview;
+                                                }
+                                            ?>
+                                            <div class="w-16 h-12 bg-stone-200 rounded-lg overflow-hidden border border-stone-300 flex-shrink-0 shadow-sm">
+                                                <img src="<?php echo htmlspecialchars($serviceImgPreviewPath); ?>" alt="Preview" class="w-full h-full object-cover">
+                                            </div>
+                                            <div class="flex-1">
+                                                <input type="file" name="service_image_<?php echo $db_id; ?>" class="w-full text-xs text-stone-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
+                                                <input type="hidden" name="services[<?php echo $db_id; ?>][image]" value="<?php echo htmlspecialchars($service['image_path']); ?>">
+                                                <p class="text-[10px] text-stone-400 mt-1">Current: <?php echo htmlspecialchars($service['image_path']); ?></p>
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                     <!-- Featured Switcher -->
@@ -868,10 +883,17 @@ $admin_reviews = $reviews_query->fetchAll();
                         <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Service Description</label>
                         <input type="text" name="services[new_${idx}][description]" required class="w-full border border-stone-200 px-3 py-2 rounded-lg text-sm bg-white">
                     </div>
-                    <div>
+                    <div class="space-y-2">
                         <label class="block text-xs font-semibold uppercase tracking-wider text-stone-400 mb-1">Service Image</label>
-                        <input type="file" name="service_image_new_${idx}" required class="w-full text-xs text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
-                        <input type="hidden" name="services[new_${idx}][image]" value="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-12 bg-stone-200 rounded-lg overflow-hidden border border-stone-300 flex-shrink-0 shadow-sm flex items-center justify-center text-stone-450">
+                                <i class="fas fa-image text-sm"></i>
+                            </div>
+                            <div class="flex-1">
+                                <input type="file" name="service_image_new_${idx}" required class="w-full text-xs text-stone-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
+                                <input type="hidden" name="services[new_${idx}][image]" value="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=800">
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center pt-6">
                         <label class="flex items-center space-x-2 cursor-pointer">
