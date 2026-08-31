@@ -536,7 +536,7 @@ $admin_reviews = $reviews_query->fetchAll();
                                 $currentHeroImg = !empty($general['heroImage']) ? $general['heroImage'] : 'assets/images/hero-massage.webp'; 
                             ?>
                             <div class="flex items-center space-x-4 pt-1">
-                                <div class="w-20 h-24 bg-stone-200 rounded-xl overflow-hidden border border-stone-300 flex-shrink-0 shadow-sm">
+                                <div class="w-24 h-20 bg-stone-200 rounded-xl overflow-hidden border border-stone-300 flex-shrink-0 shadow-sm">
                                     <img src="../<?php echo htmlspecialchars($currentHeroImg); ?>" alt="Current Hero Image" class="w-full h-full object-cover">
                                 </div>
                                 <div class="space-y-2 flex-1">
