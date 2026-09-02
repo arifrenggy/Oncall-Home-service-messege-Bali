@@ -15,6 +15,11 @@ try {
     assert.ok(content.includes('password_verify(') || content.includes('password_hash('), "Missing secure password hashing verification");
     assert.ok(content.includes('post') || content.includes('POST'), "Must handle POST requests for login submission");
 
+    // Brute-force protection & session fixation defense
+    assert.ok(content.includes('login_attempts'), "Missing DB-backed rate limiting (login_attempts table)");
+    assert.ok(content.includes('session_regenerate_id'), "Missing session_regenerate_id after successful login");
+    assert.ok(content.includes('password_verify('), "Missing password_verify for constant-time hash check");
+
     console.log("PASS: PHP admin login scaffold looks valid!");
     process.exit(0);
 } catch (error) {

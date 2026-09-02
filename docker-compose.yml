@@ -29,6 +29,7 @@ services:
       MYSQLDATABASE: oncall_massage_bali
       MYSQLUSER: oncall
       MYSQLPASSWORD: oncallpass
+      ADMIN_PASSWORD_HASH: ${ADMIN_PASSWORD_HASH:-}
     depends_on:
       db:
         condition: service_healthy

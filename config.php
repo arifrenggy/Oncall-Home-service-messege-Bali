@@ -8,8 +8,10 @@ define('DB_NAME', getenv('MYSQLDATABASE') ?: 'oncall_massage_bali');
 define('DB_USER', getenv('MYSQLUSER') ?: 'root');
 define('DB_PASS', getenv('MYSQLPASSWORD') ?: '');
 
-// Admin login password hash (using php password_hash function)
-define('ADMIN_PASSWORD_HASH', '$2y$10$aJ5Cgohf/optRaAKUf8tvuEQUscjGE09UYaqjuOAKpzt2EGGPsa0K');
+// Admin login password hash (bcrypt) — MUST be provided via the
+// ADMIN_PASSWORD_HASH environment variable. Never commit hashes to the repo.
+// Generate one with:  php -r "echo password_hash('your-password', PASSWORD_DEFAULT);"
+define('ADMIN_PASSWORD_HASH', getenv('ADMIN_PASSWORD_HASH') ?: '');
 
 try {
     $db = new PDO("mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS, [

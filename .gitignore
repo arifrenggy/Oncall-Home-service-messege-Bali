@@ -1,0 +1,27 @@
+# Environment / secrets — never commit
+.env
+.env.*
+*.pem
+*.key
+
+# Local databases & backups
+*.sql.bak
+*.dump
+*.mysql
+db_data/
+
+# Uploaded runtime content (managed via admin panel, not git)
+/assets/images/logo_*
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+.vscode/
+
+# Logs & vendor
+*.log
+vendor/
+node_modules/

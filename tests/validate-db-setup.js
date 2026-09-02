@@ -13,7 +13,9 @@ try {
 
     const configContent = fs.readFileSync(configPath, 'utf8');
     assert.ok(configContent.includes('new PDO'), "config.php must instantiate PDO for DB connections");
-    assert.ok(configContent.includes('password_hash'), "config.php must contain admin login configuration hash");
+    // Admin hash now comes from the ADMIN_PASSWORD_HASH env var (not committed)
+    assert.ok(configContent.includes("getenv('ADMIN_PASSWORD_HASH')"), "config.php must read the admin hash from the environment");
+    assert.ok(!configContent.includes('\$2y\$'), "config.php must NOT contain a committed bcrypt hash");
 
     console.log("PASS: Database init files and config look valid!");
     process.exit(0);

@@ -14,15 +14,72 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     exit;
 }
 
-// Handle login form submission
+// Handle login form submission (with brute-force protection)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
-    $password = $_POST['password'] ?? '';
-    if (password_verify($password, ADMIN_PASSWORD_HASH)) {
-        $_SESSION['admin_logged_in'] = true;
-        header("Location: " . $_SERVER['SCRIPT_NAME']);
-        exit;
+    // Best-effort DB-backed rate limiting (5 attempts, then 15-minute lockout per IP)
+    $max_attempts = 5;
+    $lockout_minutes = 15;
+    $client_ip = trim(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'])[0]);
+    $attempt_row = false;
+
+    try {
+        $db->exec("CREATE TABLE IF NOT EXISTS login_attempts (
+            ip VARCHAR(45) PRIMARY KEY,
+            attempts INT NOT NULL DEFAULT 0,
+            locked_until DATETIME NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+        $stmt = $db->prepare("SELECT attempts, locked_until FROM login_attempts WHERE ip = ?");
+        $stmt->execute([$client_ip]);
+        $attempt_row = $stmt->fetch();
+    } catch (PDOException $e) {
+        // If tracking fails, fall through — password check below still applies
+    }
+
+    $is_locked = $attempt_row && $attempt_row['locked_until'] !== null
+        && strtotime($attempt_row['locked_until']) > time();
+
+    if ($is_locked) {
+        $mins_left = (int)ceil((strtotime($attempt_row['locked_until']) - time()) / 60);
+        $error = "Too many failed attempts. Try again in {$mins_left} minute(s).";
+    } elseif (ADMIN_PASSWORD_HASH === '') {
+        $error = 'Admin login is not configured. Set the ADMIN_PASSWORD_HASH environment variable.';
     } else {
-        $error = 'Invalid password. Please try again.';
+        $password = $_POST['password'] ?? '';
+        if (password_verify($password, ADMIN_PASSWORD_HASH)) {
+            // Success: clear the failed-attempt counter for this IP
+            try {
+                $db->prepare("DELETE FROM login_attempts WHERE ip = ?")->execute([$client_ip]);
+            } catch (PDOException $e) {
+                // ignore
+            }
+            // Rotate the session ID to prevent session fixation
+            session_regenerate_id(true);
+            $_SESSION['admin_logged_in'] = true;
+            header("Location: " . $_SERVER['SCRIPT_NAME']);
+            exit;
+        } else {
+            $error = 'Invalid password. Please try again.';
+            // Record the failed attempt
+            try {
+                // Reset the counter only if a previous lockout has expired;
+                // otherwise just increment (row may not exist yet -> 0 + 1)
+                $expired = $attempt_row && $attempt_row['locked_until'] !== null
+                    && strtotime($attempt_row['locked_until']) <= time();
+                $attempts = $expired ? 1 : (int)($attempt_row['attempts'] ?? 0) + 1;
+                $locked_until = ($attempts >= $max_attempts)
+                    ? date('Y-m-d H:i:s', time() + $lockout_minutes * 60)
+                    : null;
+                $up = $db->prepare("INSERT INTO login_attempts (ip, attempts, locked_until)
+                    VALUES (?, ?, ?)
+                    ON DUPLICATE KEY UPDATE attempts = VALUES(attempts), locked_until = VALUES(locked_until)");
+                $up->execute([$client_ip, $attempts, $locked_until]);
+                if ($locked_until !== null) {
+                    $error = "Too many failed attempts. Try again in {$lockout_minutes} minutes.";
+                }
+            } catch (PDOException $e) {
+                // ignore — login attempt still fails safely
+            }
+        }
     }
 }
 
