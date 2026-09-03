@@ -37,4 +37,9 @@ RUN chown -R apache:apache /var/www/localhost/htdocs/ \
 EXPOSE 80
 
 # Perintah utama untuk menjalankan service Apache di latar depan (foreground)
+# Pastikan entrypoint executable lalu gunakan sebagai ENTRYPOINT
+RUN chmod +x /var/www/localhost/htdocs/docker-entrypoint.sh && \
+    mv /var/www/localhost/htdocs/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["httpd", "-D", "FOREGROUND"]
