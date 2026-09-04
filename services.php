@@ -135,7 +135,7 @@ $faqs = $faqs_query->fetchAll();
             <div class="space-y-6 text-left">
                 <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1.5 rounded-full"><i aria-hidden="true" class="fas fa-map-marked-alt mr-1"></i> Coverage Zones</span>
                 <h2 class="text-3xl font-serif font-bold text-slate-900 leading-tight">Service Area Coverage</h2>
-                <p class="text-slate-500 text-sm leading-relaxed font-light">Our professional, certified female therapists arrive directly at your location without any extra transportation charges in these areas:</p>
+                <p class="text-slate-500 text-sm leading-relaxed font-light">Our professional, certified therapists arrive directly at your location without any extra transportation charges in these areas:</p>
                 
                 <ul class="grid sm:grid-cols-2 gap-4">
                     <?php foreach ($areas as $area): ?>
@@ -147,7 +147,7 @@ $faqs = $faqs_query->fetchAll();
                 </ul>
                 
                 <p class="text-xs text-slate-500 leading-relaxed font-light mt-4">
-                    Kami melayani berbagai kebutuhan Anda mulai dari <strong>massage panggilan Kuta</strong>, <strong>massage panggilan Ubud</strong>, <strong>massage panggilan Nusa Dua</strong>, hingga layanan premium seperti <strong>spa panggilan Seminyak</strong> dan <strong>spa panggilan Canggu</strong>. Bagi Anda wisatawan asing maupun domestik yang membutuhkan <strong>on call massage Seminyak</strong>, <strong>on call spa Uluwatu</strong>, atau <strong>massage hotel Bali</strong> dan <strong>massage delivery Bali</strong>, terapis profesional kami siap datang langsung ke tempat Anda. Kami juga menyediakan opsi <strong>massage panggilan Bali profesional</strong> serta <strong>balinese massage panggilan</strong> yang autentik untuk relaksasi maksimal.
+                    Kami melayani berbagai kebutuhan Anda mulai dari layanan pijat relaksasi di Kuta dan Ubud, hingga perawatan premium seperti spa profesional di Seminyak dan Canggu. Bagi Anda wisatawan asing maupun domestik yang membutuhkan layanan wellness di Seminyak, spa profesional di Uluwatu, atau perawatan pijat di hotel dan vila Anda di seluruh Bali, terapis profesional kami siap datang langsung dengan peralatan lengkap. Kami juga menyediakan Balinese massage autentik serta deep tissue massage profesional untuk relaksasi maksimal.
                 </p>
                 
                 <div class="bg-white p-6 rounded-2xl border border-stone-150 flex items-start space-x-4">

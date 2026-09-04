@@ -1,7 +1,7 @@
 <?php
 // index.php
 $pageTitle = "Best Home Service Massage Bali | On-Call Spa & Reflexology";
-$pageDesc = "Enjoy a 5-star on-call massage and luxury spa delivered directly to your villa, hotel, or home in Canggu, Seminyak, Ubud, and across Bali. Certified female therapists.";
+$pageDesc = "Enjoy a 5-star home service massage and luxury spa delivered directly to your villa, hotel, or home in Canggu, Seminyak, Ubud, and across Bali. Certified professional therapists.";
 $canonicalUrl = "https://honeymassagebali.shop/";
 require_once 'header.php';
 
@@ -36,7 +36,7 @@ $reviews = $reviews_query->fetchAll();
                     Oncall &amp; Home Service Massage
                 </h1>
                 <p class="text-slate-600 text-sm sm:text-base max-w-xl font-light">
-                    Your Premium Wellness Solutions - Enjoy the convenience of a 5-star on-call massage & luxury spa delivered directly to your villa, hotel, or home in Seminyak, Canggu, Ubud, Kuta, Nusa Dua, Uluwatu, and across Bali.
+                    Your Premium Wellness Solutions - Enjoy the convenience of a 5-star home service massage & luxury spa delivered directly to your villa, hotel, or home in Seminyak, Canggu, Ubud, Kuta, Nusa Dua, Uluwatu, and across Bali.
                 </p>
                 
                 <!-- Bullet Checklist Guarantee -->
@@ -98,7 +98,7 @@ $reviews = $reviews_query->fetchAll();
                 </h2>
                 <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-4 font-light">
                     <p><?php echo htmlspecialchars($description); ?></p>
-                    <p>Through our friendly, certified, and professionally trained female therapists, we are committed to delivering the ultimate relaxation experience directly to you without ever having to leave your room.</p>
+                    <p>Through our friendly, certified, and professionally trained therapists, we are committed to delivering the ultimate relaxation experience directly to you without ever having to leave your room.</p>
                 </div>
                 
                 <div class="pt-2 flex flex-wrap gap-4">
@@ -126,7 +126,7 @@ $reviews = $reviews_query->fetchAll();
                             <i aria-hidden="true" class="fas fa-spa"></i>
                         </div>
                         <h3 class="text-xl font-serif font-bold text-stone-900 mb-3">Certified Therapists</h3>
-                        <p class="text-stone-700 text-sm leading-relaxed font-light">Our female therapists are fully trained, certified, and experienced in professional spa treatments and anatomy.</p>
+                        <p class="text-stone-700 text-sm leading-relaxed font-light">Our therapists are fully trained, certified, and experienced in professional spa treatments and anatomy.</p>
                     </div>
                 </div>
                 

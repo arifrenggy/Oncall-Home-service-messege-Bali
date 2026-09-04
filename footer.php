@@ -39,7 +39,7 @@
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800 mt-16 pt-8 text-center text-slate-500 text-xs space-y-4">
             <p class="max-w-3xl mx-auto leading-relaxed">
-                Premium <strong>massage on call Seminyak</strong>, <strong>in-villa massage Canggu</strong>, and <strong>outcall spa Seminyak</strong> services. Our <strong>professional mobile spa Bali</strong> also serves Kuta, Denpasar, Nusa Dua, Ubud, Pecatu, Uluwatu, Tanah Lot, Tabanan, and Gianyar with <strong>massage panggilan Bali</strong> and <strong>deep tissue massage villa</strong> treatments.
+                Premium in-villa massage in Seminyak and Canggu, and professional spa services in the comfort of your accommodation. Our <strong>professional mobile spa Bali</strong> also serves Kuta, Denpasar, Nusa Dua, Ubud, Pecatu, Uluwatu, Tanah Lot, Tabanan, and Gianyar with authentic Balinese massage and deep tissue treatments.
             </p>
             <p>
                 &copy; <?php echo date('Y'); ?> <?php echo htmlspecialchars($brandName); ?>. All Rights Reserved. Designed for wellness.

@@ -54,14 +54,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Best Home Service Massage Bali | On-Call Spa &amp; Reflexology'; ?></title>
-    <meta name="description" content="<?php echo isset($pageDesc) ? htmlspecialchars($pageDesc) : 'Looking for the best home service massage in Bali? Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home. Book in 3 minutes!'; ?>">
-    <meta name="keywords" content="home service massage bali, massage home service bali, oncall spa bali, massage villa bali, massage seminyak, massage canggu, massage ubud, hotel massage bali, balinese massage panggilan, spa panggilan bali, massage delivery bali, best massage bali, massage nusa dua, massage kuta">
+    <title><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Best Home Service Massage Bali | Professional Spa &amp; Reflexology'; ?></title>
+    <meta name="description" content="<?php echo isset($pageDesc) ? htmlspecialchars($pageDesc) : 'Looking for the best home service massage in Bali? Professional home service spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home. Book in 3 minutes!'; ?>">
+    <meta name="keywords" content="home service massage bali, massage home service bali, in-villa spa bali, mobile spa bali, spa at home bali, massage villa bali, massage seminyak, massage canggu, massage ubud, balinese massage at home, massage delivery bali, best massage bali, massage nusa dua, massage kuta">
     <link rel="canonical" href="<?php echo isset($canonicalUrl) ? htmlspecialchars($canonicalUrl) : 'https://honeymassagebali.shop/'; ?>">
     
     <!-- OpenGraph Meta Tags (SEO/Social/WhatsApp Share Preview) -->
-    <meta property="og:title" content="<?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Best Home Service Massage Bali | On-Call Spa &amp; Reflexology'; ?>">
-    <meta property="og:description" content="<?php echo isset($pageDesc) ? htmlspecialchars($pageDesc) : 'Professional on-call spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home in Bali. Book via WhatsApp!'; ?>">
+    <meta property="og:title" content="<?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'Best Home Service Massage Bali | Professional Spa &amp; Reflexology'; ?>">
+    <meta property="og:description" content="<?php echo isset($pageDesc) ? htmlspecialchars($pageDesc) : 'Professional home service spa &amp; traditional Balinese massage delivered directly to your villa, hotel, or home in Bali. Book via WhatsApp!'; ?>">
     <meta property="og:image" content="<?php echo !empty($brandLogo) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($brandLogo) : 'https://' . $_SERVER['HTTP_HOST'] . '/' . htmlspecialchars($heroImage); ?>">
     <meta property="og:type" content="website">
     
