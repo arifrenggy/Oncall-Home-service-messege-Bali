@@ -30,7 +30,7 @@ $reviews = $reviews_query->fetchAll();
             <!-- Left Side Content -->
             <div class="lg:col-span-7 space-y-6 text-left">
                 <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-4 py-1.5 rounded-full">
-                    <i aria-hidden="true" class="fas fa-certificate mr-1.5"></i> #1 On-Call Massage Bali
+                    <i aria-hidden="true" class="fas fa-certificate mr-1.5"></i> #1 Home Service Massage Bali
                 </span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
                     Oncall &amp; Home Service Massage
