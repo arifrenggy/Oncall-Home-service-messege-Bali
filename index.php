@@ -75,7 +75,7 @@ $reviews = $reviews_query->fetchAll();
             <!-- Right Side Image Mockup -->
             <div class="lg:col-span-5 relative">
                 <div class="aspect-[4/5] sm:aspect-square bg-gradient-to-tr from-stone-100 to-slate-200 rounded-3xl overflow-hidden shadow-2xl relative border border-slate-200">
-                    <img src="<?php echo htmlspecialchars($heroImage); ?>" width="600" height="750" alt="On-call and home service massage Canggu Seminyak Bali - <?php echo htmlspecialchars($brandName); ?>" class="w-full h-full object-cover">
+                    <img src="<?php echo htmlspecialchars($heroImage); ?>" width="600" height="750" alt="Professional home service massage Canggu Seminyak Bali - <?php echo htmlspecialchars($brandName); ?>" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>

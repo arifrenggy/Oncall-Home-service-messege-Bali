@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS `faqs` (
 
 -- SEED DEFAULT SETTINGS
 INSERT INTO `settings` (`setting_key`, `setting_value`) VALUES
-('brandName', 'Oncall & home service message'),
+('brandName', 'Honey Massage Bali'),
 ('tagline', 'Rejuvenate Your Body & Mind at Your Villa'),
-('description', 'Premium on-call massage and spa treatments delivered directly to your villa, hotel, or home in Bali. Certified therapists, organic oils, and pure relaxation.'),
+('description', 'Premium home service massage and spa treatments delivered directly to your villa, hotel, or home in Bali. Certified therapists, organic oils, and pure relaxation.'),
 ('whatsapp', '6281234567890'),
 ('instagram', 'https://instagram.com/baligreenoasis'),
 ('operatingHours', '09:00 AM - 10:00 PM'),
@@ -58,7 +58,7 @@ ON DUPLICATE KEY UPDATE `setting_value`=VALUES(`setting_value`);
 -- SEED SERVICES
 INSERT INTO `services` (`id`, `service_id`, `title`, `description`, `image_path`, `featured`) VALUES
 (1, 'balinese-massage', 'Balinese Traditional Massage', 'Enjoy the best traditional Balinese massage at your villa, hotel, or home in Canggu, Seminyak, or Kuta. A full-body holistic treatment using premium organic aromatherapy oils.', 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600', 1),
-(2, 'deep-tissue', 'Deep Tissue Massage', 'Our on-call deep tissue massage in Bali focuses on realigning deeper layers of muscles. Highly beneficial for muscle recovery, tension relief, or jet lag recovery after your flight.', 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600', 1),
+(2, 'deep-tissue', 'Deep Tissue Massage', 'Our in-home deep tissue massage in Bali focuses on realigning deeper layers of muscles. Highly beneficial for muscle recovery, tension relief, or jet lag recovery after your flight.', 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600', 1),
 (3, 'reflexology', 'Foot Reflexology', 'Authentic foot reflexology delivered directly to your place. Applies precise pressure to restore energy flow and relieve tired feet after exploring Ubud or Uluwatu.', 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600', 0);
 
 -- SEED SERVICE OPTIONS
