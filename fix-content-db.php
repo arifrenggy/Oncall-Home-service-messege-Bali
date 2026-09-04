@@ -18,7 +18,7 @@ foreach ($db->query("SELECT setting_key, LEFT(setting_value,100) v FROM settings
     echo $r['setting_key'] . ' => ' . $r['v'] . "\n";
 }
 echo "\n=== SERVICES SEBELUM ===\n";
-foreach ($db->query("SELECT id, name, LEFT(description,90) d FROM services") as $r) {
+foreach ($db->query("SELECT id, service_id, title, LEFT(description,90) d FROM services") as $r) {
     echo $r['id'] . ' | ' . $r['name'] . ' | ' . $r['d'] . "\n";
 }
 
@@ -41,7 +41,7 @@ foreach ($db->query("SELECT setting_key, LEFT(setting_value,100) v FROM settings
     echo $r['setting_key'] . ' => ' . $r['v'] . "\n";
 }
 echo "\n=== SERVICES SESUDAH ===\n";
-foreach ($db->query("SELECT id, name, LEFT(description,90) d FROM services") as $r) {
+foreach ($db->query("SELECT id, service_id, title, LEFT(description,90) d FROM services") as $r) {
     echo $r['id'] . ' | ' . $r['name'] . ' | ' . $r['d'] . "\n";
 }
 echo "\nSELESAI. Hapus file ini sekarang.";
