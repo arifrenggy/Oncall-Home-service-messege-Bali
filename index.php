@@ -1,6 +1,6 @@
 <?php
 // index.php
-$pageTitle = "Best Home Service Massage Bali | On-Call Spa & Reflexology";
+$pageTitle = "Best Home Service Massage Bali | Professional Spa & Reflexology";
 $pageDesc = "Enjoy a 5-star home service massage and luxury spa delivered directly to your villa, hotel, or home in Canggu, Seminyak, Ubud, and across Bali. Certified professional therapists.";
 $canonicalUrl = "https://honeymassagebali.shop/";
 require_once 'header.php';
@@ -45,7 +45,7 @@ $reviews = $reviews_query->fetchAll();
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
                             <i aria-hidden="true" class="fas fa-check"></i>
                         </span>
-                        <span class="font-medium">Friendly, Certified &amp; Professional Female Therapists</span>
+                        <span class="font-medium">Friendly, Certified &amp; Professional Therapists</span>
                     </li>
                     <li class="flex items-center space-x-3 text-slate-700 text-sm">
                         <span class="w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[10px] flex-shrink-0">
