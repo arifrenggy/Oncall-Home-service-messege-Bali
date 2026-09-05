@@ -359,7 +359,7 @@ if (!$is_logged_in):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - Oncall & home service message</title>
+    <title>Admin Login - Honey Massage Bali Admin</title>
     <!-- Font Awesome CDNs -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts: Poppins & Inter -->
@@ -377,7 +377,7 @@ if (!$is_logged_in):
                 <i class="fas fa-user-shield"></i>
             </div>
             <h1 class="text-3xl font-serif font-bold text-stone-900">Admin Control</h1>
-            <p class="text-stone-400 text-sm tracking-wide">Oncall & home service message</p>
+            <p class="text-stone-400 text-sm tracking-wide">Honey Massage Bali Admin</p>
         </div>
         
         <?php if ($error): ?>
@@ -448,7 +448,7 @@ $admin_reviews = $reviews_query->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Oncall & home service message</title>
+    <title>Dashboard - Honey Massage Bali Admin</title>
     <!-- Font Awesome CDNs -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts: Poppins & Inter -->

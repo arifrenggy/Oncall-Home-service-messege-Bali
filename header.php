@@ -12,7 +12,7 @@ while ($row = $settings_query->fetch()) {
     $settings[$row['setting_key']] = $row['setting_value'];
 }
 
-$brandName = $settings['brandName'] ?? 'Oncall & home service message';
+$brandName = $settings['brandName'] ?? 'Honey Massage Bali';
 $brandLogo = $settings['brandLogo'] ?? '';
 $tagline = $settings['tagline'] ?? '';
 $description = $settings['description'] ?? '';

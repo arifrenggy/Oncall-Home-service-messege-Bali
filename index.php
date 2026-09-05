@@ -33,7 +33,7 @@ $reviews = $reviews_query->fetchAll();
                     <i aria-hidden="true" class="fas fa-certificate mr-1.5"></i> #1 Home Service Massage Bali
                 </span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
-                    Oncall &amp; Home Service Massage
+                    Professional Home Service Massage
                 </h1>
                 <p class="text-slate-600 text-sm sm:text-base max-w-xl font-light">
                     Your Premium Wellness Solutions - Enjoy the convenience of a 5-star home service massage & luxury spa delivered directly to your villa, hotel, or home in Seminyak, Canggu, Ubud, Kuta, Nusa Dua, Uluwatu, and across Bali.
@@ -94,7 +94,7 @@ $reviews = $reviews_query->fetchAll();
             <div class="space-y-6 text-left">
                 <span class="text-xs font-bold uppercase tracking-widest text-[#9c654d]"><i aria-hidden="true" class="fas fa-spa mr-1.5"></i> About Us</span>
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 leading-tight">
-                    Oncall &amp; Home Service Massage
+                    Professional Home Service Massage
                 </h2>
                 <div class="text-slate-600 text-sm sm:text-base leading-relaxed space-y-4 font-light">
                     <p><?php echo htmlspecialchars($description); ?></p>
