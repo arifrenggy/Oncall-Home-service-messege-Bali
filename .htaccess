@@ -32,11 +32,11 @@
     
     # 1. Redirect index.php to the root folder /
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
-    RewriteRule ^index\.php$ / [R=301,L]
+    RewriteRule ^index\.php$ https://%{HTTP_HOST}/ [R=301,L]
     
     # 2. Redirect any request to /page.php to /page
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php\ HTTP/
-    RewriteRule ^([^/]+)\.php$ /$1 [R=301,L]
+    RewriteRule ^([^/]+)\.php$ https://%{HTTP_HOST}/$1 [R=301,L]
     
     # 3. Internally rewrite /page to /page.php
     RewriteCond %{REQUEST_FILENAME} !-d
